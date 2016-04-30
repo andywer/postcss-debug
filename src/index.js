@@ -1,53 +1,29 @@
-import postcss from 'postcss'
-import defaultLogger from './logger'
+import Debugger from './debugger'
 import * as matcher from './matchers'
 
 export { matcher }
 
-function getPluginName (plugin) {
-  if (plugin.postcss) {
-    plugin = plugin.postcss
+export function createDebugger (matchers = [], options = {}) {
+  if (matchers.length === 0) {
+    matchers = [ matcher.all() ]
   }
 
-  return plugin.postcssPlugin
-}
+  const postcssDebugger = new Debugger(matchers, options)
 
-class Snapshot {
-  constructor(css, { prevPlugin, nextPlugin }) {
-    this.css = css.clone()
-    this.timestamp = Date.now()
-    this.prevPlugin = prevPlugin && getPluginName(prevPlugin)
-    this.nextPlugin = nextPlugin && getPluginName(nextPlugin)
-  }
-}
-
-class PostcssDebugger {
-  constructor (matchers, options) {
-    this.matchers = matchers;
-    this.options = Object.assign({ logger: defaultLogger }, options)
-
-    this.snapshots = []
-    this.print = this.print.bind(this)
+  function debugPostCSS (postcss) {
+    if (Array.isArray(postcss)) {
+      // `postcss` is an array of plugins (`postcss(debug([ plugin1, plugin2, ... ]))`)
+      return pluginWrapper(postcss)
+    } else if (typeof postcss === 'object' && postcss.constructor.name === 'Processor' && postcss.plugins) {
+      // `postcss` is a postcss processor instance (`debug(postcss([ plugin1, plugin2, ... ]))`)
+      return new postcss.constructor(pluginWrapper(postcss.plugins))
+    } else {
+      console.error('Unrecognized parameter passed to postcss-debug. Expected postcss instance or array of plugins.')
+      return postcss
+    }
   }
 
-  createSnapshoter ({ prevPlugin, nextPlugin }) {
-    return postcss.plugin('postcss-debug-snapshot', () => (
-      css => {
-        // TODO: Check if css matches any of this.matchers
-        this.snapshots.push(new Snapshot(css, { prevPlugin, nextPlugin }))
-      }
-    ))
-  }
-
-  print () {
-    this.options.logger.print(this.snapshots, this.options)
-  }
-}
-
-export function createDebugger (matchers, options = {}) {
-  const postcssDebugger = new PostcssDebugger(matchers, options)
-
-  return plugins => {
+  function pluginWrapper (plugins) {
     if (plugins.length === 0) {
       return [ postcssDebugger.createSnapshoter({}) ]
     }
@@ -65,4 +41,6 @@ export function createDebugger (matchers, options = {}) {
 
     return pluginsAndSnapshotters;
   }
+
+  return Object.assign(debugPostCSS, postcssDebugger)
 }

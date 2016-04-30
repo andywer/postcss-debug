@@ -1,3 +1,7 @@
+export function all () {
+  return () => true
+}
+
 export function contains (operand) {
   return string => string.indexOf(operand) > -1
 }
