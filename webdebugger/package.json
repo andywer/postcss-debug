@@ -4,7 +4,9 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c --sourcemap && cp src/index.html build/",
+    "build": "rollup -c --sourcemap",
+    "serve": "node dev/prepare-index-html.js && http-server build/ -o -c-1",
+    "start": "run-p watch serve",
     "watch": "watch 'npm run build' src/"
   },
   "devDependencies": {
@@ -13,6 +15,8 @@
     "babel-preset-es2015-loose": "^7.0.0",
     "babelify": "^7.3.0",
     "browserify": "^13.0.0",
+    "http-server": "^0.9.0",
+    "npm-run-all": "^2.1.0",
     "rollup": "^0.26.2",
     "rollup-plugin-babel": "^2.4.0",
     "rollup-plugin-commonjs": "^2.2.1",

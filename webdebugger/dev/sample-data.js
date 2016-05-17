@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>PostCSS Debugger</title>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-</head>
-<body>
-  <header>
-    <h1>PostCSS Debugger</h1>
-  </header>
-
-  <section id="file-selector"></section>
-
-  <footer>
-    <a href="https://github.com/andywer/postcss-debug" target="_blank">github.com/andywer/postcss-debug</a>
-  </footer>
-
-  <script>
-    window.postcssDebug = {
+{
   files: [
     {
       path: '/Users/andy/workspace/postcss-debug/test/css/test.css',
@@ -63,8 +44,3 @@
     }
   ]
 }
-
-  </script>
-  <script src="./app.js"></script>
-</body>
-</html>
