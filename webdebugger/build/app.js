@@ -706,7 +706,7 @@
     }
 
     var _templateObject$1 = babelHelpers.taggedTemplateLiteral(['\n      <ul class="snapshots">\n        ', '\n      </ul>\n      '], ['\n      <ul class="snapshots">\n        ', '\n      </ul>\n      ']);
-    var _templateObject2$1 = babelHelpers.taggedTemplateLiteral(['\n    <li>\n      <span class="after-plugin">', '</span>\n      <pre class="snapshot-content">', '</pre>\n    </li>'], ['\n    <li>\n      <span class="after-plugin">', '</span>\n      <pre class="snapshot-content">', '</pre>\n    </li>']);
+    var _templateObject2$1 = babelHelpers.taggedTemplateLiteral(['\n    <li>\n      <h3>\n        <span class="snapshot__after-plugin">', '</span>\n        <span class="snapshot__relative-time">@', 'ms</span>\n      </h3>\n      <pre class="snapshot__content">', '</pre>\n    </li>'], ['\n    <li>\n      <h3>\n        <span class="snapshot__after-plugin">', '</span>\n        <span class="snapshot__relative-time">@', 'ms</span>\n      </h3>\n      <pre class="snapshot__content">', '</pre>\n    </li>']);
     var SnapshotsContainer = function () {
       /**
        * @param {Element} element
@@ -728,6 +728,10 @@
         value: function show(snapshots) {
           var _this = this;
 
+          snapshots = snapshots.map(function (snapshot) {
+            return _this._prepareSnapshotData(snapshot, snapshots);
+          });
+
           mount(html(_templateObject$1, snapshots.map(function (snapshot) {
             return _this._renderSnapshot(snapshot);
           })), this.element);
@@ -740,9 +744,16 @@
       }, {
         key: '_renderSnapshot',
         value: function _renderSnapshot(snapshot) {
-          var afterPluginLabel = snapshot.prevPlugin ? 'After ' + snapshot.prevPlugin : 'Initially';
-
-          return html(_templateObject2$1, afterPluginLabel, snapshot.content.replace(/^\n/, ''));
+          return html(_templateObject2$1, snapshot.afterPluginLabel, snapshot.relativeTime, snapshot.content.replace(/^\n/, ''));
+        }
+      }, {
+        key: '_prepareSnapshotData',
+        value: function _prepareSnapshotData(snapshot, snapshots) {
+          return {
+            relativeTime: snapshot.timestamp - snapshots[0].timestamp,
+            afterPluginLabel: snapshot.prevPlugin ? 'After ' + snapshot.prevPlugin : 'Initially',
+            content: snapshot.content
+          };
         }
       }]);
       return SnapshotsContainer;
@@ -751,7 +762,7 @@
     var snapshotsContainer = new SnapshotsContainer(document.getElementById('snapshots'));
 
     var _templateObject = babelHelpers.taggedTemplateLiteral(['\n      <ul class="file-selector">\n        ', '\n      </ul>\n      '], ['\n      <ul class="file-selector">\n        ', '\n      </ul>\n      ']);
-    var _templateObject2 = babelHelpers.taggedTemplateLiteral(['\n      <li onclick=', '>\n        <span class="file__title">', '</span>\n      </li>'], ['\n      <li onclick=', '>\n        <span class="file__title">', '</span>\n      </li>']);
+    var _templateObject2 = babelHelpers.taggedTemplateLiteral(['\n      <li role="button" onclick=', '>\n        <span class="file__title">', '</span>\n      </li>'], ['\n      <li role="button" onclick=', '>\n        <span class="file__title">', '</span>\n      </li>']);
     var FileSelector = function () {
       /**
        * @param {Element} element

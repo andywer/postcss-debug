@@ -17,7 +17,7 @@
           }`
         },
         {
-          timestamp: 1462203864674,
+          timestamp: 1462203864676,
           prevPlugin: 'postcss-calc',
           nextPlugin: 'postcss-nested',
           content: `
@@ -29,7 +29,7 @@
           }`
         },
         {
-          timestamp: 1462203864674,
+          timestamp: 1462203864677,
           prevPlugin: 'postcss-nested',
           nextPlugin: null,
           content: `

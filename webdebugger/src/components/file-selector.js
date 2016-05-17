@@ -26,7 +26,7 @@ class FileSelector {
    */
   _renderFile (file) {
     return html`
-      <li onclick=${this._onFileSelect.bind(this, file)}>
+      <li role="button" onclick=${this._onFileSelect.bind(this, file)}>
         <span class="file__title">${file.path}</span>
       </li>`
   }
