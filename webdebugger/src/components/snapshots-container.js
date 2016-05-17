@@ -12,11 +12,14 @@ class SnapshotsContainer {
    * @param {object[]} snapshots    Array of snapshot objects as in `window.postcssDebug`.
    */
   show (snapshots) {
-    snapshots = snapshots.map(snapshot => this._prepareSnapshotData(snapshot, snapshots))
+    this.snapshots = snapshots.map(snapshot => this._prepareSnapshotData(snapshot, snapshots))
+    this._render()
+  }
 
+  _render () {
     mount(html`
       <ul class="snapshots">
-        ${snapshots.map(snapshot => this._renderSnapshot(snapshot))}
+        ${this.snapshots.map(snapshot => this._renderSnapshot(snapshot))}
       </ul>
       `,
     this.element)
@@ -27,8 +30,8 @@ class SnapshotsContainer {
    */
   _renderSnapshot (snapshot) {
     return html`
-    <li>
-      <h3>
+    <li class=${snapshot.expanded && 'selected'}>
+      <h3 class="clickable" onclick=${this._onSnapshotToggle.bind(this, snapshot)}>
         <span class="snapshot__after-plugin">${snapshot.afterPluginLabel}</span>
         <span class="snapshot__relative-time">@${snapshot.relativeTime}ms</span>
       </h3>
@@ -38,10 +41,16 @@ class SnapshotsContainer {
 
   _prepareSnapshotData (snapshot, snapshots) {
     return {
+      expanded: false,
       relativeTime: snapshot.timestamp - snapshots[0].timestamp,
       afterPluginLabel: snapshot.prevPlugin ? `After ${snapshot.prevPlugin}` : 'Initially',
       content: snapshot.content
     }
+  }
+
+  _onSnapshotToggle (snapshot) {
+    snapshot.expanded = !snapshot.expanded
+    this._render()
   }
 }
 

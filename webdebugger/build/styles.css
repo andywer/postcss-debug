@@ -1,0 +1,35 @@
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.clickable {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.clickable:hover {
+  background: #09f;
+  color: #f8f8f8;
+}
+
+.selected {
+  background: #aaa;
+  color: #f8f8f8;
+}
+
+.file-selector > li {
+  display: inline-block;
+}
+
+.snapshots > li > .snapshot__content {
+  display: none;
+}
+
+.snapshots > li.selected > .snapshot__content {
+  display: block;
+}
+
+.snapshots > li > h3 {
+  margin: 0;
+}
