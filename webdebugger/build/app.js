@@ -705,14 +705,68 @@
       }
     }
 
+    var _templateObject$1 = babelHelpers.taggedTemplateLiteral(['\n      <ul class="snapshots">\n        ', '\n      </ul>\n      '], ['\n      <ul class="snapshots">\n        ', '\n      </ul>\n      ']);
+    var _templateObject2$1 = babelHelpers.taggedTemplateLiteral(['\n    <li>\n      <span class="after-plugin">', '</span>\n      <pre class="snapshot-content">', '</pre>\n    </li>'], ['\n    <li>\n      <span class="after-plugin">', '</span>\n      <pre class="snapshot-content">', '</pre>\n    </li>']);
+    var SnapshotsContainer = function () {
+      /**
+       * @param {Element} element
+       */
+
+      function SnapshotsContainer(element) {
+    babelHelpers.classCallCheck(this, SnapshotsContainer);
+
+        this.element = element;
+      }
+
+      /**
+       * @param {object[]} snapshots    Array of snapshot objects as in `window.postcssDebug`.
+       */
+
+
+    babelHelpers.createClass(SnapshotsContainer, [{
+        key: 'show',
+        value: function show(snapshots) {
+          var _this = this;
+
+          mount(html(_templateObject$1, snapshots.map(function (snapshot) {
+            return _this._renderSnapshot(snapshot);
+          })), this.element);
+        }
+
+        /**
+         * @param {object} snapshot     Snapshot object as in `window.postcssDebug`.
+         */
+
+      }, {
+        key: '_renderSnapshot',
+        value: function _renderSnapshot(snapshot) {
+          var afterPluginLabel = snapshot.prevPlugin ? 'After ' + snapshot.prevPlugin : 'Initially';
+
+          return html(_templateObject2$1, afterPluginLabel, snapshot.content.replace(/^\n/, ''));
+        }
+      }]);
+      return SnapshotsContainer;
+    }();
+
+    var snapshotsContainer = new SnapshotsContainer(document.getElementById('snapshots'));
+
     var _templateObject = babelHelpers.taggedTemplateLiteral(['\n      <ul class="file-selector">\n        ', '\n      </ul>\n      '], ['\n      <ul class="file-selector">\n        ', '\n      </ul>\n      ']);
     var _templateObject2 = babelHelpers.taggedTemplateLiteral(['\n      <li onclick=', '>\n        <span class="file__title">', '</span>\n      </li>'], ['\n      <li onclick=', '>\n        <span class="file__title">', '</span>\n      </li>']);
     var FileSelector = function () {
+      /**
+       * @param {Element} element
+       */
+
       function FileSelector(element) {
     babelHelpers.classCallCheck(this, FileSelector);
 
         this.element = element;
       }
+
+      /**
+       * @param {object[]} files    Array of file objects as in `window.postcssDebug`.
+       */
+
 
     babelHelpers.createClass(FileSelector, [{
         key: 'show',
@@ -723,15 +777,25 @@
             return _this._renderFile(file);
           })), this.element);
         }
+
+        /**
+         * @param {object} file   File object as in `window.postcssDebug`.
+         */
+
       }, {
         key: '_renderFile',
         value: function _renderFile(file) {
           return html(_templateObject2, this._onFileSelect.bind(this, file), file.path);
         }
+
+        /**
+         * @param {object} file   File object as in `window.postcssDebug`.
+         */
+
       }, {
         key: '_onFileSelect',
         value: function _onFileSelect(file) {
-          // TODO
+          snapshotsContainer.show(file.snapshots);
         }
       }]);
       return FileSelector;

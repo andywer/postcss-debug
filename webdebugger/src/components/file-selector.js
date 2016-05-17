@@ -1,10 +1,17 @@
 import { html, mount } from '../dom'
+import snapshotsContainer from './snapshots-container'
 
 class FileSelector {
+  /**
+   * @param {Element} element
+   */
   constructor (element) {
     this.element = element
   }
 
+  /**
+   * @param {object[]} files    Array of file objects as in `window.postcssDebug`.
+   */
   show (files) {
     mount(html`
       <ul class="file-selector">
@@ -14,6 +21,9 @@ class FileSelector {
     this.element)
   }
 
+  /**
+   * @param {object} file   File object as in `window.postcssDebug`.
+   */
   _renderFile (file) {
     return html`
       <li onclick=${this._onFileSelect.bind(this, file)}>
@@ -21,8 +31,11 @@ class FileSelector {
       </li>`
   }
 
+  /**
+   * @param {object} file   File object as in `window.postcssDebug`.
+   */
   _onFileSelect (file) {
-    // TODO
+    snapshotsContainer.show(file.snapshots)
   }
 }
 

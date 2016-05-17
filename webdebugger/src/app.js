@@ -1,4 +1,4 @@
-import fileSelector from './components/FileSelector'
+import fileSelector from './components/file-selector'
 
 const { files } = window.postcssDebug
 
