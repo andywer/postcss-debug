@@ -1,6 +1,55 @@
+html {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+}
+
+header {
+  padding: 8px 36px;
+  margin-bottom: 10px;
+  background: #09f;
+  color: white;
+  cursor: default;
+}
+
+header > * {
+  margin: 0;
+}
+
+article {
+  padding-bottom: 36px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 8px 36px;
+  margin-top: 10px;
+  background: #003d66;
+  text-align: right;
+}
+
+footer, footer a, footer a:hover {
+  color: #b2e0ff;
+}
+
+h5 {
+  padding: 8px 16px;
+  margin: 0;
+}
+
 ul {
+  margin: 0;
   padding: 0;
   list-style-type: none;
+}
+
+.selectable {
+  background: #f0f0f0;
 }
 
 .clickable {
@@ -18,12 +67,20 @@ ul {
   color: #f8f8f8;
 }
 
+.file-selector {
+  margin: 0 16px 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
 .file-selector > li {
   display: inline-block;
 }
 
 .snapshots > li > .snapshot__content {
   display: none;
+  max-height: 1000px;
+  overflow: auto;
 }
 
 .snapshots > li.selected > .snapshot__content {

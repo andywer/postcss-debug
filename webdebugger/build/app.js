@@ -750,7 +750,7 @@
       }, {
         key: '_renderSnapshot',
         value: function _renderSnapshot(snapshot) {
-          return html(_templateObject2$1, snapshot.expanded && 'selected', this._onSnapshotToggle.bind(this, snapshot), snapshot.afterPluginLabel, snapshot.relativeTime, snapshot.content.replace(/^\n/, ''));
+          return html(_templateObject2$1, 'selectable ' + (snapshot.expanded ? 'selected' : ''), this._onSnapshotToggle.bind(this, snapshot), snapshot.afterPluginLabel, snapshot.relativeTime, snapshot.content.replace(/^\n/, ''));
         }
       }, {
         key: '_prepareSnapshotData',
@@ -816,7 +816,7 @@
       }, {
         key: '_renderFile',
         value: function _renderFile(file) {
-          var className = 'clickable' + (this.selectedFile === file ? ' selected' : '');
+          var className = 'clickable selectable' + (this.selectedFile === file ? ' selected' : '');
 
           return html(_templateObject2, className, this._onFileSelect.bind(this, file), file.path);
         }

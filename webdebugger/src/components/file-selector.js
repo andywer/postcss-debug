@@ -31,7 +31,7 @@ class FileSelector {
    * @param {object} file   File object as in `window.postcssDebug`.
    */
   _renderFile (file) {
-    const className = 'clickable' + (this.selectedFile === file ? ' selected' : '')
+    const className = 'clickable selectable' + (this.selectedFile === file ? ' selected' : '')
 
     return html`
       <li class=${className} onclick=${this._onFileSelect.bind(this, file)}>

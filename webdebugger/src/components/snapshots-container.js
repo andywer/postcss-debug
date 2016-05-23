@@ -30,7 +30,7 @@ class SnapshotsContainer {
    */
   _renderSnapshot (snapshot) {
     return html`
-    <li class=${snapshot.expanded && 'selected'}>
+    <li class=${'selectable ' + (snapshot.expanded ? 'selected' : '')}>
       <h3 class="clickable" onclick=${this._onSnapshotToggle.bind(this, snapshot)}>
         <span class="snapshot__after-plugin">${snapshot.afterPluginLabel}</span>
         <span class="snapshot__relative-time">@${snapshot.relativeTime}ms</span>
