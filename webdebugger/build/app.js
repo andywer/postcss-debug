@@ -776,6 +776,8 @@
 
     var _templateObject = babelHelpers.taggedTemplateLiteral(['\n      <ul class="file-selector">\n        ', '\n      </ul>\n      '], ['\n      <ul class="file-selector">\n        ', '\n      </ul>\n      ']);
     var _templateObject2 = babelHelpers.taggedTemplateLiteral(['\n      <li class=', ' onclick=', '>\n        <span class="file__title">', '</span>\n      </li>'], ['\n      <li class=', ' onclick=', '>\n        <span class="file__title">', '</span>\n      </li>']);
+    var FILE_LABEL_MAX_LENGTH = 30;
+
     var FileSelector = function () {
       /**
        * @param {Element} element
@@ -817,8 +819,9 @@
         key: '_renderFile',
         value: function _renderFile(file) {
           var className = 'clickable selectable' + (this.selectedFile === file ? ' selected' : '');
+          var label = file.path.length > FILE_LABEL_MAX_LENGTH ? '...' + file.path.substr(-FILE_LABEL_MAX_LENGTH + 3) : file.path;
 
-          return html(_templateObject2, className, this._onFileSelect.bind(this, file), file.path);
+          return html(_templateObject2, className, this._onFileSelect.bind(this, file), label);
         }
 
         /**

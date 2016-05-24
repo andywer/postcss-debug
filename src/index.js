@@ -5,10 +5,11 @@ export { matcher }
 
 export function createDebugger (matchers = [], options = {}) {
   if (matchers.length === 0) {
+    // default matcher: match all files
     matchers = [ matcher.all() ]
   }
 
-  const postcssDebugger = new Debugger(matchers, options)
+  const debuggerInstance = new Debugger(matchers, options)
 
   function debugPostCSS (postcss) {
     if (Array.isArray(postcss)) {
@@ -25,22 +26,23 @@ export function createDebugger (matchers = [], options = {}) {
 
   function pluginWrapper (plugins) {
     if (plugins.length === 0) {
-      return [ postcssDebugger.createSnapshoter({}) ]
+      return [ debuggerInstance.createSnapshoter({}) ]
     }
 
     const pluginsAndSnapshotters = []
     let prevPlugin = null
 
     plugins.forEach(plugin => {
-      pluginsAndSnapshotters.push(postcssDebugger.createSnapshoter({ prevPlugin, nextPlugin: plugin }))
+      pluginsAndSnapshotters.push(debuggerInstance.createSnapshoter({ prevPlugin, nextPlugin: plugin }))
       pluginsAndSnapshotters.push(plugin)
       prevPlugin = plugin
     })
 
-    pluginsAndSnapshotters.push(postcssDebugger.createSnapshoter({ prevPlugin }))
+    pluginsAndSnapshotters.push(debuggerInstance.createSnapshoter({ prevPlugin }))
 
     return pluginsAndSnapshotters;
   }
 
-  return Object.assign(debugPostCSS, postcssDebugger)
+  // return method `debugPostCSS`, merged with a debugger instance to provide `.inspect()`
+  return Object.assign(debugPostCSS, debuggerInstance)
 }

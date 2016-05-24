@@ -75,6 +75,7 @@ ul {
 
 .file-selector > li {
   display: inline-block;
+  margin-right: 8px;
 }
 
 .snapshots > li > .snapshot__content {

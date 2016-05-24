@@ -54,5 +54,4 @@ class SnapshotsContainer {
   }
 }
 
-debugger
 export default new SnapshotsContainer(document.getElementById('snapshots'))
