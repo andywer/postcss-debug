@@ -8,7 +8,7 @@ export default class PostcssDebugger {
     this.options = Object.assign({ logger: new DefaultLogger() }, options)
 
     this.snapshots = new Map()    // key: <file>, value: Array<Snapshot>
-    this.print = this.print.bind(this)
+    this.inspect = this.inspect.bind(this)
   }
 
   createSnapshoter ({ prevPlugin, nextPlugin }) {
@@ -31,10 +31,8 @@ export default class PostcssDebugger {
     }
   }
 
-  print () {
-    this.snapshots.forEach((snapshots, file) => {
-      this.options.logger.print(file, snapshots, this.options)
-    })
+  inspect () {
+    this.options.logger.inspect(this.snapshots, this.options)
   }
 
   shouldTrackFile (filePath) {

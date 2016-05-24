@@ -7,6 +7,12 @@ function pad (value, digits) {
 }
 
 export default class DefaultLogger {
+  inspect (fileSnapshots, options) {
+    fileSnapshots.forEach((snapshots, file) => {
+      this.print(file, snapshots, options)
+    })
+  }
+
   print (file, snapshots, options) {
     snapshots.forEach(snapshot => {
       const transformationLabel = snapshot.isFirstSnapshot() ? 'initially' : `after ${snapshot.prevPlugin}`
