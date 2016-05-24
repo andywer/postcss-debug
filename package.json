@@ -12,6 +12,7 @@
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "license": "MIT",
   "dependencies": {
+    "opener": "^1.4.1",
     "postcss": "^5.0.19"
   },
   "devDependencies": {

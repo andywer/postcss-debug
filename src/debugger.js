@@ -1,11 +1,11 @@
 import postcss from 'postcss'
-import DefaultLogger from './logger'
+import * as webdebugger from './webdebugger'
 import Snapshot from './snapshot'
 
 export default class PostcssDebugger {
   constructor (matchers, options) {
     this.matchers = matchers;
-    this.options = Object.assign({ logger: new DefaultLogger() }, options)
+    this.options = Object.assign({ logger: webdebugger }, options)
 
     this.snapshots = new Map()    // key: <file>, value: Array<Snapshot>
     this.inspect = this.inspect.bind(this)
