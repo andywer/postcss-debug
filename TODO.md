@@ -1,7 +1,5 @@
 ## Diffs
 
-## CLI
-
 ## Testing
 
 TODO:

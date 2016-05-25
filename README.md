@@ -8,7 +8,28 @@ before/after each postcss plugin is run. See what transformations where done
 when things stopped working as expected.
 
 
-## Usage
+## CLI Usage
+
+```sh
+npm install -g postcss-debug
+postcss-debug path/to/styles/*.css
+```
+
+You need a configuration file for postcss plugin setup. The name of this file
+defaults to `.postcss.js`. This is a sample config using postcss-calc and
+postcss-nested plugins:
+
+```js
+var calc = require('postcss-calc')
+var nested = require('postcss-nested')
+
+module.exports = function (postcss) {
+  return postcss([ calc, nested ])
+}
+```
+
+
+## Code usage
 
 ```js
 import { createDebugger, matcher } from 'postcss-debug'
@@ -36,6 +57,7 @@ postcss(debug(plugins))
     const debugData = debug.output // or result.debugData
   })
 ```
+
 
 ## Contributing
 
