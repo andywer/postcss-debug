@@ -3,11 +3,13 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/postcss-debug.svg)](https://www.npmjs.com/package/postcss-debug)
 
-Debug your postcss workflow with ease! Creates snapshots of your CSS files
-before/after each postcss plugin is run. See what transformations where done
-when things stopped working as expected.
+Debug your postcss workflow with ease! Contains a simple, but interactive web
+inspector. Creates snapshots of your CSS files before/after each postcss plugin is run.
+See what transformations where done when things stopped working as expected.
 
 **Consider this a beta release. Everything documented here should work, though.**
+
+![Inspector screenshot](/doc/inspector-screenshot.png?raw=true)
 
 
 ## CLI Usage
