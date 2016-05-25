@@ -7,6 +7,8 @@ Debug your postcss workflow with ease! Creates snapshots of your CSS files
 before/after each postcss plugin is run. See what transformations where done
 when things stopped working as expected.
 
+**Consider this a beta release. Everything documented here should work, though.**
+
 
 ## CLI Usage
 
