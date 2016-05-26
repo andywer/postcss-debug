@@ -1,5 +1,5 @@
 import { html, mount } from '../dom'
-import snapshotsContainer from './snapshots-container'
+import SnapshotsContainer from './snapshots-container'
 
 const FILE_LABEL_MAX_LENGTH = 30
 
@@ -10,6 +10,7 @@ class FileSelector {
   constructor (element) {
     this.element = element
     this.selectedFile = null
+    this.snapshotsContainer = null
   }
 
   /**
@@ -22,11 +23,28 @@ class FileSelector {
 
   _render () {
     mount(html`
-      <ul class="file-selector">
-        ${this.files.map(file => this._renderFile(file))}
-      </ul>
+      <div>
+        <h5>Files</h5>
+        <ul class="file-selector">
+          ${this.files.map(file => this._renderFile(file))}
+        </ul>
+        ${this._renderSnapshots()}
+      </div>
       `,
     this.element)
+
+    this.snapshotsContainer = new SnapshotsContainer(document.getElementById('snapshots'))
+  }
+
+  _renderSnapshots () {
+    if (!this.selectedFile) { return null }
+
+    return html`
+      <div>
+        <hr />
+        <section id="snapshots"></section>
+      </div>
+    `
   }
 
   /**
@@ -48,7 +66,7 @@ class FileSelector {
   _onFileSelect (file) {
     this.selectedFile = file
     this._render()
-    snapshotsContainer.show(file.snapshots)
+    this.snapshotsContainer.show(file.snapshots)
   }
 }
 

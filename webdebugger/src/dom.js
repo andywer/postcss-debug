@@ -9,6 +9,8 @@ export const html = hyperx(h)
 export function mount (domFragmentObject, node) {
   removeAllChildren(node)
   node.appendChild(domFragmentObject)
+
+  return domFragmentObject
 }
 
 function removeAllChildren (node) {

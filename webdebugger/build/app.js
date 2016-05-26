@@ -697,6 +697,8 @@
     function mount(domFragmentObject, node) {
       removeAllChildren(node);
       node.appendChild(domFragmentObject);
+
+      return domFragmentObject;
     }
 
     function removeAllChildren(node) {
@@ -772,10 +774,9 @@
       return SnapshotsContainer;
     }();
 
-    var snapshotsContainer = new SnapshotsContainer(document.getElementById('snapshots'));
-
-    var _templateObject = babelHelpers.taggedTemplateLiteral(['\n      <ul class="file-selector">\n        ', '\n      </ul>\n      '], ['\n      <ul class="file-selector">\n        ', '\n      </ul>\n      ']);
-    var _templateObject2 = babelHelpers.taggedTemplateLiteral(['\n      <li class=', ' onclick=', '>\n        <span class="file__title">', '</span>\n      </li>'], ['\n      <li class=', ' onclick=', '>\n        <span class="file__title">', '</span>\n      </li>']);
+    var _templateObject = babelHelpers.taggedTemplateLiteral(['\n      <div>\n        <h5>Files</h5>\n        <ul class="file-selector">\n          ', '\n        </ul>\n        ', '\n      </div>\n      '], ['\n      <div>\n        <h5>Files</h5>\n        <ul class="file-selector">\n          ', '\n        </ul>\n        ', '\n      </div>\n      ']);
+    var _templateObject2 = babelHelpers.taggedTemplateLiteral(['\n      <div>\n        <hr />\n        <section id="snapshots"></section>\n      </div>\n    '], ['\n      <div>\n        <hr />\n        <section id="snapshots"></section>\n      </div>\n    ']);
+    var _templateObject3 = babelHelpers.taggedTemplateLiteral(['\n      <li class=', ' onclick=', '>\n        <span class="file__title">', '</span>\n      </li>'], ['\n      <li class=', ' onclick=', '>\n        <span class="file__title">', '</span>\n      </li>']);
     var FILE_LABEL_MAX_LENGTH = 30;
 
     var FileSelector = function () {
@@ -788,6 +789,7 @@
 
         this.element = element;
         this.selectedFile = null;
+        this.snapshotsContainer = null;
       }
 
       /**
@@ -808,7 +810,18 @@
 
           mount(html(_templateObject, this.files.map(function (file) {
             return _this._renderFile(file);
-          })), this.element);
+          }), this._renderSnapshots()), this.element);
+
+          this.snapshotsContainer = new SnapshotsContainer(document.getElementById('snapshots'));
+        }
+      }, {
+        key: '_renderSnapshots',
+        value: function _renderSnapshots() {
+          if (!this.selectedFile) {
+            return null;
+          }
+
+          return html(_templateObject2);
         }
 
         /**
@@ -821,7 +834,7 @@
           var className = 'clickable selectable' + (this.selectedFile === file ? ' selected' : '');
           var label = file.path.length > FILE_LABEL_MAX_LENGTH ? '...' + file.path.substr(-FILE_LABEL_MAX_LENGTH + 3) : file.path;
 
-          return html(_templateObject2, className, this._onFileSelect.bind(this, file), label);
+          return html(_templateObject3, className, this._onFileSelect.bind(this, file), label);
         }
 
         /**
@@ -833,7 +846,7 @@
         value: function _onFileSelect(file) {
           this.selectedFile = file;
           this._render();
-          snapshotsContainer.show(file.snapshots);
+          this.snapshotsContainer.show(file.snapshots);
         }
       }]);
       return FileSelector;

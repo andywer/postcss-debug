@@ -17,6 +17,12 @@ header {
 
 header > * {
   margin: 0;
+  font-size: 36px;
+}
+
+header img {
+  height: 36px;
+  margin-top: -4px;
 }
 
 article {
@@ -35,11 +41,6 @@ footer {
 
 footer, footer a, footer a:hover {
   color: #b2e0ff;
-}
-
-h5 {
-  padding: 8px 16px;
-  margin: 0;
 }
 
 ul {
@@ -67,10 +68,14 @@ ul {
   color: #f8f8f8;
 }
 
-.file-selector {
-  margin: 0 16px 16px;
+section#file-selector {
   padding: 8px;
+  margin: 8px;
   border: 1px solid #ccc;
+}
+
+section#file-selector h5 {
+  margin: 0 0 8px;
 }
 
 .file-selector > li {

@@ -1,6 +1,6 @@
 import { html, mount } from '../dom'
 
-class SnapshotsContainer {
+export default class SnapshotsContainer {
   /**
    * @param {Element} element
    */
@@ -53,5 +53,3 @@ class SnapshotsContainer {
     this._render()
   }
 }
-
-export default new SnapshotsContainer(document.getElementById('snapshots'))
