@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/env node
 
 const fs = require('fs')
 const path = require('path')
@@ -33,5 +33,5 @@ donePromise
   debug.inspect()
 })
 .catch(error => {
-  console.error(error)
+  console.error(error.stack)
 })
