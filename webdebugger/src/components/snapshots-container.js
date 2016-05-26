@@ -19,7 +19,7 @@ export default class SnapshotsContainer {
   _render () {
     mount(html`
       <ul class="snapshots">
-        ${this.snapshots.map(snapshot => this._renderSnapshot(snapshot))}
+        ${this.snapshots.map((snapshot, index) => this._renderSnapshot(snapshot, index))}
       </ul>
       `,
     this.element)
@@ -28,15 +28,19 @@ export default class SnapshotsContainer {
   /**
    * @param {object} snapshot     Snapshot object as in `window.postcssDebug`.
    */
-  _renderSnapshot (snapshot) {
+  _renderSnapshot (snapshot, index) {
+    const benchmark = html`
+      <span class="snapshot__relative-time">@${snapshot.relativeTime}ms</span>
+    `
+
     return html`
-    <li class=${'selectable ' + (snapshot.expanded ? 'selected' : '')}>
-      <h3 class="clickable" onclick=${this._onSnapshotToggle.bind(this, snapshot)}>
-        <span class="snapshot__after-plugin">${snapshot.afterPluginLabel}</span>
-        <span class="snapshot__relative-time">@${snapshot.relativeTime}ms</span>
-      </h3>
-      <pre class="snapshot__content">${snapshot.content.replace(/^\n/, '')}</pre>
-    </li>`
+      <li class=${'selectable ' + (snapshot.expanded ? 'selected' : '')}>
+        <h3 class="clickable" onclick=${this._onSnapshotToggle.bind(this, snapshot)}>
+          <span class="snapshot__after-plugin">${snapshot.afterPluginLabel}</span>
+          ${index > 0 ? benchmark : null}
+        </h3>
+        <pre class="snapshot__content">${snapshot.content.replace(/^\n/, '')}</pre>
+      </li>`
   }
 
   _prepareSnapshotData (snapshot, snapshots) {

@@ -96,3 +96,9 @@ section#file-selector h5 {
 .snapshots > li > h3 {
   margin: 0;
 }
+
+.snapshots > li > h3 > .snapshot__relative-time {
+  float: right;
+  color: #888;
+  font-size: 16px;
+}
