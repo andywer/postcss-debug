@@ -2,18 +2,21 @@
   "name": "postcss-debug",
   "version": "0.1.0",
   "description": "PostCSS debugger",
+  "keywords": [ "postcss", "debug", "benchmark", "inspect" ],
   "scripts": {
     "build": "babel src --out-dir lib && cd webdebugger && npm run build",
     "prepush": "npm test",
     "test": "standard src/"
   },
-  "bin": {
-    "postcss-debug": "./lib/cli.js"
-  },
+  "bin": "./lib/cli.js",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
   "license": "MIT",
+  "homepage": "https://github.com/andywer/postcss-debug",
+  "bugs": {
+    "url": "https://github.com/andywer/postcss-debug/issues"
+  },
   "dependencies": {
     "opener": "^1.4.1",
     "postcss": "^5.0.19",
