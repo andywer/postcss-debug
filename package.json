@@ -1,13 +1,11 @@
 {
   "name": "postcss-debug",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "PostCSS debugger",
   "keywords": [ "postcss", "debug", "benchmark", "inspect" ],
   "scripts": {
-    "build": "npm run build:transpile && npm run build:webdebugger",
-    "build:transpile": "babel src --out-dir lib",
-    "build:webdebugger": "cd webdebugger && npm run build",
-    "precommit": "npm run build:transpile",
+    "build": "babel src --out-dir lib",
+    "precommit": "npm run build",
     "prepush": "npm test",
     "test": "standard src/"
   },
