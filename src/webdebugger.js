@@ -1,3 +1,4 @@
+import midas from 'midas'
 import opener from 'opener'
 import { prepareIndexHtml } from '../webdebugger/build'
 
@@ -15,11 +16,14 @@ function serializeFileSnapshots (fileSnapshots) {
 }
 
 function serializeSnapshot (snapshot) {
+  const content = snapshot.css.toString()
+
   return {
     timestamp: snapshot.timestamp,
     prevPlugin: snapshot.prevPlugin,
     nextPlugin: snapshot.nextPlugin,
-    content: snapshot.css.toString()
+    highlightedContentHTML: midas(content).content,
+    content
   }
 }
 

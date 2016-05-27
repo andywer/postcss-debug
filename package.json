@@ -4,7 +4,10 @@
   "description": "PostCSS debugger",
   "keywords": [ "postcss", "debug", "benchmark", "inspect" ],
   "scripts": {
-    "build": "babel src --out-dir lib && cd webdebugger && npm run build",
+    "build": "npm run build:transpile && npm run build:webdebugger",
+    "build:transpile": "babel src --out-dir lib",
+    "build:webdebugger": "cd webdebugger && npm run build",
+    "precommit": "npm run build:transpile",
     "prepush": "npm test",
     "test": "standard src/"
   },
@@ -18,6 +21,7 @@
     "url": "https://github.com/andywer/postcss-debug/issues"
   },
   "dependencies": {
+    "midas": "^1.2.1",
     "opener": "^1.4.1",
     "postcss": "^5.0.19",
     "yargs": "^4.7.1"

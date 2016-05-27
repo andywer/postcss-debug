@@ -1,0 +1,86 @@
+/**
+ * Base 16 Default, by Chris Kempson (http://chriskempson.com)
+ * Midas template by Ben Briggs (http://beneb.info)
+ * Original scheme by Chris Kempson (https://github.com/chriskempson/base16)
+ */
+
+.midas {
+    background: #181818;
+    color: #d8d8d8;
+}
+
+.midas__property {
+    font-style: italic;
+}
+
+.midas__comment {
+    color: #585858;
+}
+
+.midas__string {
+    color: #a1b56c;
+}
+
+.midas__function-name {
+    color: #86c1b9;
+}
+
+.midas__important {
+    color: #a1b56c;
+}
+
+.midas__hex-value {
+    color: #dc9656;
+}
+
+.midas__hex-color {
+    color: #86c1b9;
+}
+
+.midas__number,
+.midas__word {
+    color:#dc9656;
+}
+
+.midas__vendor-prefix {
+    color: #585858;
+}
+
+/**
+ * Selectors
+ */
+
+.midas__selector {
+    color: #ba8baf;
+}
+
+.midas__tag {
+    color: #ab4642;
+    text-decoration: underline;
+}
+
+.midas__id {
+    color: #7cafc2;
+}
+
+.midas__attribute-name,
+.midas__class,
+.midas__pseudo {
+    color: #dc9656;
+}
+
+.midas__attribute-value {
+    color: #a1b56c;
+}
+
+/**
+ * At rules
+ */
+
+.midas__at-rule-name {
+    color: #ba8baf;
+}
+
+.midas__at-rule-keyword {
+    color: #dc9656;
+}

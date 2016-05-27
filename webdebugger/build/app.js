@@ -709,7 +709,9 @@
 
     var _templateObject$1 = babelHelpers.taggedTemplateLiteral(['\n      <ul class="snapshots">\n        ', '\n      </ul>\n      '], ['\n      <ul class="snapshots">\n        ', '\n      </ul>\n      ']);
     var _templateObject2$1 = babelHelpers.taggedTemplateLiteral(['\n      <span class="snapshot__relative-time">@', 'ms</span>\n    '], ['\n      <span class="snapshot__relative-time">@', 'ms</span>\n    ']);
-    var _templateObject3$1 = babelHelpers.taggedTemplateLiteral(['\n      <li class=', '>\n        <h3 class="clickable" onclick=', '>\n          <span class="snapshot__after-plugin">', '</span>\n          ', '\n        </h3>\n        <pre class="snapshot__content">', '</pre>\n      </li>'], ['\n      <li class=', '>\n        <h3 class="clickable" onclick=', '>\n          <span class="snapshot__after-plugin">', '</span>\n          ', '\n        </h3>\n        <pre class="snapshot__content">', '</pre>\n      </li>']);
+    var _templateObject3$1 = babelHelpers.taggedTemplateLiteral(['\n      <li class=', '>\n        <h3 class="clickable" onclick=', '>\n          <span class="snapshot__after-plugin">', '</span>\n          ', '\n        </h3>\n        ', '\n      </li>'], ['\n      <li class=', '>\n        <h3 class="clickable" onclick=', '>\n          <span class="snapshot__after-plugin">', '</span>\n          ', '\n        </h3>\n        ', '\n      </li>']);
+    var _templateObject4 = babelHelpers.taggedTemplateLiteral(['<div class="snapshot__content"></div>'], ['<div class="snapshot__content"></div>']);
+    var _templateObject5 = babelHelpers.taggedTemplateLiteral(['\n        <pre class="snapshot__content">', '</pre>\n      '], ['\n        <pre class="snapshot__content">', '</pre>\n      ']);
     var SnapshotsContainer = function () {
       /**
        * @param {Element} element
@@ -755,7 +757,19 @@
         value: function _renderSnapshot(snapshot, index) {
           var benchmark = html(_templateObject2$1, snapshot.relativeTime);
 
-          return html(_templateObject3$1, 'selectable ' + (snapshot.expanded ? 'selected' : ''), this._onSnapshotToggle.bind(this, snapshot), snapshot.afterPluginLabel, index > 0 ? benchmark : null, snapshot.content.replace(/^\n/, ''));
+          return html(_templateObject3$1, 'selectable ' + (snapshot.expanded ? 'selected' : ''), this._onSnapshotToggle.bind(this, snapshot), snapshot.afterPluginLabel, index > 0 ? benchmark : null, this._renderSnapshotContent(snapshot));
+        }
+      }, {
+        key: '_renderSnapshotContent',
+        value: function _renderSnapshotContent(snapshot) {
+          if (snapshot.highlightedContentHTML) {
+            var contentDomNode = html(_templateObject4);
+            contentDomNode.innerHTML = snapshot.highlightedContentHTML;
+
+            return contentDomNode;
+          } else {
+            return html(_templateObject5, snapshot.content);
+          }
         }
       }, {
         key: '_prepareSnapshotData',
@@ -764,6 +778,7 @@
             expanded: false,
             relativeTime: snapshot.timestamp - snapshots[0].timestamp,
             afterPluginLabel: snapshot.prevPlugin ? 'After ' + snapshot.prevPlugin : 'Initially',
+            highlightedContentHTML: snapshot.highlightedContentHTML,
             content: snapshot.content
           };
         }

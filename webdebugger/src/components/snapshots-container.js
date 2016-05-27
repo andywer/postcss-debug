@@ -39,8 +39,21 @@ export default class SnapshotsContainer {
           <span class="snapshot__after-plugin">${snapshot.afterPluginLabel}</span>
           ${index > 0 ? benchmark : null}
         </h3>
-        <pre class="snapshot__content">${snapshot.content.replace(/^\n/, '')}</pre>
+        ${this._renderSnapshotContent(snapshot)}
       </li>`
+  }
+
+  _renderSnapshotContent (snapshot) {
+    if (snapshot.highlightedContentHTML) {
+      const contentDomNode = html`<div class="snapshot__content"></div>`
+      contentDomNode.innerHTML = snapshot.highlightedContentHTML
+
+      return contentDomNode
+    } else {
+      return html `
+        <pre class="snapshot__content">${snapshot.content}</pre>
+      `
+    }
   }
 
   _prepareSnapshotData (snapshot, snapshots) {
@@ -48,6 +61,7 @@ export default class SnapshotsContainer {
       expanded: false,
       relativeTime: snapshot.timestamp - snapshots[0].timestamp,
       afterPluginLabel: snapshot.prevPlugin ? `After ${snapshot.prevPlugin}` : 'Initially',
+      highlightedContentHTML: snapshot.highlightedContentHTML,
       content: snapshot.content
     }
   }

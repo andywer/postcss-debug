@@ -93,6 +93,11 @@ section#file-selector h5 {
   display: block;
 }
 
+.snapshots > li.selected > .snapshot__content pre.midas {
+  padding: 0;
+  margin: 0;
+}
+
 .snapshots > li > h3 {
   margin: 0;
 }
