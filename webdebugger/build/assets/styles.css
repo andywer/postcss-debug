@@ -26,6 +26,7 @@ header img {
 }
 
 article {
+  margin: 0 36px;
   padding-bottom: 36px;
 }
 
@@ -70,7 +71,6 @@ ul {
 
 section#file-selector {
   padding: 8px;
-  margin: 8px;
   border: 1px solid #ccc;
 }
 
@@ -102,8 +102,8 @@ section#file-selector h5 {
   margin: 0;
 }
 
-.snapshots > li > h3 > .snapshot__relative-time {
+.snapshots > li > h3 > .snapshot__timing {
   float: right;
-  color: #888;
+  color: #666;
   font-size: 16px;
 }

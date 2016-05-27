@@ -12,7 +12,7 @@ export default class SnapshotsContainer {
    * @param {object[]} snapshots    Array of snapshot objects as in `window.postcssDebug`.
    */
   show (snapshots) {
-    this.snapshots = snapshots.map(snapshot => this._prepareSnapshotData(snapshot, snapshots))
+    this.snapshots = snapshots.map((snapshot, index) => this._prepareSnapshotData(snapshot, snapshots, index))
     this._render()
   }
 
@@ -29,9 +29,9 @@ export default class SnapshotsContainer {
    * @param {object} snapshot     Snapshot object as in `window.postcssDebug`.
    */
   _renderSnapshot (snapshot, index) {
-    const benchmark = html`
-      <span class="snapshot__relative-time">@${snapshot.relativeTime}ms</span>
-    `
+    const benchmark = index > 0 ? html`
+      <span class="snapshot__timing">took ${snapshot.timeDiff}ms</span>
+    ` : null
 
     return html`
       <li class=${'selectable ' + (snapshot.expanded ? 'selected' : '')}>
@@ -56,10 +56,10 @@ export default class SnapshotsContainer {
     }
   }
 
-  _prepareSnapshotData (snapshot, snapshots) {
+  _prepareSnapshotData (snapshot, snapshots, index) {
     return {
       expanded: false,
-      relativeTime: snapshot.timestamp - snapshots[0].timestamp,
+      timeDiff: index === 0 ? 0 : snapshot.timestamp - snapshots[ index - 1 ].timestamp,
       afterPluginLabel: snapshot.prevPlugin ? `After ${snapshot.prevPlugin}` : 'Initially',
       highlightedContentHTML: snapshot.highlightedContentHTML,
       content: snapshot.content

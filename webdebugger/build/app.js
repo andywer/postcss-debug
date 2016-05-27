@@ -708,7 +708,7 @@
     }
 
     var _templateObject$1 = babelHelpers.taggedTemplateLiteral(['\n      <ul class="snapshots">\n        ', '\n      </ul>\n      '], ['\n      <ul class="snapshots">\n        ', '\n      </ul>\n      ']);
-    var _templateObject2$1 = babelHelpers.taggedTemplateLiteral(['\n      <span class="snapshot__relative-time">@', 'ms</span>\n    '], ['\n      <span class="snapshot__relative-time">@', 'ms</span>\n    ']);
+    var _templateObject2$1 = babelHelpers.taggedTemplateLiteral(['\n      <span class="snapshot__timing">took ', 'ms</span>\n    '], ['\n      <span class="snapshot__timing">took ', 'ms</span>\n    ']);
     var _templateObject3$1 = babelHelpers.taggedTemplateLiteral(['\n      <li class=', '>\n        <h3 class="clickable" onclick=', '>\n          <span class="snapshot__after-plugin">', '</span>\n          ', '\n        </h3>\n        ', '\n      </li>'], ['\n      <li class=', '>\n        <h3 class="clickable" onclick=', '>\n          <span class="snapshot__after-plugin">', '</span>\n          ', '\n        </h3>\n        ', '\n      </li>']);
     var _templateObject4 = babelHelpers.taggedTemplateLiteral(['<div class="snapshot__content"></div>'], ['<div class="snapshot__content"></div>']);
     var _templateObject5 = babelHelpers.taggedTemplateLiteral(['\n        <pre class="snapshot__content">', '</pre>\n      '], ['\n        <pre class="snapshot__content">', '</pre>\n      ']);
@@ -733,8 +733,8 @@
         value: function show(snapshots) {
           var _this = this;
 
-          this.snapshots = snapshots.map(function (snapshot) {
-            return _this._prepareSnapshotData(snapshot, snapshots);
+          this.snapshots = snapshots.map(function (snapshot, index) {
+            return _this._prepareSnapshotData(snapshot, snapshots, index);
           });
           this._render();
         }
@@ -755,7 +755,7 @@
       }, {
         key: '_renderSnapshot',
         value: function _renderSnapshot(snapshot, index) {
-          var benchmark = html(_templateObject2$1, snapshot.relativeTime);
+          var benchmark = index > 0 ? html(_templateObject2$1, snapshot.timeDiff) : null;
 
           return html(_templateObject3$1, 'selectable ' + (snapshot.expanded ? 'selected' : ''), this._onSnapshotToggle.bind(this, snapshot), snapshot.afterPluginLabel, index > 0 ? benchmark : null, this._renderSnapshotContent(snapshot));
         }
@@ -773,10 +773,10 @@
         }
       }, {
         key: '_prepareSnapshotData',
-        value: function _prepareSnapshotData(snapshot, snapshots) {
+        value: function _prepareSnapshotData(snapshot, snapshots, index) {
           return {
             expanded: false,
-            relativeTime: snapshot.timestamp - snapshots[0].timestamp,
+            timeDiff: index === 0 ? 0 : snapshot.timestamp - snapshots[index - 1].timestamp,
             afterPluginLabel: snapshot.prevPlugin ? 'After ' + snapshot.prevPlugin : 'Initially',
             highlightedContentHTML: snapshot.highlightedContentHTML,
             content: snapshot.content
@@ -793,7 +793,7 @@
     }();
 
     var _templateObject = babelHelpers.taggedTemplateLiteral(['\n      <div>\n        <h5>Files</h5>\n        <ul class="file-selector">\n          ', '\n        </ul>\n        ', '\n      </div>\n      '], ['\n      <div>\n        <h5>Files</h5>\n        <ul class="file-selector">\n          ', '\n        </ul>\n        ', '\n      </div>\n      ']);
-    var _templateObject2 = babelHelpers.taggedTemplateLiteral(['\n      <div>\n        <hr />\n        <section id="snapshots"></section>\n      </div>\n    '], ['\n      <div>\n        <hr />\n        <section id="snapshots"></section>\n      </div>\n    ']);
+    var _templateObject2 = babelHelpers.taggedTemplateLiteral(['<section id="snapshots"></section>'], ['<section id="snapshots"></section>']);
     var _templateObject3 = babelHelpers.taggedTemplateLiteral(['\n      <li class=', ' onclick=', '>\n        <span class="file__title">', '</span>\n      </li>'], ['\n      <li class=', ' onclick=', '>\n        <span class="file__title">', '</span>\n      </li>']);
     var FILE_LABEL_MAX_LENGTH = 30;
 
@@ -828,18 +828,9 @@
 
           mount(html(_templateObject, this.files.map(function (file) {
             return _this._renderFile(file);
-          }), this._renderSnapshots()), this.element);
+          }), this.selectedFile ? html(_templateObject2) : null), this.element);
 
           this.snapshotsContainer = new SnapshotsContainer(document.getElementById('snapshots'));
-        }
-      }, {
-        key: '_renderSnapshots',
-        value: function _renderSnapshots() {
-          if (!this.selectedFile) {
-            return null;
-          }
-
-          return html(_templateObject2);
         }
 
         /**

@@ -28,23 +28,12 @@ class FileSelector {
         <ul class="file-selector">
           ${this.files.map(file => this._renderFile(file))}
         </ul>
-        ${this._renderSnapshots()}
+        ${this.selectedFile ? html`<section id="snapshots"></section>` : null}
       </div>
       `,
     this.element)
 
     this.snapshotsContainer = new SnapshotsContainer(document.getElementById('snapshots'))
-  }
-
-  _renderSnapshots () {
-    if (!this.selectedFile) { return null }
-
-    return html`
-      <div>
-        <hr />
-        <section id="snapshots"></section>
-      </div>
-    `
   }
 
   /**
