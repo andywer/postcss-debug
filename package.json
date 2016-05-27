@@ -4,7 +4,8 @@
   "description": "PostCSS debugger",
   "keywords": [ "postcss", "debug", "benchmark", "inspect" ],
   "scripts": {
-    "build": "babel src --out-dir lib && cd webdebugger && npm run build",
+    "build": "babel src --out-dir lib",
+    "precommit": "npm run build",
     "prepush": "npm test",
     "test": "standard src/"
   },
