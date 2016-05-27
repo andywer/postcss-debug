@@ -35,7 +35,7 @@ export default class SnapshotsContainer {
 
     return html`
       <li class=${'selectable ' + (snapshot.expanded ? 'selected' : '')}>
-        <h3 class="clickable" onclick=${this._onSnapshotToggle.bind(this, snapshot)}>
+        <h3 class="snapshot__heading clickable" onclick=${this._onSnapshotToggle.bind(this, snapshot)}>
           <span class="snapshot__after-plugin">${snapshot.afterPluginLabel}</span>
           ${index > 0 ? benchmark : null}
         </h3>

@@ -83,6 +83,18 @@ section#file-selector h5 {
   margin-right: 8px;
 }
 
+.snapshots > li > .snapshot__heading::before {
+  content: '▶';
+  display: inline-block;
+  position: relative;
+  top: -4px;
+  font-size: 50%;
+}
+
+.snapshots > li.selected > .snapshot__heading::before {
+  transform: rotate(90deg);
+}
+
 .snapshots > li > .snapshot__content {
   display: none;
   max-height: 1000px;

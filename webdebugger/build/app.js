@@ -709,7 +709,7 @@
 
     var _templateObject$1 = babelHelpers.taggedTemplateLiteral(['\n      <ul class="snapshots">\n        ', '\n      </ul>\n      '], ['\n      <ul class="snapshots">\n        ', '\n      </ul>\n      ']);
     var _templateObject2$1 = babelHelpers.taggedTemplateLiteral(['\n      <span class="snapshot__timing">took ', 'ms</span>\n    '], ['\n      <span class="snapshot__timing">took ', 'ms</span>\n    ']);
-    var _templateObject3$1 = babelHelpers.taggedTemplateLiteral(['\n      <li class=', '>\n        <h3 class="clickable" onclick=', '>\n          <span class="snapshot__after-plugin">', '</span>\n          ', '\n        </h3>\n        ', '\n      </li>'], ['\n      <li class=', '>\n        <h3 class="clickable" onclick=', '>\n          <span class="snapshot__after-plugin">', '</span>\n          ', '\n        </h3>\n        ', '\n      </li>']);
+    var _templateObject3$1 = babelHelpers.taggedTemplateLiteral(['\n      <li class=', '>\n        <h3 class="snapshot__heading clickable" onclick=', '>\n          <span class="snapshot__after-plugin">', '</span>\n          ', '\n        </h3>\n        ', '\n      </li>'], ['\n      <li class=', '>\n        <h3 class="snapshot__heading clickable" onclick=', '>\n          <span class="snapshot__after-plugin">', '</span>\n          ', '\n        </h3>\n        ', '\n      </li>']);
     var _templateObject4 = babelHelpers.taggedTemplateLiteral(['<div class="snapshot__content"></div>'], ['<div class="snapshot__content"></div>']);
     var _templateObject5 = babelHelpers.taggedTemplateLiteral(['\n        <pre class="snapshot__content">', '</pre>\n      '], ['\n        <pre class="snapshot__content">', '</pre>\n      ']);
     var SnapshotsContainer = function () {
