@@ -20316,7 +20316,7 @@
 
 	FileSelectorItem.propTypes = propTypes$1;
 
-	__$styleInject(".snapshots > li {\n  margin-top: 8px;\n}\n.snapshots > li > .snapshot__heading::before {\n  content: '▶';\n  display: inline-block;\n  position: relative;\n  top: -3px;\n  margin-right: 6px;\n  font-size: 50%;\n  transition: transform 0.15s;\n}\n.snapshots > li:hover > .snapshot__heading::before {\n  color: #f8f8f8;\n}\n.snapshots > li.selected > .snapshot__heading::before {\n  transform: rotate(90deg);\n}\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n.snapshots > li.selected > h3 > .snapshot__timing {\n  color: #f8f8f8;\n}\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n.snapshots > li > h3 {\n  font-size: 22px;\n  margin: 0;\n}\n.snapshots > li > h3 > .snapshot__timing {\n  float: right;\n  color: #666;\n  font-size: 16px;\n}\n");
+	__$styleInject(".snapshots {\n  margin-top: 16px;\n}\n\n.snapshots > li {\n  margin-top: 8px;\n}\n\n.snapshots > li > .snapshot__heading::before {\n  content: '▶';\n  display: inline-block;\n  position: relative;\n  top: -3px;\n  margin-right: 6px;\n  font-size: 50%;\n  transition: transform 0.15s;\n}\n\n.snapshots > li:hover > .snapshot__heading::before {\n  color: #f8f8f8;\n}\n\n.snapshots > li.selected > .snapshot__heading::before {\n  transform: rotate(90deg);\n}\n\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n\n.snapshots > li.selected > h3 > .snapshot__timing {\n  color: #f8f8f8;\n}\n\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n\n.snapshots > li > h3 {\n  font-size: 22px;\n  margin: 0;\n}\n\n.snapshots > li > h3 > .snapshot__timing {\n  float: right;\n  color: #666;\n  font-size: 16px;\n}\n");
 
 	var Component$3 = React.Component;
 	var PropTypes$3 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20432,7 +20432,7 @@
 
 	SnapshotsContainer.propTypes = propTypes$2;
 
-	__$styleInject("section#file-selector {\n  padding: 8px;\n  border: 1px solid #ccc;\n}\n\nsection#file-selector h5 {\n  margin: 0 0 8px;\n}\n\n.file-selector > li {\n  display: inline-block;\n  margin-right: 8px;\n}\n\n.file-selector > li .file__path {\n  color: #ccc;\n}\n");
+	__$styleInject("section#file-selector {\n  padding: 8px;\n  border: 1px solid #ccc;\n}\n\n.file-selector > li {\n  display: inline-block;\n  margin-right: 8px;\n}\n\n.file-selector > li .file__path {\n  color: #ccc;\n}\n");
 
 	var Component = React.Component;
 	var PropTypes = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20472,11 +20472,6 @@
 	      return React.createElement(
 	        'div',
 	        null,
-	        React.createElement(
-	          'h5',
-	          null,
-	          'Files'
-	        ),
 	        React.createElement(
 	          'ul',
 	          { className: 'file-selector' },
