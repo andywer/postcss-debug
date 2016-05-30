@@ -1,0 +1,50 @@
+.snapshots > li {
+  > .snapshot__heading::before {
+    content: '▶';
+    display: inline-block;
+    position: relative;
+    top: -4px;
+    margin-right: 6px;
+    font-size: 50%;
+    transition: transform 0.15s;
+  }
+
+  &:hover > .snapshot__heading::before {
+    color: #f8f8f8;
+  }
+
+  &.selected {
+    > .snapshot__heading::before {
+      transform: rotate(90deg);
+    }
+
+    > .snapshot__content {
+      display: block;
+
+      pre.midas {
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    > h3 > .snapshot__timing {
+      color: #f8f8f8;
+    }
+  }
+
+  > .snapshot__content {
+    display: none;
+    max-height: 1000px;
+    overflow: auto;
+  }
+
+  > h3 {
+    margin: 0;
+
+    > .snapshot__timing {
+      float: right;
+      color: #666;
+      font-size: 16px;
+    }
+  }
+}

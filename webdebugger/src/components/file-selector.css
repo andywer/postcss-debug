@@ -1,0 +1,13 @@
+section#file-selector {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+section#file-selector h5 {
+  margin: 0 0 8px;
+}
+
+.file-selector > li {
+  display: inline-block;
+  margin-right: 8px;
+}

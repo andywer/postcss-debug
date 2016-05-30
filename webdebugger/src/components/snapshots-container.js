@@ -1,5 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
+import './snapshots-container.css'
 
 const { Component, PropTypes } = React    // rollup doesn't resolve that correctly when importing like this
 

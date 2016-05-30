@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import React from 'react'
 import SnapshotsContainer from './snapshots-container'
+import './file-selector.css'
 
 const { Component, PropTypes } = React    // rollup doesn't resolve that correctly when importing like this
 const FILE_LABEL_MAX_LENGTH = 30

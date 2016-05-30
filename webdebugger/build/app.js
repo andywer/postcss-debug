@@ -1,6 +1,19 @@
 (function () {
 	'use strict';
 
+	function __$styleInject(css) {
+	  css = css || '';
+	  var head = document.head || document.getElementsByTagName('head')[0];
+	  var style = document.createElement('style');
+	  style.type = 'text/css';
+	  if (style.styleSheet){
+	    style.styleSheet.cssText = css;
+	  } else {
+	    style.appendChild(document.createTextNode(css));
+	  }
+	  head.appendChild(style);
+	}
+
 	var babelHelpers = {};
 	babelHelpers.typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
 	  return typeof obj;
@@ -20229,6 +20242,8 @@
 
 	var cx = (index$2 && typeof index$2 === 'object' && 'default' in index$2 ? index$2['default'] : index$2);
 
+	__$styleInject(".snapshots > li > .snapshot__heading::before {\n    content: '▶';\n    display: inline-block;\n    position: relative;\n    top: -4px;\n    margin-right: 6px;\n    font-size: 50%;\n    transition: transform 0.15s;\n}\n.snapshots > li:hover > .snapshot__heading::before {\n    color: #f8f8f8;\n}\n.snapshots > li.selected > .snapshot__heading::before {\n    transform: rotate(90deg);\n}\n.snapshots > li.selected > .snapshot__content {\n    display: block;\n}\n.snapshots > li.selected > .snapshot__content pre.midas {\n    padding: 0;\n    margin: 0;\n}\n.snapshots > li.selected > h3 > .snapshot__timing {\n    color: #f8f8f8;\n}\n.snapshots > li > .snapshot__content {\n    display: none;\n    max-height: 1000px;\n    overflow: auto;\n}\n.snapshots > li > h3 {\n    margin: 0;\n}\n.snapshots > li > h3 > .snapshot__timing {\n    float: right;\n    color: #666;\n    font-size: 16px;\n}\n");
+
 	var Component$1 = React.Component;
 	var PropTypes$1 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
 
@@ -20325,6 +20340,8 @@
 	}(Component$1);
 
 	SnapshotsContainer.propTypes = propTypes$1;
+
+	__$styleInject("section#file-selector {\n  padding: 8px;\n  border: 1px solid #ccc;\n}\n\nsection#file-selector h5 {\n  margin: 0 0 8px;\n}\n\n.file-selector > li {\n  display: inline-block;\n  margin-right: 8px;\n}\n");
 
 	var Component = React.Component;
 	var PropTypes = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20438,6 +20455,8 @@
 	}(Component);
 
 	FileSelector.propTypes = propTypes;
+
+	__$styleInject("html {\n  height: 100%;\n}\n\nbody {\n  position: relative;\n  min-height: 100%;\n}\n\nheader {\n  padding: 8px 36px;\n  margin-bottom: 10px;\n  background: #004c7f;\n  color: white;\n  cursor: default;\n}\n\nheader > * {\n  margin: 0;\n  font-size: 36px;\n}\n\nheader img {\n  height: 36px;\n  margin-top: -4px;\n}\n\narticle {\n  margin: 0 36px;\n  padding-bottom: 36px;\n}\n\nfooter {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  padding: 8px 36px;\n  margin-top: 10px;\n  background: #003d66;\n  text-align: right;\n}\n\nfooter, footer a, footer a:hover {\n  color: #b2e0ff;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\n.selectable {\n  background: #f0f0f0;\n}\n\n.clickable {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.clickable:hover {\n  background: #09f;\n  color: #f8f8f8;\n}\n\n.selected {\n  background: #888;\n  color: #f8f8f8;\n}\n");
 
 	var files = window.postcssDebug.files;
 

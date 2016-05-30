@@ -1,0 +1,70 @@
+html {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+}
+
+header {
+  padding: 8px 36px;
+  margin-bottom: 10px;
+  background: #004c7f;
+  color: white;
+  cursor: default;
+
+  > * {
+    margin: 0;
+    font-size: 36px;
+  }
+
+  img {
+    height: 36px;
+    margin-top: -4px;
+  }
+}
+
+article {
+  margin: 0 36px;
+  padding-bottom: 36px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 8px 36px;
+  margin-top: 10px;
+  background: #003d66;
+  text-align: right;
+
+  &, a, a:hover {
+    color: #b2e0ff;
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.selectable {
+  background: #f0f0f0;
+}
+
+.clickable {
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background: #09f;
+    color: #f8f8f8;
+  }
+}
+
+.selected {
+  background: #888;
+  color: #f8f8f8;
+}
