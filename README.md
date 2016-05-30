@@ -106,6 +106,15 @@ postcss(debug(plugins))
 Contributions welcome! Feel free to write code, documentation, tests, ...
 Optionally open an issue first or just create a pull request :)
 
+The web inspector is a rather loosely coupled stand-alone application. Have a
+look at directory [webdebugger](https://github.com/andywer/postcss-debug/tree/master/webdebugger).
+
+
+## Changelog
+
+Have a look at file
+[CHANGELOG.md](https://github.com/andywer/postcss-debug/blob/master/CHANGELOG.md).
+
 
 ## License
 
