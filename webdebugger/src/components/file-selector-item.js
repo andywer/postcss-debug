@@ -31,7 +31,7 @@ const FileSelectorItem = ({ file, index, isSelected, onFileSelect }) => {
   const { basename, path } = splitFilePath(label)
 
   return (
-    <li key={index} className={className} onClick={() => onFileSelect(file)}>
+    <li key={index} className={className} onClick={() => onFileSelect(file)} title={file.path}>
       <span className="file__path">{path}</span><span className="file__basename">{basename}</span>
     </li>
   )

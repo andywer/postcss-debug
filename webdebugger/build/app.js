@@ -20300,7 +20300,7 @@
 	    'li',
 	    { key: index, className: className, onClick: function onClick() {
 	        return onFileSelect(file);
-	      } },
+	      }, title: file.path },
 	    React.createElement(
 	      'span',
 	      { className: 'file__path' },
