@@ -1,73 +1,64 @@
-import { html, mount } from '../dom'
+import React from 'react'
+import cx from 'classnames'
 
-export default class SnapshotsContainer {
-  /**
-   * @param {Element} element
-   */
-  constructor (element) {
-    this.element = element
-  }
+const { Component, PropTypes } = React    // rollup doesn't resolve that correctly when importing like this
 
-  /**
-   * @param {object[]} snapshots    Array of snapshot objects as in `window.postcssDebug`.
-   */
-  show (snapshots) {
-    this.snapshots = snapshots.map((snapshot, index) => this._prepareSnapshotData(snapshot, snapshots, index))
-    this._render()
-  }
+const propTypes = {
+  snapshots: PropTypes.array,
+  openSnapshots: PropTypes.object,
+  onSnapshotToggle: PropTypes.func.isRequired
+}
 
-  _render () {
-    mount(html`
-      <ul class="snapshots">
-        ${this.snapshots.map((snapshot, index) => this._renderSnapshot(snapshot, index))}
+export default class SnapshotsContainer extends Component {
+  render () {
+    const snapshots = this.props.snapshots.map(
+      (snapshot, index) => this._prepareSnapshotData(snapshot, this.props.snapshots, index)
+    )
+
+    return (
+      <ul className="snapshots">
+        {snapshots.map((snapshot, index) => this._renderSnapshot(snapshot, index))}
       </ul>
-      `,
-    this.element)
+    )
   }
 
   /**
    * @param {object} snapshot     Snapshot object as in `window.postcssDebug`.
    */
   _renderSnapshot (snapshot, index) {
-    const benchmark = index > 0 ? html`
-      <span class="snapshot__timing">took ${snapshot.timeDiff}ms</span>
-    ` : null
+    const isExpanded = this.props.openSnapshots[ index ]
+    const benchmark = index > 0
+      ? <span className="snapshot__timing">took {snapshot.timeDiff}ms</span>
+      : null
 
-    return html`
-      <li class=${'selectable ' + (snapshot.expanded ? 'selected' : '')}>
-        <h3 class="snapshot__heading clickable" onclick=${this._onSnapshotToggle.bind(this, snapshot)}>
-          <span class="snapshot__after-plugin">${snapshot.afterPluginLabel}</span>
-          ${index > 0 ? benchmark : null}
+    return (
+      <li key={index} className={cx('selectable ', isExpanded && 'selected')}>
+        <h3 className="snapshot__heading clickable" onClick={this.props.onSnapshotToggle.bind(this, index)}>
+          <span className="snapshot__after-plugin">{snapshot.afterPluginLabel}</span>
+          {index > 0 ? benchmark : null}
         </h3>
-        ${this._renderSnapshotContent(snapshot)}
-      </li>`
+        {this._renderSnapshotContent(snapshot)}
+      </li>
+    )
   }
 
   _renderSnapshotContent (snapshot) {
     if (snapshot.highlightedContentHTML) {
-      const contentDomNode = html`<div class="snapshot__content"></div>`
-      contentDomNode.innerHTML = snapshot.highlightedContentHTML
-
-      return contentDomNode
+      const innerHTML = { __html: snapshot.highlightedContentHTML }
+      return <div className="snapshot__content" dangerouslySetInnerHTML={innerHTML}></div>
     } else {
-      return html `
-        <pre class="snapshot__content">${snapshot.content}</pre>
-      `
+      return <pre className="snapshot__content">{snapshot.content}</pre>
     }
   }
 
   _prepareSnapshotData (snapshot, snapshots, index) {
     return {
-      expanded: false,
       timeDiff: index === 0 ? 0 : snapshot.timestamp - snapshots[ index - 1 ].timestamp,
       afterPluginLabel: snapshot.prevPlugin ? `After ${snapshot.prevPlugin}` : 'Initially',
       highlightedContentHTML: snapshot.highlightedContentHTML,
       content: snapshot.content
     }
   }
-
-  _onSnapshotToggle (snapshot) {
-    snapshot.expanded = !snapshot.expanded
-    this._render()
-  }
 }
+
+SnapshotsContainer.propTypes = propTypes

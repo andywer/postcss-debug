@@ -65,7 +65,7 @@ ul {
 }
 
 .selected {
-  background: #aaa;
+  background: #888;
   color: #f8f8f8;
 }
 
@@ -88,7 +88,13 @@ section#file-selector h5 {
   display: inline-block;
   position: relative;
   top: -4px;
+  margin-right: 6px;
   font-size: 50%;
+  transition: transform 0.15s;
+}
+
+.snapshots > li:hover > .snapshot__heading::before {
+  color: #f8f8f8;
 }
 
 .snapshots > li.selected > .snapshot__heading::before {
@@ -118,4 +124,8 @@ section#file-selector h5 {
   float: right;
   color: #666;
   font-size: 16px;
+}
+
+.snapshots > li.selected > h3 > .snapshot__timing {
+  color: #f8f8f8;
 }

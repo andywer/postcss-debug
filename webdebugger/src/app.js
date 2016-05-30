@@ -1,5 +1,10 @@
-import fileSelector from './components/file-selector'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import FileSelector from './components/file-selector'
 
 const { files } = window.postcssDebug
 
-fileSelector.show(files)
+ReactDOM.render(
+  <FileSelector files={files} />,
+  document.getElementById('file-selector')
+)
