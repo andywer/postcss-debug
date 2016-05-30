@@ -20350,7 +20350,6 @@
 	  var benchmark = index > 0 ? React.createElement(
 	    'span',
 	    { className: 'snapshot__timing' },
-	    'took ',
 	    snapshot.timeDiff,
 	    'ms'
 	  ) : null;

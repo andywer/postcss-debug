@@ -22,7 +22,7 @@ const Snapshot = ({ snapshot, index, isExpanded, onSnapshotToggle }) => {
   }
 
   const benchmark = index > 0
-    ? <span className="snapshot__timing">took {snapshot.timeDiff}ms</span>
+    ? <span className="snapshot__timing">{snapshot.timeDiff}ms</span>
     : null
 
   return (
