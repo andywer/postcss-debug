@@ -1,10 +1,9 @@
-import cx from 'classnames'
 import React from 'react'
+import FileSelectorItem from './file-selector-item'
 import SnapshotsContainer from './snapshots-container'
 import './file-selector.css'
 
 const { Component, PropTypes } = React    // rollup doesn't resolve that correctly when importing like this
-const FILE_LABEL_MAX_LENGTH = 30
 
 const propTypes = {
   files: PropTypes.array.isRequired
@@ -31,7 +30,13 @@ export default class FileSelector extends Component {
       <div>
         <h5>Files</h5>
         <ul className="file-selector">
-          {files.map((file, index) => this._renderFile(file, index))}
+          {files.map((file, index) =>
+            <FileSelectorItem
+              key={index} isSelected={selectedFile === file}
+              onFileSelect={this._onFileSelect.bind(this)}
+              {...{ index, file }}
+            />
+          )}
         </ul>
         <SnapshotsContainer
           snapshots={selectedFile ? selectedFile.snapshots : []}
@@ -39,22 +44,6 @@ export default class FileSelector extends Component {
           onSnapshotToggle={this._onSnapshotToggle.bind(this)}
         />
       </div>
-    )
-  }
-
-  /**
-   * @param {object} file   File object as in `window.postcssDebug`.
-   * @param {number} index  Index of file object in files array.
-   */
-  _renderFile (file, index) {
-    const { selectedFile } = this.state
-    const className = cx('clickable', 'selectable', selectedFile === file && 'selected')
-    const label = file.path.length > FILE_LABEL_MAX_LENGTH ? '...' + file.path.substr(-FILE_LABEL_MAX_LENGTH + 3) : file.path
-
-    return (
-      <li key={index} className={className} onClick={this._onFileSelect.bind(this, file)}>
-        <span className="file__title">{label}</span>
-      </li>
     )
   }
 

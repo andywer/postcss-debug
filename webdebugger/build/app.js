@@ -20256,16 +20256,76 @@
 
 	var cx = (index$2 && typeof index$2 === 'object' && 'default' in index$2 ? index$2['default'] : index$2);
 
+	var Component$1 = React.Component;
+	var PropTypes$1 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
+
+	var FILE_LABEL_MAX_LENGTH = 30;
+
+	function splitFilePath(filePath) {
+	  var lastSlashIndex = filePath.lastIndexOf('/');
+
+	  if (lastSlashIndex >= 0) {
+	    return {
+	      basename: filePath.substr(lastSlashIndex + 1),
+	      path: filePath.substr(0, lastSlashIndex + 1)
+	    };
+	  } else {
+	    return { basename: filePath, path: '' };
+	  }
+	}
+
+	var propTypes$1 = {
+	  index: PropTypes$1.number.isRequired,
+	  isSelected: PropTypes$1.bool,
+	  file: PropTypes$1.object.isRequired,
+	  onFileSelect: PropTypes$1.func.isRequired
+	};
+
+	var FileSelectorItem = function FileSelectorItem(_ref) {
+	  var file = _ref.file;
+	  var index = _ref.index;
+	  var isSelected = _ref.isSelected;
+	  var onFileSelect = _ref.onFileSelect;
+
+	  var className = cx('clickable', 'selectable', isSelected && 'selected');
+	  var label = file.path.length > FILE_LABEL_MAX_LENGTH ? '...' + file.path.substr(-FILE_LABEL_MAX_LENGTH + 3) : file.path;
+
+	  var _splitFilePath = splitFilePath(label);
+
+	  var basename = _splitFilePath.basename;
+	  var path = _splitFilePath.path;
+
+
+	  return React.createElement(
+	    'li',
+	    { key: index, className: className, onClick: function onClick() {
+	        return onFileSelect(file);
+	      } },
+	    React.createElement(
+	      'span',
+	      { className: 'file__path' },
+	      path
+	    ),
+	    React.createElement(
+	      'span',
+	      { className: 'file__basename' },
+	      basename
+	    )
+	  );
+	};
+
+	FileSelectorItem.propTypes = propTypes$1;
+
 	__$styleInject(".snapshots > li {\n  margin-top: 8px;\n}\n.snapshots > li > .snapshot__heading::before {\n  content: '▶';\n  display: inline-block;\n  position: relative;\n  top: -4px;\n  margin-right: 6px;\n  font-size: 50%;\n  transition: transform 0.15s;\n}\n.snapshots > li:hover > .snapshot__heading::before {\n  color: #f8f8f8;\n}\n.snapshots > li.selected > .snapshot__heading::before {\n  transform: rotate(90deg);\n}\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n.snapshots > li.selected > h3 > .snapshot__timing {\n  color: #f8f8f8;\n}\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n.snapshots > li > h3 {\n  margin: 0;\n}\n.snapshots > li > h3 > .snapshot__timing {\n  float: right;\n  color: #666;\n  font-size: 16px;\n}\n");
 
-	var Component$2 = React.Component;
-	var PropTypes$2 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
+	var Component$3 = React.Component;
+	var PropTypes$3 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
 
-	var propTypes$2 = {
-	  index: PropTypes$2.number.isRequired,
-	  isExpanded: PropTypes$2.bool,
-	  snapshot: PropTypes$2.object.isRequired,
-	  onSnapshotToggle: PropTypes$2.func.isRequired
+	var propTypes$3 = {
+	  index: PropTypes$3.number.isRequired,
+	  isExpanded: PropTypes$3.bool,
+	  snapshot: PropTypes$3.object.isRequired,
+	  onSnapshotToggle: PropTypes$3.func.isRequired
 	};
 
 	var Snapshot = function Snapshot(_ref) {
@@ -20314,15 +20374,15 @@
 	  );
 	};
 
-	Snapshot.propTypes = propTypes$2;
+	Snapshot.propTypes = propTypes$3;
 
-	var Component$1 = React.Component;
-	var PropTypes$1 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
+	var Component$2 = React.Component;
+	var PropTypes$2 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
 
-	var propTypes$1 = {
-	  snapshots: PropTypes$1.array,
-	  openSnapshots: PropTypes$1.object,
-	  onSnapshotToggle: PropTypes$1.func.isRequired
+	var propTypes$2 = {
+	  snapshots: PropTypes$2.array,
+	  openSnapshots: PropTypes$2.object,
+	  onSnapshotToggle: PropTypes$2.func.isRequired
 	};
 
 	var SnapshotsContainer = function (_Component) {
@@ -20369,16 +20429,14 @@
 	    }
 	  }]);
 	  return SnapshotsContainer;
-	}(Component$1);
+	}(Component$2);
 
-	SnapshotsContainer.propTypes = propTypes$1;
+	SnapshotsContainer.propTypes = propTypes$2;
 
-	__$styleInject("section#file-selector {\n  padding: 8px;\n  border: 1px solid #ccc;\n}\n\nsection#file-selector h5 {\n  margin: 0 0 8px;\n}\n\n.file-selector > li {\n  display: inline-block;\n  margin-right: 8px;\n}\n");
+	__$styleInject("section#file-selector {\n  padding: 8px;\n  border: 1px solid #ccc;\n}\n\nsection#file-selector h5 {\n  margin: 0 0 8px;\n}\n\n.file-selector > li {\n  display: inline-block;\n  margin-right: 8px;\n}\n\n.file-selector > li .file__path {\n  color: #ccc;\n}\n");
 
 	var Component = React.Component;
 	var PropTypes = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
-
-	var FILE_LABEL_MAX_LENGTH = 30;
 
 	var propTypes = {
 	  files: PropTypes.array.isRequired
@@ -20424,7 +20482,10 @@
 	          'ul',
 	          { className: 'file-selector' },
 	          files.map(function (file, index) {
-	            return _this2._renderFile(file, index);
+	            return React.createElement(FileSelectorItem, babelHelpers.extends({
+	              key: index, isSelected: selectedFile === file,
+	              onFileSelect: _this2._onFileSelect.bind(_this2)
+	            }, { index: index, file: file }));
 	          })
 	        ),
 	        React.createElement(SnapshotsContainer, {
@@ -20432,30 +20493,6 @@
 	          openSnapshots: this.state.openSnapshots,
 	          onSnapshotToggle: this._onSnapshotToggle.bind(this)
 	        })
-	      );
-	    }
-
-	    /**
-	     * @param {object} file   File object as in `window.postcssDebug`.
-	     * @param {number} index  Index of file object in files array.
-	     */
-
-	  }, {
-	    key: '_renderFile',
-	    value: function _renderFile(file, index) {
-	      var selectedFile = this.state.selectedFile;
-
-	      var className = cx('clickable', 'selectable', selectedFile === file && 'selected');
-	      var label = file.path.length > FILE_LABEL_MAX_LENGTH ? '...' + file.path.substr(-FILE_LABEL_MAX_LENGTH + 3) : file.path;
-
-	      return React.createElement(
-	        'li',
-	        { key: index, className: className, onClick: this._onFileSelect.bind(this, file) },
-	        React.createElement(
-	          'span',
-	          { className: 'file__title' },
-	          label
-	        )
 	      );
 	    }
 

@@ -10,4 +10,8 @@ section#file-selector h5 {
 .file-selector > li {
   display: inline-block;
   margin-right: 8px;
+
+  .file__path {
+    color: #ccc;
+  }
 }
