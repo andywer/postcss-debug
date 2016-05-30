@@ -62,7 +62,10 @@ export default class FileSelector extends Component {
    * @param {object} file   File object as in`window.postcssDebug`.
    */
   _onFileSelect (selectedFile) {
-    this.setState({ selectedFile })
+    this.setState({
+      selectedFile,
+      openSnapshots: {}
+    })
   }
 
   /**

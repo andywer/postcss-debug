@@ -20242,7 +20242,7 @@
 
 	var cx = (index$2 && typeof index$2 === 'object' && 'default' in index$2 ? index$2['default'] : index$2);
 
-	__$styleInject(".snapshots > li > .snapshot__heading::before {\n    content: '▶';\n    display: inline-block;\n    position: relative;\n    top: -4px;\n    margin-right: 6px;\n    font-size: 50%;\n    transition: transform 0.15s;\n}\n.snapshots > li:hover > .snapshot__heading::before {\n    color: #f8f8f8;\n}\n.snapshots > li.selected > .snapshot__heading::before {\n    transform: rotate(90deg);\n}\n.snapshots > li.selected > .snapshot__content {\n    display: block;\n}\n.snapshots > li.selected > .snapshot__content pre.midas {\n    padding: 0;\n    margin: 0;\n}\n.snapshots > li.selected > h3 > .snapshot__timing {\n    color: #f8f8f8;\n}\n.snapshots > li > .snapshot__content {\n    display: none;\n    max-height: 1000px;\n    overflow: auto;\n}\n.snapshots > li > h3 {\n    margin: 0;\n}\n.snapshots > li > h3 > .snapshot__timing {\n    float: right;\n    color: #666;\n    font-size: 16px;\n}\n");
+	__$styleInject(".snapshots > li > .snapshot__heading::before {\n    content: '▶';\n    display: inline-block;\n    position: relative;\n    top: -4px;\n    margin-right: 6px;\n    font-size: 50%;\n    transition: transform 0.15s;\n}\n.snapshots > li:hover > .snapshot__heading::before {\n    color: #f8f8f8;\n}\n.snapshots > li.selected > .snapshot__heading::before {\n    transform: rotate(90deg);\n}\n.snapshots > li.selected > .snapshot__content {\n    display: block;\n}\n.snapshots > li.selected > .snapshot__content pre.midas {\n    padding: 8px 16px;\n    margin: 0;\n}\n.snapshots > li.selected > h3 > .snapshot__timing {\n    color: #f8f8f8;\n}\n.snapshots > li > .snapshot__content {\n    display: none;\n    max-height: 1000px;\n    overflow: auto;\n}\n.snapshots > li > h3 {\n    margin: 0;\n}\n.snapshots > li > h3 > .snapshot__timing {\n    float: right;\n    color: #666;\n    font-size: 16px;\n}\n");
 
 	var Component$1 = React.Component;
 	var PropTypes$1 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20434,7 +20434,10 @@
 	  }, {
 	    key: '_onFileSelect',
 	    value: function _onFileSelect(selectedFile) {
-	      this.setState({ selectedFile: selectedFile });
+	      this.setState({
+	        selectedFile: selectedFile,
+	        openSnapshots: {}
+	      });
 	    }
 
 	    /**
