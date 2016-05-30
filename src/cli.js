@@ -13,6 +13,8 @@ const argv = require('yargs')
   .default('c', '.postcss.js')
   .nargs('c', 1)
   .describe('c', 'Config file specifying the postcss plugins to use')
+  .help('?')
+  .alias('?', 'help')
   .argv
 
 const destFilePath = path.join(os.tmpdir(), 'postcss-debugged.css')

@@ -1,4 +1,4 @@
-# postcss-debug
+# PostCSS-Debug
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![NPM Version](https://img.shields.io/npm/v/postcss-debug.svg)](https://www.npmjs.com/package/postcss-debug)
@@ -12,11 +12,17 @@ See what transformations where done when things stopped working as expected.
 ![Inspector screenshot](/doc/inspector-screenshot.png?raw=true)
 
 
-## CLI Usage
+## Usage
+
+### CLI
+
+You can use the `postcss-debug` command line interface to run PostCSS on files
+of your choice and let the debugger analyze it. It will automatically open the
+PostCSS debugger's web inspector, so you can browse through the debugging data.
 
 ```sh
-npm install -g postcss-debug
-postcss-debug path/to/styles/*.css
+npm install -g postcss-debug          # Install
+postcss-debug path/to/styles/*.css    # Run
 ```
 
 You need a configuration file for postcss plugin setup. The name of this file
@@ -32,8 +38,42 @@ module.exports = function (postcss) {
 }
 ```
 
+If you need further information how to use the `postcss-debug` CLI:
 
-## Code usage
+```sh
+postcss-debug --help
+```
+
+### gulp-postcss
+
+This is a modified version of the `gulp-postcss` sample usage code. Adapt your
+code like shown here and run `gulp css-debug` in order to debug your PostCSS
+process. The PostCSS-Debug web inspector will be opened in your browser automatically.
+
+```js
+var postcss = require('gulp-postcss')
+var gulp = require('gulp')
+var autoprefixer = require('autoprefixer')
+var cssnano = require('cssnano')
+var debug = require('postcss-debug').createDebugger()
+
+gulp.task('css', function () {
+  var processors = [
+    autoprefixer({browsers: ['last 1 version']}),
+    cssnano(),
+  ];
+  return gulp.src('./src/*.css')
+    .pipe(postcss(debug(processors)))   // <- we wrap our processors in the debugger
+    .pipe(gulp.dest('./dest'))
+})
+
+gulp.task('css-debug', ['css'], function () {
+  debug.inspect()
+})
+```
+
+
+### JS Code
 
 ```js
 import { createDebugger, matcher } from 'postcss-debug'
@@ -57,8 +97,6 @@ postcss(debug(plugins))
   })
   .then(result => {
     debug.inspect()
-    // or use the debug data manually:
-    const debugData = debug.output // or result.debugData
   })
 ```
 
