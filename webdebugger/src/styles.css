@@ -8,10 +8,14 @@ body {
 }
 
 header {
+  position: fixed;
+  top: 0;
+  width: 100%;
   padding: 8px 36px;
   margin-bottom: 10px;
-  background: #004c7f;
-  color: white;
+  background: white;
+  border-bottom: 1px solid #ccc;
+  color: #303030;
   cursor: default;
 
   > * {
@@ -27,20 +31,22 @@ header {
 
 article {
   margin: 0 36px;
-  padding-bottom: 36px;
+  padding-top: 74px;
+  padding-bottom: 52px;
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   padding: 8px 36px;
   margin-top: 10px;
-  background: #003d66;
+  background: white;
+  border-top: 1px solid #ccc;
   text-align: right;
 
   &, a, a:hover {
-    color: #b2e0ff;
+    color: #dd3735;
   }
 }
 

@@ -60,6 +60,20 @@
 	  return obj;
 	};
 
+	babelHelpers.extends = Object.assign || function (target) {
+	  for (var i = 1; i < arguments.length; i++) {
+	    var source = arguments[i];
+
+	    for (var key in source) {
+	      if (Object.prototype.hasOwnProperty.call(source, key)) {
+	        target[key] = source[key];
+	      }
+	    }
+	  }
+
+	  return target;
+	};
+
 	babelHelpers.inherits = function (subClass, superClass) {
 	  if (typeof superClass !== "function" && superClass !== null) {
 	    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
@@ -20242,7 +20256,65 @@
 
 	var cx = (index$2 && typeof index$2 === 'object' && 'default' in index$2 ? index$2['default'] : index$2);
 
-	__$styleInject(".snapshots > li > .snapshot__heading::before {\n    content: '▶';\n    display: inline-block;\n    position: relative;\n    top: -4px;\n    margin-right: 6px;\n    font-size: 50%;\n    transition: transform 0.15s;\n}\n.snapshots > li:hover > .snapshot__heading::before {\n    color: #f8f8f8;\n}\n.snapshots > li.selected > .snapshot__heading::before {\n    transform: rotate(90deg);\n}\n.snapshots > li.selected > .snapshot__content {\n    display: block;\n}\n.snapshots > li.selected > .snapshot__content pre.midas {\n    padding: 8px 16px;\n    margin: 0;\n}\n.snapshots > li.selected > h3 > .snapshot__timing {\n    color: #f8f8f8;\n}\n.snapshots > li > .snapshot__content {\n    display: none;\n    max-height: 1000px;\n    overflow: auto;\n}\n.snapshots > li > h3 {\n    margin: 0;\n}\n.snapshots > li > h3 > .snapshot__timing {\n    float: right;\n    color: #666;\n    font-size: 16px;\n}\n");
+	__$styleInject(".snapshots > li {\n  margin-top: 8px;\n}\n.snapshots > li > .snapshot__heading::before {\n  content: '▶';\n  display: inline-block;\n  position: relative;\n  top: -4px;\n  margin-right: 6px;\n  font-size: 50%;\n  transition: transform 0.15s;\n}\n.snapshots > li:hover > .snapshot__heading::before {\n  color: #f8f8f8;\n}\n.snapshots > li.selected > .snapshot__heading::before {\n  transform: rotate(90deg);\n}\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n.snapshots > li.selected > h3 > .snapshot__timing {\n  color: #f8f8f8;\n}\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n.snapshots > li > h3 {\n  margin: 0;\n}\n.snapshots > li > h3 > .snapshot__timing {\n  float: right;\n  color: #666;\n  font-size: 16px;\n}\n");
+
+	var Component$2 = React.Component;
+	var PropTypes$2 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
+
+	var propTypes$2 = {
+	  index: PropTypes$2.number.isRequired,
+	  isExpanded: PropTypes$2.bool,
+	  snapshot: PropTypes$2.object.isRequired,
+	  onSnapshotToggle: PropTypes$2.func.isRequired
+	};
+
+	var Snapshot = function Snapshot(_ref) {
+	  var snapshot = _ref.snapshot;
+	  var index = _ref.index;
+	  var isExpanded = _ref.isExpanded;
+	  var onSnapshotToggle = _ref.onSnapshotToggle;
+
+	  function renderSnapshotContent(snapshot) {
+	    if (snapshot.highlightedContentHTML) {
+	      var innerHTML = { __html: snapshot.highlightedContentHTML };
+	      return React.createElement('div', { className: 'snapshot__content', dangerouslySetInnerHTML: innerHTML });
+	    } else {
+	      return React.createElement(
+	        'pre',
+	        { className: 'snapshot__content' },
+	        snapshot.content
+	      );
+	    }
+	  }
+
+	  var benchmark = index > 0 ? React.createElement(
+	    'span',
+	    { className: 'snapshot__timing' },
+	    'took ',
+	    snapshot.timeDiff,
+	    'ms'
+	  ) : null;
+
+	  return React.createElement(
+	    'li',
+	    { className: cx('selectable ', isExpanded && 'selected') },
+	    React.createElement(
+	      'h3',
+	      { className: 'snapshot__heading clickable', onClick: function onClick() {
+	          return onSnapshotToggle(index);
+	        } },
+	      React.createElement(
+	        'span',
+	        { className: 'snapshot__after-plugin' },
+	        snapshot.afterPluginLabel
+	      ),
+	      index > 0 ? benchmark : null
+	    ),
+	    renderSnapshotContent(snapshot)
+	  );
+	};
+
+	Snapshot.propTypes = propTypes$2;
 
 	var Component$1 = React.Component;
 	var PropTypes$1 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20266,6 +20338,10 @@
 	    value: function render() {
 	      var _this2 = this;
 
+	      var _props = this.props;
+	      var openSnapshots = _props.openSnapshots;
+	      var onSnapshotToggle = _props.onSnapshotToggle;
+
 	      var snapshots = this.props.snapshots.map(function (snapshot, index) {
 	        return _this2._prepareSnapshotData(snapshot, _this2.props.snapshots, index);
 	      });
@@ -20274,56 +20350,12 @@
 	        'ul',
 	        { className: 'snapshots' },
 	        snapshots.map(function (snapshot, index) {
-	          return _this2._renderSnapshot(snapshot, index);
+	          return React.createElement(Snapshot, babelHelpers.extends({
+	            key: index, isExpanded: openSnapshots[index],
+	            onSnapshotToggle: onSnapshotToggle
+	          }, { index: index, snapshot: snapshot }));
 	        })
 	      );
-	    }
-
-	    /**
-	     * @param {object} snapshot     Snapshot object as in `window.postcssDebug`.
-	     */
-
-	  }, {
-	    key: '_renderSnapshot',
-	    value: function _renderSnapshot(snapshot, index) {
-	      var isExpanded = this.props.openSnapshots[index];
-	      var benchmark = index > 0 ? React.createElement(
-	        'span',
-	        { className: 'snapshot__timing' },
-	        'took ',
-	        snapshot.timeDiff,
-	        'ms'
-	      ) : null;
-
-	      return React.createElement(
-	        'li',
-	        { key: index, className: cx('selectable ', isExpanded && 'selected') },
-	        React.createElement(
-	          'h3',
-	          { className: 'snapshot__heading clickable', onClick: this.props.onSnapshotToggle.bind(this, index) },
-	          React.createElement(
-	            'span',
-	            { className: 'snapshot__after-plugin' },
-	            snapshot.afterPluginLabel
-	          ),
-	          index > 0 ? benchmark : null
-	        ),
-	        this._renderSnapshotContent(snapshot)
-	      );
-	    }
-	  }, {
-	    key: '_renderSnapshotContent',
-	    value: function _renderSnapshotContent(snapshot) {
-	      if (snapshot.highlightedContentHTML) {
-	        var innerHTML = { __html: snapshot.highlightedContentHTML };
-	        return React.createElement('div', { className: 'snapshot__content', dangerouslySetInnerHTML: innerHTML });
-	      } else {
-	        return React.createElement(
-	          'pre',
-	          { className: 'snapshot__content' },
-	          snapshot.content
-	        );
-	      }
 	    }
 	  }, {
 	    key: '_prepareSnapshotData',
@@ -20459,7 +20491,7 @@
 
 	FileSelector.propTypes = propTypes;
 
-	__$styleInject("html {\n  height: 100%;\n}\n\nbody {\n  position: relative;\n  min-height: 100%;\n}\n\nheader {\n  padding: 8px 36px;\n  margin-bottom: 10px;\n  background: #004c7f;\n  color: white;\n  cursor: default;\n}\n\nheader > * {\n  margin: 0;\n  font-size: 36px;\n}\n\nheader img {\n  height: 36px;\n  margin-top: -4px;\n}\n\narticle {\n  margin: 0 36px;\n  padding-bottom: 36px;\n}\n\nfooter {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n  padding: 8px 36px;\n  margin-top: 10px;\n  background: #003d66;\n  text-align: right;\n}\n\nfooter, footer a, footer a:hover {\n  color: #b2e0ff;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\n.selectable {\n  background: #f0f0f0;\n}\n\n.clickable {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.clickable:hover {\n  background: #09f;\n  color: #f8f8f8;\n}\n\n.selected {\n  background: #888;\n  color: #f8f8f8;\n}\n");
+	__$styleInject("html {\n  height: 100%;\n}\n\nbody {\n  position: relative;\n  min-height: 100%;\n}\n\nheader {\n  position: fixed;\n  top: 0;\n  width: 100%;\n  padding: 8px 36px;\n  margin-bottom: 10px;\n  background: white;\n  border-bottom: 1px solid #ccc;\n  color: #303030;\n  cursor: default;\n}\n\nheader > * {\n  margin: 0;\n  font-size: 36px;\n}\n\nheader img {\n  height: 36px;\n  margin-top: -4px;\n}\n\narticle {\n  margin: 0 36px;\n  padding-top: 74px;\n  padding-bottom: 52px;\n}\n\nfooter {\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  padding: 8px 36px;\n  margin-top: 10px;\n  background: white;\n  border-top: 1px solid #ccc;\n  text-align: right;\n}\n\nfooter, footer a, footer a:hover {\n  color: #dd3735;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\n.selectable {\n  background: #f0f0f0;\n}\n\n.clickable {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.clickable:hover {\n  background: #09f;\n  color: #f8f8f8;\n}\n\n.selected {\n  background: #888;\n  color: #f8f8f8;\n}\n");
 
 	var files = window.postcssDebug.files;
 

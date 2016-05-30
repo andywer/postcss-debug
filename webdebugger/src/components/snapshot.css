@@ -1,4 +1,6 @@
 .snapshots > li {
+  margin-top: 8px;
+
   > .snapshot__heading::before {
     content: '▶';
     display: inline-block;
