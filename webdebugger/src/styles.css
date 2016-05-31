@@ -56,6 +56,11 @@ ul {
   list-style-type: none;
 }
 
+pre {
+  border: none;
+  border-radius: 0;
+}
+
 .selectable {
   background: #f0f0f0;
 }
