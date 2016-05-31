@@ -47,27 +47,32 @@ postcss-debug --help
 ### gulp-postcss
 
 This is a modified version of the `gulp-postcss` sample usage code. Adapt your
-code like shown here and run `gulp css-debug` in order to debug your PostCSS
-process. The PostCSS-Debug web inspector will be opened in your browser automatically.
+code like shown here (very simple, three lines of code: require debugger,
+wrap your plugins, call `.inspect()`) and run `gulp css-debug` in order to
+debug your PostCSS process. The PostCSS-Debug web inspector will be opened in
+your browser automatically.
 
 ```js
 var postcss = require('gulp-postcss')
 var gulp = require('gulp')
 var autoprefixer = require('autoprefixer')
 var cssnano = require('cssnano')
+// 1st change: instantiate debugger
 var debug = require('postcss-debug').createDebugger()
 
 gulp.task('css', function () {
   var processors = [
     autoprefixer({browsers: ['last 1 version']}),
-    cssnano(),
+    cssnano()
   ];
   return gulp.src('./src/*.css')
-    .pipe(postcss(debug(processors)))   // <- we wrap our processors in the debugger
+    // 2nd change: we wrap our processors with `debug()`
+    .pipe(postcss(debug(processors)))
     .pipe(gulp.dest('./dest'))
 })
 
 gulp.task('css-debug', ['css'], function () {
+  // 3rd change: open the web inspector
   debug.inspect()
 })
 ```
@@ -79,11 +84,12 @@ gulp.task('css-debug', ['css'], function () {
 import { createDebugger, matcher } from 'postcss-debug'
 
 const debug = createDebugger()
-// or limit gathering debug data to certain css files only:
+/* or limit gathering debug data to certain css files only:
 const debug = createDebugger([
   matcher.contains('style/some-file.css'),
   matcher.regex(/foo\.css/)
 ])
+*/
 
 const plugins = [
   plugin1,
