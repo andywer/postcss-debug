@@ -20316,7 +20316,7 @@
 
 	FileSelectorItem.propTypes = propTypes$1;
 
-	__$styleInject(".snapshots {\n  margin-top: 16px;\n}\n\n.snapshots > li {\n  margin-top: 8px;\n}\n\n.snapshots > li > .snapshot__heading::before {\n  content: '▶';\n  display: inline-block;\n  position: relative;\n  top: -3px;\n  margin-right: 6px;\n  font-size: 50%;\n  transition: transform 0.15s;\n}\n\n.snapshots > li:hover > .snapshot__heading::before {\n  color: #f8f8f8;\n}\n\n.snapshots > li.selected > .snapshot__heading::before {\n  transform: rotate(90deg);\n}\n\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n\n.snapshots > li.selected > h3 > .snapshot__timing {\n  color: #f8f8f8;\n}\n\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n\n.snapshots > li > h3 {\n  font-size: 22px;\n  margin: 0;\n}\n\n.snapshots > li > h3 > .snapshot__timing {\n  float: right;\n  color: #666;\n  font-size: 16px;\n}\n");
+	__$styleInject(".snapshots {\n  margin-top: 16px;\n}\n\n.snapshots > li {\n  margin-top: 8px;\n}\n\n.snapshots > li > .snapshot__heading::before {\n  content: '▶';\n  display: inline-block;\n  position: relative;\n  top: -3px;\n  margin-right: 6px;\n  font-size: 50%;\n  transition: transform 0.15s;\n}\n\n.snapshots > li:hover > .snapshot__heading::before {\n  color: #f8f8f8;\n}\n\n.snapshots > li.selected > .snapshot__heading::before {\n  transform: rotate(90deg);\n}\n\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n\n.snapshots > li.selected > h3 > .snapshot__timing {\n  color: #f8f8f8;\n}\n\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n\n.snapshots > li > h3 {\n  font-size: 15px;\n  margin: 0;\n}\n\n.snapshots > li > h3 > .snapshot__timing {\n  float: right;\n  color: #666;\n  font-size: 12px;\n}\n");
 
 	var Component$3 = React.Component;
 	var PropTypes$3 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20432,7 +20432,7 @@
 
 	SnapshotsContainer.propTypes = propTypes$2;
 
-	__$styleInject("section#file-selector {\n  padding: 8px;\n  border: 1px solid #ccc;\n}\n\n.file-selector > li {\n  display: inline-block;\n  margin-right: 8px;\n}\n\n.file-selector > li .file__path {\n  color: #ccc;\n}\n");
+	__$styleInject("section#file-selector {\n  padding: 8px;\n}\n\n.file-selector > li {\n  display: inline-block;\n  margin-right: 8px;\n}\n\n.file-selector > li .file__path {\n  color: #ccc;\n}\n");
 
 	var Component = React.Component;
 	var PropTypes = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20522,7 +20522,7 @@
 
 	FileSelector.propTypes = propTypes;
 
-	__$styleInject("html {\n  height: 100%;\n}\n\nbody {\n  position: relative;\n  min-height: 100%;\n}\n\nheader {\n  position: fixed;\n  top: 0;\n  width: 100%;\n  padding: 8px 36px;\n  margin-bottom: 10px;\n  background: white;\n  border-bottom: 1px solid #ccc;\n  color: #303030;\n  cursor: default;\n}\n\nheader > * {\n  margin: 0;\n  font-size: 36px;\n}\n\nheader img {\n  height: 36px;\n  margin-top: -4px;\n}\n\narticle {\n  margin: 0 36px;\n  padding-top: 74px;\n  padding-bottom: 52px;\n}\n\nfooter {\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  padding: 8px 36px;\n  margin-top: 10px;\n  background: white;\n  border-top: 1px solid #ccc;\n  text-align: right;\n}\n\nfooter, footer a, footer a:hover {\n  color: #dd3735;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\npre {\n  border: none;\n  border-radius: 0;\n}\n\n.selectable {\n  background: #f0f0f0;\n}\n\n.clickable {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.clickable:hover {\n  background: #09f;\n  color: #f8f8f8;\n}\n\n.selected {\n  background: #888;\n  color: #f8f8f8;\n}\n");
+	__$styleInject("html {\n  height: 100%;\n}\n\nbody {\n  position: relative;\n  min-height: 100%;\n  background: #fff;\n  font-family: Roboto,sans-serif;\n  margin:0;\n  padding:0;\n}\n\nheader {\n  position: fixed;\n  top: 0;\n  width: 100%;\n  padding: 10px;\n  background-color: #fff;\n}\n\nheader > * {\n  margin: 0;\n  font-size: 36px;\n}\n\nheader h1 {\n  display: inline-block;\n  vertical-align: top;\n}\n\nheader img {\n  display: inline-block;\n  width: 42px;\n}\n\narticle {\n  margin: 0 36px;\n  padding-top: 74px;\n  padding-bottom: 52px;\n}\n\nfooter {\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  padding: 10px;\n  background-color: #fff;\n  text-align: center;\n}\n\nfooter, footer a, footer a:hover {\n  color: #dd3735;\n}\n\na {\n  text-decoration: none;\n}\n\na:hover {\n  text-decoration: underline;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\npre {\n  border: none;\n  border-radius: 0;\n}\n\n.selectable {\n  background: #f0f0f0;\n}\n\n.clickable {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.clickable:hover {\n  background-color: #dd3735;\n  color: #fff;\n}\n\n.clickable:active {\n  background-color: #C5302E;\n}\n\n.selected {\n  background-color: #dd3735;\n  color: #f8f8f8;\n}\n");
 
 	var files = window.postcssDebug.files;
 

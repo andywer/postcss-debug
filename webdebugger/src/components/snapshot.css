@@ -45,13 +45,13 @@
   }
 
   > h3 {
-    font-size: 22px;
+    font-size: 15px;
     margin: 0;
 
     > .snapshot__timing {
       float: right;
       color: #666;
-      font-size: 16px;
+      font-size: 12px;
     }
   }
 }
