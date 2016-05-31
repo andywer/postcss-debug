@@ -20432,7 +20432,7 @@
 
 	SnapshotsContainer.propTypes = propTypes$2;
 
-	__$styleInject("section#file-selector {\n  padding: 8px;\n}\n\n.file-selector > li {\n  display: inline-block;\n  margin-right: 8px;\n}\n\n.file-selector > li .file__path {\n  color: #ccc;\n}\n");
+	__$styleInject("section#file-selector {\n  padding: 10px;\n}\n\n.file-selector > li {\n  display: inline-block;\n  margin-right: 8px;\n}\n\n.file-selector > li .file__path {\n  color: #ccc;\n}\n");
 
 	var Component = React.Component;
 	var PropTypes = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20522,7 +20522,7 @@
 
 	FileSelector.propTypes = propTypes;
 
-	__$styleInject("html {\n  height: 100%;\n}\n\nbody {\n  position: relative;\n  min-height: 100%;\n  background: #fff;\n  font-family: Roboto,sans-serif;\n  margin:0;\n  padding:0;\n}\n\nheader {\n  position: fixed;\n  top: 0;\n  width: 100%;\n  padding: 10px;\n  background-color: #fff;\n}\n\nheader > * {\n  margin: 0;\n  font-size: 36px;\n}\n\nheader h1 {\n  display: inline-block;\n  vertical-align: top;\n}\n\nheader img {\n  display: inline-block;\n  width: 42px;\n}\n\narticle {\n  margin: 0 36px;\n  padding-top: 74px;\n  padding-bottom: 52px;\n}\n\nfooter {\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  padding: 10px;\n  background-color: #fff;\n  text-align: center;\n}\n\nfooter, footer a, footer a:hover {\n  color: #dd3735;\n}\n\na {\n  text-decoration: none;\n}\n\na:hover {\n  text-decoration: underline;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\npre {\n  border: none;\n  border-radius: 0;\n}\n\n.selectable {\n  background: #f0f0f0;\n}\n\n.clickable {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.clickable:hover {\n  background-color: #dd3735;\n  color: #fff;\n}\n\n.clickable:active {\n  background-color: #C5302E;\n}\n\n.selected {\n  background-color: #dd3735;\n  color: #f8f8f8;\n}\n");
+	__$styleInject("html {\n  height: 100%;\n}\n\nbody {\n  position: relative;\n  min-height: 100%;\n  background: #fff;\n  font-family: Roboto,sans-serif;\n  margin:0;\n  padding:0;\n}\n\nheader {\n  position: fixed;\n  top: 0;\n  width: 100%;\n  margin: 0 36px;\n  padding: 10px;\n  background-color: #fff;\n}\n\nheader > * {\n  margin: 0;\n  font-size: 36px;\n}\n\nheader h1 {\n  display: inline-block;\n  vertical-align: top;\n}\n\nheader img {\n  display: inline-block;\n  width: 42px;\n}\n\narticle {\n  margin: 0 36px;\n  padding-top: 74px;\n  padding-bottom: 52px;\n}\n\nfooter {\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  padding: 10px;\n  background-color: #fff;\n  text-align: center;\n}\n\nfooter, footer a, footer a:hover {\n  color: #dd3735;\n}\n\na {\n  text-decoration: none;\n}\n\na:hover {\n  text-decoration: underline;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\npre {\n  border: none;\n  border-radius: 0;\n}\n\n.selectable {\n  background: #f0f0f0;\n}\n\n.clickable {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.clickable:hover {\n  background-color: #dd3735;\n  color: #fff;\n}\n\n.clickable:active {\n  background-color: #C5302E;\n}\n\n.selected {\n  background-color: #dd3735;\n  color: #f8f8f8;\n}\n");
 
 	var files = window.postcssDebug.files;
 
