@@ -26,6 +26,7 @@ header {
   }
   h1 {
     display: inline-block;
+    margin: 0 5px;
     vertical-align: top;
   }
   img {
@@ -35,7 +36,8 @@ header {
 }
 
 article {
-  margin: 0 3px;
+  width: 95%;
+  margin: 0 auto;
   padding-top: 74px;
   padding-bottom: 52px;
   height: 100%;
@@ -92,5 +94,7 @@ pre {
 }
 
 .main_container {
+  display: flex;
   height: 80%;
+  justify-content: center;
 }
