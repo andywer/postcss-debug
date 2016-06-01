@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+
+- Redesigned UI (Big thanks to https://github.com/Gaserd & https://github.com/ai)
+- Searchable file selector and snapshots, links to plugin documentations
+
 ## 0.2.0
 
 - Major style changes
