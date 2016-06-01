@@ -1,33 +1,27 @@
 import React from 'react'
 import cx from 'classnames'
+import { splitFilePath } from '../util/path'
 
 const { Component, PropTypes } = React    // rollup doesn't resolve that correctly when importing like this
 
 const FILE_LABEL_MAX_LENGTH = 30
 
-function splitFilePath (filePath) {
-  const lastSlashIndex = filePath.lastIndexOf('/')
-
-  if (lastSlashIndex >= 0) {
-    return {
-      basename: filePath.substr(lastSlashIndex + 1),
-      path: filePath.substr(0, lastSlashIndex + 1)
-    }
-  } else {
-    return { basename: filePath, path: '' }
-  }
+function trimLabel (string, maxLength) {
+  return string > maxLength ? '...' + string.substr(-maxLength + 3) : string
 }
 
 const propTypes = {
+  commonPath: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   isSelected: PropTypes.bool,
   file: PropTypes.object.isRequired,
   onFileSelect: PropTypes.func.isRequired
 }
 
-const FileSelectorItem = ({ file, index, isSelected, onFileSelect }) => {
+const FileSelectorItem = ({ file, index, commonPath, isSelected, onFileSelect }) => {
   const className = cx('clickable', 'selectable', isSelected && 'selected')
-  const label = file.path.length > FILE_LABEL_MAX_LENGTH ? '...' + file.path.substr(-FILE_LABEL_MAX_LENGTH + 3) : file.path
+  const pathToFile = file.path.replace(commonPath, '')
+  const label = trimLabel(pathToFile, FILE_LABEL_MAX_LENGTH)
   const { basename, path } = splitFilePath(label)
 
   return (

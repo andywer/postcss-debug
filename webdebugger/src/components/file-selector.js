@@ -1,6 +1,7 @@
 import React from 'react'
 import FileSelectorItem from './file-selector-item'
 import SnapshotsContainer from './snapshots-container'
+import { getCommonPath } from '../util/path'
 import './file-selector.css'
 
 const { Component, PropTypes } = React    // rollup doesn't resolve that correctly when importing like this
@@ -37,7 +38,9 @@ export default class FileSelector extends Component {
               onChange={event => this._onSearchFieldChange(event.target.value)}
               />
           </div>
-          <ul className="file-selector-list">{this._renderFiles()}</ul>
+          <ul className="file-selector-list">
+            {this._renderFiles()}
+          </ul>
         </div>
         <SnapshotsContainer
           snapshots={selectedFile ? selectedFile.snapshots : []}
@@ -56,9 +59,11 @@ export default class FileSelector extends Component {
       files = files.filter(file => file.path.indexOf(searchFieldValue) >= 0)
     }
 
+    const commonPath = getCommonPath(files.map(file => file.path))
+
     return files.map((file, index) =>
       <FileSelectorItem
-        key={index} isSelected={selectedFile === file}
+        key={index} isSelected={selectedFile === file} commonPath={commonPath}
         onFileSelect={this._onFileSelect.bind(this)}
         {...{ index, file }}
       />

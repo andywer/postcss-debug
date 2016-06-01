@@ -20256,13 +20256,14 @@
 
 	var cx = (index$2 && typeof index$2 === 'object' && 'default' in index$2 ? index$2['default'] : index$2);
 
-	var Component$1 = React.Component;
-	var PropTypes$1 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
+	var PATH_SEPARATOR_REGEX = /\/|\\/g;
 
-	var FILE_LABEL_MAX_LENGTH = 30;
-
+	/**
+	 * @param {string} filePath
+	 * @return {object} splittedPath    { basename: string, path: string }
+	 */
 	function splitFilePath(filePath) {
-	  var lastSlashIndex = filePath.lastIndexOf('/');
+	  var lastSlashIndex = Math.max(filePath.lastIndexOf('/'), filePath.lastIndexOf('\\'));
 
 	  if (lastSlashIndex >= 0) {
 	    return {
@@ -20274,7 +20275,48 @@
 	  }
 	}
 
+	/**
+	 * @param {string[]} paths
+	 * @return string
+	 */
+	function getCommonPath(paths) {
+	  if (paths.length === 0) {
+	    return '';
+	  }
+
+	  var firstPath = paths.shift();
+	  var firstPathSplits = splitFilePath(firstPath).path.split(PATH_SEPARATOR_REGEX);
+
+	  var commonPath = paths.reduce(function (lastCommonPathSplits, path) {
+	    var commonPathSplits = [];
+	    var thisPathFragments = splitFilePath(path).path.split(PATH_SEPARATOR_REGEX);
+
+	    lastCommonPathSplits.some(function (pathFragment, index) {
+	      if (index < thisPathFragments.length && pathFragment === thisPathFragments[index]) {
+	        commonPathSplits.push(pathFragment);
+	      } else {
+	        // stop iteration
+	        return true;
+	      }
+	    });
+
+	    return commonPathSplits;
+	  }, firstPathSplits).join('/');
+
+	  return commonPath && !commonPath.match(/\/$/) ? commonPath + '/' : commonPath;
+	}
+
+	var Component$1 = React.Component;
+	var PropTypes$1 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
+
+	var FILE_LABEL_MAX_LENGTH = 30;
+
+	function trimLabel(string, maxLength) {
+	  return string > maxLength ? '...' + string.substr(-maxLength + 3) : string;
+	}
+
 	var propTypes$1 = {
+	  commonPath: PropTypes$1.string.isRequired,
 	  index: PropTypes$1.number.isRequired,
 	  isSelected: PropTypes$1.bool,
 	  file: PropTypes$1.object.isRequired,
@@ -20284,11 +20326,13 @@
 	var FileSelectorItem = function FileSelectorItem(_ref) {
 	  var file = _ref.file;
 	  var index = _ref.index;
+	  var commonPath = _ref.commonPath;
 	  var isSelected = _ref.isSelected;
 	  var onFileSelect = _ref.onFileSelect;
 
 	  var className = cx('clickable', 'selectable', isSelected && 'selected');
-	  var label = file.path.length > FILE_LABEL_MAX_LENGTH ? '...' + file.path.substr(-FILE_LABEL_MAX_LENGTH + 3) : file.path;
+	  var pathToFile = file.path.replace(commonPath, '');
+	  var label = trimLabel(pathToFile, FILE_LABEL_MAX_LENGTH);
 
 	  var _splitFilePath = splitFilePath(label);
 
@@ -20341,7 +20385,7 @@
 
 	HelpLink.propTypes = propTypes$4;
 
-	__$styleInject(".snapshots {\n  display: inline-block;\n  vertical-align: top;\n  min-width: 800px;\n  flex-grow: 1;\n  margin-left: 20px;\n  border: 1px solid #d8d8d8;\n  border-radius: 3px;\n  border-bottom: 0;\n}\n\n.snapshots > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshots > li > .snapshot__heading::before {\n  content: '▶';\n  display: inline-block;\n  position: relative;\n  top: -3px;\n  margin-right: 6px;\n  font-size: 50%;\n  transition: transform 0.15s;\n}\n\n.snapshots > li:hover > .snapshot__heading::before {\n  color: #f8f8f8;\n}\n\n.snapshots > li.selected > .snapshot__heading::before {\n  transform: rotate(90deg);\n}\n\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n\n.snapshots > li.selected > h3 {\n  background-color: #dd3735;\n}\n\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n\n.snapshots > li > h3 {\n  font-size: 15px;\n  margin: 0;\n  display: block;\n  padding: 9px 10px 10px;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshots > li > h3 > .help-link {\n  margin-left:5px;\n}\n\n.snapshots > li > h3 > .snapshot__timing {\n  float: right;\n  color: #666;\n  padding: 2px 5px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #666;\n  background-color: #eee;\n  border-radius: 20px;\n}\n");
+	__$styleInject(".snapshots {\n  display: inline-block;\n  vertical-align: top;\n  flex-grow: 1;\n  margin-left: 20px;\n  border: 1px solid #d8d8d8;\n  border-radius: 3px;\n  border-bottom: 0;\n}\n\n.snapshots > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshots > li > .snapshot__heading::before {\n  content: '▶';\n  display: inline-block;\n  position: relative;\n  top: -3px;\n  margin-right: 6px;\n  font-size: 50%;\n  transition: transform 0.15s;\n}\n\n.snapshots > li:hover > .snapshot__heading::before {\n  color: #f8f8f8;\n}\n\n.snapshots > li.selected > .snapshot__heading::before {\n  transform: rotate(90deg);\n}\n\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n\n.snapshots > li.selected > h3 {\n  background-color: #dd3735;\n}\n\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n\n.snapshots > li > h3 {\n  font-size: 15px;\n  margin: 0;\n  display: block;\n  padding: 9px 10px 10px;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshots > li > h3 > .help-link {\n  margin-left:5px;\n}\n\n.snapshots > li > h3 > .snapshot__timing {\n  float: right;\n  color: #666;\n  padding: 2px 5px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #666;\n  background-color: #eee;\n  border-radius: 20px;\n}\n");
 
 	var Component$3 = React.Component;
 	var PropTypes$3 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20568,9 +20612,13 @@
 	        });
 	      }
 
+	      var commonPath = getCommonPath(files.map(function (file) {
+	        return file.path;
+	      }));
+
 	      return files.map(function (file, index) {
 	        return React.createElement(FileSelectorItem, babelHelpers.extends({
-	          key: index, isSelected: selectedFile === file,
+	          key: index, isSelected: selectedFile === file, commonPath: commonPath,
 	          onFileSelect: _this3._onFileSelect.bind(_this3)
 	        }, { index: index, file: file }));
 	      });
