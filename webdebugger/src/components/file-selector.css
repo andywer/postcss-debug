@@ -3,10 +3,68 @@ section#file-selector {
 }
 
 .file-selector > li {
-  display: inline-block;
-  margin-right: 8px;
+  position: relative;
+  display: block;
+  padding: 6px 64px 6px 10px;
+  font-size: 14px;
+  min-width: 300px;
+  overflow-x: auto;
 
   .file__path {
     color: #ccc;
   }
+
+  > a {
+    text-decoration: none;
+  }
+}
+.file-selector {
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #d8d8d8;
+  border-radius: 3px;
+  max-height: 800px;
+}
+.counter {
+  display: inline-block;
+  padding: 2px 5px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1;
+  color: #666;
+  background-color: #eee;
+  border-radius: 20px;
+}
+
+.file-selector > h3 {
+  display: block;
+  padding: 9px 10px 10px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 17px;
+  background-color: #FBFBFB;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.search_block {
+  padding: 5px 6px;
+}
+
+.search_block_input {
+  padding: 3px 6px;
+  font-size: 13px;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+.search_block_input:focus {
+  border-color: rgba(221, 55, 53, 0.65);
+  color: #555555;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(221, 55, 53, 0.65);
 }

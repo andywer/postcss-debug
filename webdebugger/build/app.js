@@ -20316,7 +20316,7 @@
 
 	FileSelectorItem.propTypes = propTypes$1;
 
-	__$styleInject(".snapshots {\n  margin-top: 16px;\n}\n\n.snapshots > li {\n  margin-top: 8px;\n}\n\n.snapshots > li > .snapshot__heading::before {\n  content: '▶';\n  display: inline-block;\n  position: relative;\n  top: -3px;\n  margin-right: 6px;\n  font-size: 50%;\n  transition: transform 0.15s;\n}\n\n.snapshots > li:hover > .snapshot__heading::before {\n  color: #f8f8f8;\n}\n\n.snapshots > li.selected > .snapshot__heading::before {\n  transform: rotate(90deg);\n}\n\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n\n.snapshots > li.selected > h3 > .snapshot__timing {\n  color: #f8f8f8;\n}\n\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n\n.snapshots > li > h3 {\n  font-size: 22px;\n  margin: 0;\n}\n\n.snapshots > li > h3 > .snapshot__timing {\n  float: right;\n  color: #666;\n  font-size: 16px;\n}\n");
+	__$styleInject(".snapshots {\n  display: inline-block;\n  vertical-align: top;\n  min-width: 800px;\n  margin-left: 20px;\n  border: 1px solid #d8d8d8;\n  border-radius: 3px;\n  border-bottom: 0;\n}\n\n.snapshots > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshots > li > .snapshot__heading::before {\n  content: '▶';\n  display: inline-block;\n  position: relative;\n  top: -3px;\n  margin-right: 6px;\n  font-size: 50%;\n  transition: transform 0.15s;\n}\n\n.snapshots > li:hover > .snapshot__heading::before {\n  color: #f8f8f8;\n}\n\n.snapshots > li.selected > .snapshot__heading::before {\n  transform: rotate(90deg);\n}\n\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n\n.snapshots > li.selected > h3 {\n  background-color: #dd3735;\n}\n\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n\n.snapshots > li > h3 {\n  font-size: 15px;\n  margin: 0;\n  display: block;\n  padding: 9px 10px 10px;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshots > li > h3 > .help-link {\n  margin-left:5px;\n}\n\n.snapshots > li > h3 > .snapshot__timing {\n  float: right;\n  color: #666;\n  padding: 2px 5px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #666;\n  background-color: #eee;\n  border-radius: 20px;\n}\n");
 
 	var Component$3 = React.Component;
 	var PropTypes$3 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20367,7 +20367,16 @@
 	        { className: 'snapshot__after-plugin' },
 	        snapshot.afterPluginLabel
 	      ),
-	      index > 0 ? benchmark : null
+	      index > 0 ? benchmark : null,
+	      React.createElement(
+	        'a',
+	        { className: 'help-link', href: 'https://github.com/andywer/postcss-debug/issues/1', target: '_blank' },
+	        React.createElement(
+	          'span',
+	          { className: 'counter' },
+	          '?'
+	        )
+	      )
 	    ),
 	    renderSnapshotContent(snapshot)
 	  );
@@ -20408,6 +20417,21 @@
 	      return React.createElement(
 	        'ul',
 	        { className: 'snapshots' },
+	        React.createElement(
+	          'h3',
+	          null,
+	          'Your plugins ',
+	          React.createElement(
+	            'span',
+	            { className: 'counter' },
+	            '3'
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'search_block' },
+	          React.createElement('input', { type: 'text', className: 'search_block_input', placeholder: 'Search your plugin' })
+	        ),
 	        snapshots.map(function (snapshot, index) {
 	          return React.createElement(Snapshot, babelHelpers.extends({
 	            key: index, isExpanded: openSnapshots[index],
@@ -20432,7 +20456,7 @@
 
 	SnapshotsContainer.propTypes = propTypes$2;
 
-	__$styleInject("section#file-selector {\n  padding: 8px;\n  border: 1px solid #ccc;\n}\n\n.file-selector > li {\n  display: inline-block;\n  margin-right: 8px;\n}\n\n.file-selector > li .file__path {\n  color: #ccc;\n}\n");
+	__$styleInject("section#file-selector {\n  padding: 8px;\n}\n\n.file-selector > li {\n  position: relative;\n  display: block;\n  padding: 6px 64px 6px 10px;\n  font-size: 14px;\n  min-width: 300px;\n  overflow-x: auto;\n}\n\n.file-selector > li .file__path {\n  color: #ccc;\n}\n\n.file-selector > li > a {\n  text-decoration: none;\n}\n.file-selector {\n  display: inline-block;\n  vertical-align: top;\n  border: 1px solid #d8d8d8;\n  border-radius: 3px;\n  max-height: 800px;\n}\n.counter {\n  display: inline-block;\n  padding: 2px 5px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #666;\n  background-color: #eee;\n  border-radius: 20px;\n}\n\n.file-selector > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.search_block {\n  padding: 5px 6px;\n}\n\n.search_block_input {\n  padding: 3px 6px;\n  font-size: 13px;\n  color: #333;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 3px;\n  outline: none;\n  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);\n  display: block;\n  width: 100%;\n  box-sizing: border-box;\n}\n.search_block_input:focus {\n  border-color: rgba(221, 55, 53, 0.65);\n  color: #555555;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(221, 55, 53, 0.65);\n}\n");
 
 	var Component = React.Component;
 	var PropTypes = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20475,6 +20499,21 @@
 	        React.createElement(
 	          'ul',
 	          { className: 'file-selector' },
+	          React.createElement(
+	            'h3',
+	            null,
+	            'Your files ',
+	            React.createElement(
+	              'span',
+	              { className: 'counter' },
+	              files.length
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { className: 'search_block' },
+	            React.createElement('input', { type: 'text', className: 'search_block_input', placeholder: 'Search your file' })
+	          ),
 	          files.map(function (file, index) {
 	            return React.createElement(FileSelectorItem, babelHelpers.extends({
 	              key: index, isSelected: selectedFile === file,
@@ -20522,7 +20561,7 @@
 
 	FileSelector.propTypes = propTypes;
 
-	__$styleInject("html {\n  height: 100%;\n}\n\nbody {\n  position: relative;\n  min-height: 100%;\n}\n\nheader {\n  position: fixed;\n  top: 0;\n  width: 100%;\n  padding: 8px 36px;\n  margin-bottom: 10px;\n  background: white;\n  border-bottom: 1px solid #ccc;\n  color: #303030;\n  cursor: default;\n}\n\nheader > * {\n  margin: 0;\n  font-size: 36px;\n}\n\nheader img {\n  height: 36px;\n  margin-top: -4px;\n}\n\narticle {\n  margin: 0 36px;\n  padding-top: 74px;\n  padding-bottom: 52px;\n}\n\nfooter {\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  padding: 8px 36px;\n  margin-top: 10px;\n  background: white;\n  border-top: 1px solid #ccc;\n  text-align: right;\n}\n\nfooter, footer a, footer a:hover {\n  color: #dd3735;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\n.selectable {\n  background: #f0f0f0;\n}\n\n.clickable {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.clickable:hover {\n  background: #09f;\n  color: #f8f8f8;\n}\n\n.selected {\n  background: #888;\n  color: #f8f8f8;\n}\n");
+	__$styleInject("html {\n  height: 100%;\n}\n\nbody {\n  position: relative;\n  min-height: 100%;\n  background: #fff;\n  font-family: Roboto,sans-serif;\n  margin:0;\n  padding:0;\n}\n\nheader {\n  position: fixed;\n  top: 0;\n  width: 100%;\n  padding: 10px;\n  background-color: #fff;\n  z-index: 100;\n}\n\nheader > * {\n  margin: 0;\n  font-size: 36px;\n}\n\nheader h1 {\n  display: inline-block;\n  vertical-align: top;\n}\n\nheader img {\n  display: inline-block;\n  width: 42px;\n}\n\narticle {\n  margin: 0 3px;\n  padding-top: 74px;\n  padding-bottom: 52px;\n}\n\nfooter {\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  padding: 10px;\n  background-color: #fff;\n  text-align: center;\n}\n\nfooter, footer a, footer a:hover {\n  color: #dd3735;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\n.clickable {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.clickable:hover {\n  background-color: #dd3735;\n  color: #fff;\n}\n\n.clickable:active {\n  background-color: #C5302E;\n}\n\n.selected {\n  background-color: #dd3735;\n  color: #f8f8f8;\n}\n");
 
 	var files = window.postcssDebug.files;
 

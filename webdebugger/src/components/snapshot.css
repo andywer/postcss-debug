@@ -1,9 +1,24 @@
 .snapshots {
-  margin-top: 16px;
+  display: inline-block;
+  vertical-align: top;
+  min-width: 800px;
+  margin-left: 20px;
+  border: 1px solid #d8d8d8;
+  border-radius: 3px;
+  border-bottom: 0;
+}
+
+.snapshots > h3 {
+  display: block;
+  padding: 9px 10px 10px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 17px;
+  background-color: #FBFBFB;
+  border-bottom: 1px solid #d8d8d8;
 }
 
 .snapshots > li {
-  margin-top: 8px;
 
   > .snapshot__heading::before {
     content: '▶';
@@ -33,9 +48,10 @@
       }
     }
 
-    > h3 > .snapshot__timing {
-      color: #f8f8f8;
+    > h3 {
+      background-color: #dd3735;
     }
+
   }
 
   > .snapshot__content {
@@ -47,11 +63,27 @@
   > h3 {
     font-size: 15px;
     margin: 0;
+    display: block;
+    padding: 9px 10px 10px;
+    font-size: 14px;
+    line-height: 17px;
+    background-color: #FBFBFB;
+    border-bottom: 1px solid #d8d8d8;
+
+    > .help-link {
+      margin-left:5px;
+    }
 
     > .snapshot__timing {
       float: right;
       color: #666;
-      font-size: 12px;
+      padding: 2px 5px;
+      font-size: 11px;
+      font-weight: bold;
+      line-height: 1;
+      color: #666;
+      background-color: #eee;
+      border-radius: 20px;
     }
   }
 }

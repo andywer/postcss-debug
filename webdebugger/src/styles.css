@@ -17,6 +17,7 @@ header {
   width: 100%;
   padding: 10px;
   background-color: #fff;
+  z-index: 100;
 
   > * {
     margin: 0;
@@ -33,7 +34,7 @@ header {
 }
 
 article {
-  margin: 0 36px;
+  margin: 0 3px;
   padding-top: 74px;
   padding-bottom: 52px;
 }
@@ -55,10 +56,6 @@ ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
-}
-
-.selectable {
-  background: #f0f0f0;
 }
 
 .clickable {
