@@ -20456,7 +20456,7 @@
 
 	SnapshotsContainer.propTypes = propTypes$2;
 
-	__$styleInject("section#file-selector {\n  padding: 10px;\n  height:100%;\n}\n\n.file-selector-list > li, .file-selector > li {\n  position: relative;\n  display: block;\n  padding: 10px 64px 10px 10px;\n  font-size: 14px;\n  min-width: 300px;\n  overflow-x: auto;\n}\n\n.file-selector-list > li .file__path, .file-selector > li .file__path {\n  color: #ccc;\n}\n\n.file-selector-list > li > a, .file-selector > li > a {\n  text-decoration: none;\n}\n.file-selector {\n  display: inline-block;\n  vertical-align: top;\n  border: 1px solid #d8d8d8;\n  border-radius: 3px;\n  height:100%;\n  overflow-x: hidden;\n}\n\n.file-selector-list {\n  height:80%;\n  overflow-x: auto;\n}\n\n.counter {\n  display: inline-block;\n  padding: 2px 5px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #666;\n  background-color: #eee;\n  border-radius: 20px;\n}\n\n.file-selector > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.search_block {\n  padding: 12px 7px;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.search_block_input {\n  padding: 5px 9px;\n  font-size: 14px;\n  color: #333;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 3px;\n  outline: none;\n  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);\n  display: block;\n  width: 100%;\n  box-sizing: border-box;\n}\n.search_block_input:focus {\n  border-color: rgba(221, 55, 53, 0.65);\n  color: #555555;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(221, 55, 53, 0.65);\n}\n");
+	__$styleInject("section#file-selector {\n  padding: 10px;\n  height:100%;\n}\n\n.file-selector-list > li, .file-selector > li {\n  position: relative;\n  display: block;\n  padding: 10px 64px 10px 10px;\n  font-size: 14px;\n  overflow-x: auto;\n}\n\n.file-selector-list > li .file__path, .file-selector > li .file__path {\n  color: #ccc;\n}\n\n.file-selector-list > li > a, .file-selector > li > a {\n  text-decoration: none;\n}\n\n.file-selector {\n  display: inline-block;\n  vertical-align: top;\n  border: 1px solid #d8d8d8;\n  border-radius: 3px;\n  height:100%;\n  min-width: 300px;\n  overflow-x: hidden;\n}\n\n.file-selector-list {\n  height:80%;\n  overflow-x: auto;\n}\n\n.counter {\n  display: inline-block;\n  padding: 2px 5px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #666;\n  background-color: #eee;\n  border-radius: 20px;\n}\n\n.file-selector > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.search_block {\n  padding: 12px 7px;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.search_block_input {\n  padding: 5px 9px;\n  font-size: 14px;\n  color: #333;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 3px;\n  outline: none;\n  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);\n  display: block;\n  width: 100%;\n  box-sizing: border-box;\n}\n.search_block_input:focus {\n  border-color: rgba(221, 55, 53, 0.65);\n  color: #555555;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(221, 55, 53, 0.65);\n}\n");
 
 	var Component = React.Component;
 	var PropTypes = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20478,6 +20478,7 @@
 	    var _this = babelHelpers.possibleConstructorReturn(this, Object.getPrototypeOf(FileSelector).call(this, props));
 
 	    _this.state = {
+	      searchFieldValue: '',
 	      selectedFile: null,
 	      openSnapshots: {}
 	    };
@@ -20512,17 +20513,17 @@
 	          React.createElement(
 	            'div',
 	            { className: 'search_block' },
-	            React.createElement('input', { type: 'text', className: 'search_block_input', placeholder: 'Search your file' })
+	            React.createElement('input', {
+	              type: 'text', className: 'search_block_input', placeholder: 'Search your file',
+	              onChange: function onChange(event) {
+	                return _this2._onSearchFieldChange(event.target.value);
+	              }
+	            })
 	          ),
 	          React.createElement(
 	            'ul',
 	            { className: 'file-selector-list' },
-	            files.map(function (file, index) {
-	              return React.createElement(FileSelectorItem, babelHelpers.extends({
-	                key: index, isSelected: selectedFile === file,
-	                onFileSelect: _this2._onFileSelect.bind(_this2)
-	              }, { index: index, file: file }));
-	            })
+	            this._renderFiles()
 	          )
 	        ),
 	        React.createElement(SnapshotsContainer, {
@@ -20531,6 +20532,30 @@
 	          onSnapshotToggle: this._onSnapshotToggle.bind(this)
 	        })
 	      );
+	    }
+	  }, {
+	    key: '_renderFiles',
+	    value: function _renderFiles() {
+	      var _this3 = this;
+
+	      var _state = this.state;
+	      var searchFieldValue = _state.searchFieldValue;
+	      var selectedFile = _state.selectedFile;
+	      var files = this.props.files;
+
+
+	      if (searchFieldValue) {
+	        files = files.filter(function (file) {
+	          return file.path.indexOf(searchFieldValue) >= 0;
+	        });
+	      }
+
+	      return files.map(function (file, index) {
+	        return React.createElement(FileSelectorItem, babelHelpers.extends({
+	          key: index, isSelected: selectedFile === file,
+	          onFileSelect: _this3._onFileSelect.bind(_this3)
+	        }, { index: index, file: file }));
+	      });
 	    }
 
 	    /**
@@ -20544,6 +20569,16 @@
 	        selectedFile: selectedFile,
 	        openSnapshots: {}
 	      });
+	    }
+
+	    /**
+	     * @param {string} searchFieldValue   New value of the search field.
+	     */
+
+	  }, {
+	    key: '_onSearchFieldChange',
+	    value: function _onSearchFieldChange(searchFieldValue) {
+	      this.setState({ searchFieldValue: searchFieldValue });
 	    }
 
 	    /**

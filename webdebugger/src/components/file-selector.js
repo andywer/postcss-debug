@@ -17,6 +17,7 @@ export default class FileSelector extends Component {
     super(props)
 
     this.state = {
+      searchFieldValue: '',
       selectedFile: null,
       openSnapshots: {}
     }
@@ -31,17 +32,12 @@ export default class FileSelector extends Component {
         <div className="file-selector">
           <h3>Your files <span className="counter">{files.length}</span></h3>
           <div className="search_block">
-            <input type="text" className="search_block_input" placeholder="Search your file" />
+            <input
+              type="text" className="search_block_input" placeholder="Search your file"
+              onChange={event => this._onSearchFieldChange(event.target.value)}
+              />
           </div>
-          <ul className="file-selector-list">
-          {files.map((file, index) =>
-            <FileSelectorItem
-              key={index} isSelected={selectedFile === file}
-              onFileSelect={this._onFileSelect.bind(this)}
-              {...{ index, file }}
-            />
-          )}
-          </ul>
+          <ul className="file-selector-list">{this._renderFiles()}</ul>
         </div>
         <SnapshotsContainer
           snapshots={selectedFile ? selectedFile.snapshots : []}
@@ -49,6 +45,23 @@ export default class FileSelector extends Component {
           onSnapshotToggle={this._onSnapshotToggle.bind(this)}
         />
       </div>
+    )
+  }
+
+  _renderFiles () {
+    const { searchFieldValue, selectedFile } = this.state
+    let { files } = this.props
+
+    if (searchFieldValue) {
+      files = files.filter(file => file.path.indexOf(searchFieldValue) >= 0)
+    }
+
+    return files.map((file, index) =>
+      <FileSelectorItem
+        key={index} isSelected={selectedFile === file}
+        onFileSelect={this._onFileSelect.bind(this)}
+        {...{ index, file }}
+      />
     )
   }
 
@@ -60,6 +73,13 @@ export default class FileSelector extends Component {
       selectedFile,
       openSnapshots: {}
     })
+  }
+
+  /**
+   * @param {string} searchFieldValue   New value of the search field.
+   */
+  _onSearchFieldChange (searchFieldValue) {
+    this.setState({ searchFieldValue })
   }
 
   /**
