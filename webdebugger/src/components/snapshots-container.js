@@ -19,6 +19,10 @@ export default class SnapshotsContainer extends Component {
 
     return (
       <ul className="snapshots">
+        <h3>Your plugins <span className="counter">{snapshots.length}</span></h3>
+        <div className="search_block">
+          <input type="text" className="search_block_input" placeholder="Search your plugin" />
+        </div>
         {snapshots.map((snapshot, index) =>
           <Snapshot
             key={index} isExpanded={openSnapshots[ index ]}

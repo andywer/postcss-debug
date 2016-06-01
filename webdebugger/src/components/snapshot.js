@@ -30,6 +30,7 @@ const Snapshot = ({ snapshot, index, isExpanded, onSnapshotToggle }) => {
       <h3 className="snapshot__heading clickable" onClick={() => onSnapshotToggle(index)}>
         <span className="snapshot__after-plugin">{snapshot.afterPluginLabel}</span>
         {index > 0 ? benchmark : null}
+        <a className="help-link" href="https://github.com/andywer/postcss-debug/issues/1" target="_blank"><span className="counter">?</span></a>
       </h3>
       {renderSnapshotContent(snapshot)}
     </li>

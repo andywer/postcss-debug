@@ -4,7 +4,7 @@ html {
 
 body {
   position: relative;
-  min-height: 100%;
+  height: 100%;
   background: #fff;
   font-family: Roboto,sans-serif;
   margin:0;
@@ -18,6 +18,7 @@ header {
   margin: 0 36px;
   padding: 10px;
   background-color: #fff;
+  z-index: 100;
 
   > * {
     margin: 0;
@@ -34,9 +35,10 @@ header {
 }
 
 article {
-  margin: 0 36px;
+  margin: 0 3px;
   padding-top: 74px;
   padding-bottom: 52px;
+  height: 100%;
 }
 
 footer {
@@ -71,10 +73,6 @@ pre {
   border-radius: 0;
 }
 
-.selectable {
-  background: #f0f0f0;
-}
-
 .clickable {
   padding: 10px;
   cursor: pointer;
@@ -91,4 +89,8 @@ pre {
 .selected {
   background-color: #dd3735;
   color: #f8f8f8;
+}
+
+.main_container {
+  height: 80%;
 }
