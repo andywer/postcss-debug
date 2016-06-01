@@ -34,7 +34,7 @@ export default class FileSelector extends Component {
           <h3>Your files <span className="counter">{files.length}</span></h3>
           <div className="search_block">
             <input
-              type="text" className="search_block_input" placeholder="Search your file"
+              type="text" className="search_block_input" placeholder="Search your files"
               onChange={event => this._onSearchFieldChange(event.target.value)}
               />
           </div>

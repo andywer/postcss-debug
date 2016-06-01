@@ -20507,7 +20507,7 @@
 	          'div',
 	          { className: 'search_block' },
 	          React.createElement('input', {
-	            type: 'text', className: 'search_block_input', placeholder: 'Search your plugin',
+	            type: 'text', className: 'search_block_input', placeholder: 'Search your plugins',
 	            onChange: function onChange(event) {
 	              return _this2._onSearchFieldChange(event.target.value);
 	            }
@@ -20600,7 +20600,7 @@
 	            'div',
 	            { className: 'search_block' },
 	            React.createElement('input', {
-	              type: 'text', className: 'search_block_input', placeholder: 'Search your file',
+	              type: 'text', className: 'search_block_input', placeholder: 'Search your files',
 	              onChange: function onChange(event) {
 	                return _this2._onSearchFieldChange(event.target.value);
 	              }
