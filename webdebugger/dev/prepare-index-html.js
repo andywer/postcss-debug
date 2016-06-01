@@ -2,6 +2,6 @@
 
 var fs = require('fs')
 var prepareIndexHtml = require('../build').prepareIndexHtml
+var sampleData = require('./sample-data')(3)
 
-var sampleData = fs.readFileSync(__dirname + '/sample-data.js', { encoding: 'utf8' })
-prepareIndexHtml(sampleData)
+prepareIndexHtml(JSON.stringify(sampleData))
