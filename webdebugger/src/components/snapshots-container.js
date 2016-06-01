@@ -37,7 +37,7 @@ export default class SnapshotsContainer extends Component {
   _prepareSnapshotData (snapshot, snapshots, index) {
     return {
       timeDiff: index === 0 ? 0 : snapshot.timestamp - snapshots[ index - 1 ].timestamp,
-      afterPluginLabel: snapshot.prevPlugin ? `After ${snapshot.prevPlugin}` : 'Initially',
+      prevPlugin: snapshot.prevPlugin,
       highlightedContentHTML: snapshot.highlightedContentHTML,
       content: snapshot.content
     }

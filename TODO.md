@@ -1,7 +1,3 @@
-## Design
-
-- Use https://raw.githubusercontent.com/himynameisdave/postcss-plugins/master/plugins.json to link to documentation
-
 ## Testing
 
 TODO:

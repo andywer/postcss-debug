@@ -20316,6 +20316,31 @@
 
 	FileSelectorItem.propTypes = propTypes$1;
 
+	var Component$4 = React.Component;
+	var PropTypes$4 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
+
+	var propTypes$4 = {
+	  plugin: PropTypes$4.string.isRequired
+	};
+
+	var HelpLink = function HelpLink(_ref) {
+	  var plugin = _ref.plugin;
+
+	  var url = "https://www.npmjs.com/package/" + plugin;
+
+	  return React.createElement(
+	    "a",
+	    { className: "help-link", href: url, target: "_blank" },
+	    React.createElement(
+	      "span",
+	      { className: "counter" },
+	      "?"
+	    )
+	  );
+	};
+
+	HelpLink.propTypes = propTypes$4;
+
 	__$styleInject(".snapshots {\n  display: inline-block;\n  vertical-align: top;\n  min-width: 800px;\n  flex-grow: 1;\n  margin-left: 20px;\n  border: 1px solid #d8d8d8;\n  border-radius: 3px;\n  border-bottom: 0;\n}\n\n.snapshots > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshots > li > .snapshot__heading::before {\n  content: '▶';\n  display: inline-block;\n  position: relative;\n  top: -3px;\n  margin-right: 6px;\n  font-size: 50%;\n  transition: transform 0.15s;\n}\n\n.snapshots > li:hover > .snapshot__heading::before {\n  color: #f8f8f8;\n}\n\n.snapshots > li.selected > .snapshot__heading::before {\n  transform: rotate(90deg);\n}\n\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n\n.snapshots > li.selected > h3 {\n  background-color: #dd3735;\n}\n\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n\n.snapshots > li > h3 {\n  font-size: 15px;\n  margin: 0;\n  display: block;\n  padding: 9px 10px 10px;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshots > li > h3 > .help-link {\n  margin-left:5px;\n}\n\n.snapshots > li > h3 > .snapshot__timing {\n  float: right;\n  color: #666;\n  padding: 2px 5px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #666;\n  background-color: #eee;\n  border-radius: 20px;\n}\n");
 
 	var Component$3 = React.Component;
@@ -20347,6 +20372,7 @@
 	    }
 	  }
 
+	  var pluginLabel = snapshot.prevPlugin ? 'After ' + snapshot.prevPlugin : 'Initially';
 	  var benchmark = index > 0 ? React.createElement(
 	    'span',
 	    { className: 'snapshot__timing' },
@@ -20365,18 +20391,10 @@
 	      React.createElement(
 	        'span',
 	        { className: 'snapshot__after-plugin' },
-	        snapshot.afterPluginLabel
+	        pluginLabel
 	      ),
 	      index > 0 ? benchmark : null,
-	      React.createElement(
-	        'a',
-	        { className: 'help-link', href: 'https://github.com/andywer/postcss-debug/issues/1', target: '_blank' },
-	        React.createElement(
-	          'span',
-	          { className: 'counter' },
-	          '?'
-	        )
-	      )
+	      snapshot.prevPlugin && React.createElement(HelpLink, { plugin: snapshot.prevPlugin })
 	    ),
 	    renderSnapshotContent(snapshot)
 	  );
@@ -20445,7 +20463,7 @@
 	    value: function _prepareSnapshotData(snapshot, snapshots, index) {
 	      return {
 	        timeDiff: index === 0 ? 0 : snapshot.timestamp - snapshots[index - 1].timestamp,
-	        afterPluginLabel: snapshot.prevPlugin ? 'After ' + snapshot.prevPlugin : 'Initially',
+	        prevPlugin: snapshot.prevPlugin,
 	        highlightedContentHTML: snapshot.highlightedContentHTML,
 	        content: snapshot.content
 	      };
