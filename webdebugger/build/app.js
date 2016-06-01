@@ -20458,9 +20458,15 @@
 	var SnapshotsContainer = function (_Component) {
 	  babelHelpers.inherits(SnapshotsContainer, _Component);
 
-	  function SnapshotsContainer() {
+	  function SnapshotsContainer(props) {
 	    babelHelpers.classCallCheck(this, SnapshotsContainer);
-	    return babelHelpers.possibleConstructorReturn(this, Object.getPrototypeOf(SnapshotsContainer).apply(this, arguments));
+
+	    var _this = babelHelpers.possibleConstructorReturn(this, Object.getPrototypeOf(SnapshotsContainer).call(this, props));
+
+	    _this.state = {
+	      searchFieldValue: ''
+	    };
+	    return _this;
 	  }
 
 	  babelHelpers.createClass(SnapshotsContainer, [{
@@ -20471,10 +20477,18 @@
 	      var _props = this.props;
 	      var openSnapshots = _props.openSnapshots;
 	      var onSnapshotToggle = _props.onSnapshotToggle;
+	      var searchFieldValue = this.state.searchFieldValue;
+
 
 	      var snapshots = this.props.snapshots.map(function (snapshot, index) {
 	        return _this2._prepareSnapshotData(snapshot, _this2.props.snapshots, index);
 	      });
+
+	      if (searchFieldValue) {
+	        snapshots = snapshots.filter(function (snapshot) {
+	          return snapshot.prevPlugin && snapshot.prevPlugin.indexOf(searchFieldValue) >= 0;
+	        });
+	      }
 
 	      return React.createElement(
 	        'ul',
@@ -20492,7 +20506,12 @@
 	        React.createElement(
 	          'div',
 	          { className: 'search_block' },
-	          React.createElement('input', { type: 'text', className: 'search_block_input', placeholder: 'Search your plugin' })
+	          React.createElement('input', {
+	            type: 'text', className: 'search_block_input', placeholder: 'Search your plugin',
+	            onChange: function onChange(event) {
+	              return _this2._onSearchFieldChange(event.target.value);
+	            }
+	          })
 	        ),
 	        snapshots.map(function (snapshot, index) {
 	          return React.createElement(Snapshot, babelHelpers.extends({
@@ -20501,6 +20520,11 @@
 	          }, { index: index, snapshot: snapshot }));
 	        })
 	      );
+	    }
+	  }, {
+	    key: '_onSearchFieldChange',
+	    value: function _onSearchFieldChange(searchFieldValue) {
+	      this.setState({ searchFieldValue: searchFieldValue });
 	    }
 	  }, {
 	    key: '_prepareSnapshotData',

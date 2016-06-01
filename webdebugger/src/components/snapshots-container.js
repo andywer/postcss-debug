@@ -11,17 +11,34 @@ const propTypes = {
 }
 
 export default class SnapshotsContainer extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      searchFieldValue: ''
+    }
+  }
+
   render () {
     const { openSnapshots, onSnapshotToggle } = this.props
-    const snapshots = this.props.snapshots.map(
+    const { searchFieldValue } = this.state
+
+    let snapshots = this.props.snapshots.map(
       (snapshot, index) => this._prepareSnapshotData(snapshot, this.props.snapshots, index)
     )
+
+    if (searchFieldValue) {
+      snapshots = snapshots.filter(snapshot => snapshot.prevPlugin && snapshot.prevPlugin.indexOf(searchFieldValue) >= 0)
+    }
 
     return (
       <ul className="snapshots">
         <h3>Your plugins <span className="counter">{snapshots.length}</span></h3>
         <div className="search_block">
-          <input type="text" className="search_block_input" placeholder="Search your plugin" />
+          <input
+            type="text" className="search_block_input" placeholder="Search your plugin"
+            onChange={event => this._onSearchFieldChange(event.target.value)}
+          />
         </div>
         {snapshots.map((snapshot, index) =>
           <Snapshot
@@ -32,6 +49,10 @@ export default class SnapshotsContainer extends Component {
         )}
       </ul>
     )
+  }
+
+  _onSearchFieldChange (searchFieldValue) {
+    this.setState({ searchFieldValue })
   }
 
   _prepareSnapshotData (snapshot, snapshots, index) {
