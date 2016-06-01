@@ -1,6 +1,7 @@
 .snapshots {
   display: inline-block;
   vertical-align: top;
+  width: 60%;
   min-width: 800px;
   margin-left: 20px;
   border: 1px solid #d8d8d8;
