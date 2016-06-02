@@ -1,5 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
+import HelpLink from './help-link'
 import './snapshot.css'
 
 const { Component, PropTypes } = React    // rollup doesn't resolve that correctly when importing like this
@@ -21,6 +22,7 @@ const Snapshot = ({ snapshot, index, isExpanded, onSnapshotToggle }) => {
     }
   }
 
+  const pluginLabel = snapshot.prevPlugin ? `After ${snapshot.prevPlugin}` : 'Initially'
   const benchmark = index > 0
     ? <span className="snapshot__timing">{snapshot.timeDiff}ms</span>
     : null
@@ -28,9 +30,9 @@ const Snapshot = ({ snapshot, index, isExpanded, onSnapshotToggle }) => {
   return (
     <li className={cx('selectable ', isExpanded && 'selected')}>
       <h3 className="snapshot__heading clickable" onClick={() => onSnapshotToggle(index)}>
-        <span className="snapshot__after-plugin">{snapshot.afterPluginLabel}</span>
+        <span className="snapshot__after-plugin">{pluginLabel}</span>
         {index > 0 ? benchmark : null}
-        <a className="help-link" href="https://github.com/andywer/postcss-debug/issues/1" target="_blank"><span className="counter">?</span></a>
+        {snapshot.prevPlugin && <HelpLink plugin={snapshot.prevPlugin} />}
       </h3>
       {renderSnapshotContent(snapshot)}
     </li>

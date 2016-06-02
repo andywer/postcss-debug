@@ -1,6 +1,7 @@
 import React from 'react'
 import FileSelectorItem from './file-selector-item'
 import SnapshotsContainer from './snapshots-container'
+import { getCommonPath } from '../util/path'
 import './file-selector.css'
 
 const { Component, PropTypes } = React    // rollup doesn't resolve that correctly when importing like this
@@ -17,6 +18,7 @@ export default class FileSelector extends Component {
     super(props)
 
     this.state = {
+      searchFieldValue: '',
       selectedFile: null,
       openSnapshots: {}
     }
@@ -31,16 +33,13 @@ export default class FileSelector extends Component {
         <div className="file-selector">
           <h3>Your files <span className="counter">{files.length}</span></h3>
           <div className="search_block">
-            <input type="text" className="search_block_input" placeholder="Search your file" />
+            <input
+              type="text" className="search_block_input" placeholder="Search your files"
+              onChange={event => this._onSearchFieldChange(event.target.value)}
+              />
           </div>
           <ul className="file-selector-list">
-          {files.map((file, index) =>
-            <FileSelectorItem
-              key={index} isSelected={selectedFile === file}
-              onFileSelect={this._onFileSelect.bind(this)}
-              {...{ index, file }}
-            />
-          )}
+            {this._renderFiles()}
           </ul>
         </div>
         <SnapshotsContainer
@@ -52,6 +51,25 @@ export default class FileSelector extends Component {
     )
   }
 
+  _renderFiles () {
+    const { searchFieldValue, selectedFile } = this.state
+    let { files } = this.props
+
+    if (searchFieldValue) {
+      files = files.filter(file => file.path.indexOf(searchFieldValue) >= 0)
+    }
+
+    const commonPath = getCommonPath(files.map(file => file.path))
+
+    return files.map((file, index) =>
+      <FileSelectorItem
+        key={index} isSelected={selectedFile === file} commonPath={commonPath}
+        onFileSelect={this._onFileSelect.bind(this)}
+        {...{ index, file }}
+      />
+    )
+  }
+
   /**
    * @param {object} file   File object as in`window.postcssDebug`.
    */
@@ -60,6 +78,13 @@ export default class FileSelector extends Component {
       selectedFile,
       openSnapshots: {}
     })
+  }
+
+  /**
+   * @param {string} searchFieldValue   New value of the search field.
+   */
+  _onSearchFieldChange (searchFieldValue) {
+    this.setState({ searchFieldValue })
   }
 
   /**

@@ -1,6 +1,6 @@
 section#file-selector {
-  padding: 8px;
-  height:100%;
+  padding: 10px;
+  height: 100%;
 }
 
 .file-selector-list > li, .file-selector > li {
@@ -8,7 +8,6 @@ section#file-selector {
   display: block;
   padding: 10px 64px 10px 10px;
   font-size: 14px;
-  min-width: 300px;
   overflow-x: auto;
 
   .file__path {
@@ -19,17 +18,19 @@ section#file-selector {
     text-decoration: none;
   }
 }
+
 .file-selector {
   display: inline-block;
   vertical-align: top;
   border: 1px solid #d8d8d8;
   border-radius: 3px;
-  height:100%;
+  height: 100%;
+  min-width: 300px;
   overflow-x: hidden;
 }
 
 .file-selector-list {
-  height:80%;
+  height: 80%;
   overflow-x: auto;
 }
 
