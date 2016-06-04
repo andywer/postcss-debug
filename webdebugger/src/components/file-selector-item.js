@@ -26,7 +26,15 @@ const FileSelectorItem = ({ file, index, commonPath, isSelected, onFileSelect })
 
   return (
     <li key={index} className={className} onClick={() => onFileSelect(file)} title={file.path}>
-      <span className="file__path">{path}</span><span className="file__basename">{basename}</span>
+      <div className="file__icon">
+      </div>
+      <div className="file__block_info">
+        <span className="file__basename">{basename}</span><br />
+        <span className="file__path">asdasdasdasdas ad asd asd asd ad </span><br />
+        <div className="file__all_timer"></div>
+      </div>
+      <div className="file__action">
+      </div>
     </li>
   )
 }

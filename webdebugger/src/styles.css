@@ -4,55 +4,54 @@ html {
 
 body {
   position: relative;
-  height: 100%;
   background: #fff;
   font-family: Roboto,sans-serif;
   margin:0;
   padding:0;
 }
 
+h1 {
+  font-size:24px;
+}
+
 header {
   position: fixed;
   top: 0;
   width: 100%;
-  margin: 0 36px;
-  padding: 10px;
-  background-color: #fff;
+  padding:18px 26px 18px 82px;
+  background-color: #DD3735;
   z-index: 100;
+  box-sizing: border-box;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);
 
-  > * {
+  > h1 {
     margin: 0;
-    font-size: 36px;
+    color:#fff;
   }
   h1 {
     display: inline-block;
     margin: 0 5px;
     vertical-align: top;
   }
-  img {
-    display: inline-block;
-    width: 42px;
-  }
 }
 
 article {
   width: 95%;
   margin: 0 auto;
-  padding-top: 74px;
+  padding-top: 99px;
   padding-bottom: 52px;
   height: 100%;
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  padding: 10px;
-  background-color: #fff;
-  text-align: center;
-
-  &, a, a:hover {
-    color: #dd3735;
+.link-github, .documentation-link {
+  float: right;
+  padding: 10px 14px 10px 13px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: -10px 0px 0px 24px;
+  color:#fff;
+  &:active {
+    backgound-color: rgba(153, 153, 153, 0.20ы);
   }
 }
 
@@ -79,19 +78,12 @@ pre {
   padding: 10px;
   cursor: pointer;
 
-  &:hover {
-    background-color: #dd3735;
-    color: #fff;
-  }
   &:active {
     background-color: #C5302E;
   }
 }
 
-.selected {
-  background-color: #dd3735;
-  color: #f8f8f8;
-}
+
 
 .main_container {
   display: flex;

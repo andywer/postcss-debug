@@ -22,11 +22,8 @@ section#file-selector {
 .file-selector {
   display: inline-block;
   vertical-align: top;
-  border: 1px solid #d8d8d8;
-  border-radius: 3px;
   height: 100%;
-  min-width: 300px;
-  overflow-x: hidden;
+  min-width: 350px;
 }
 
 .file-selector-list {
@@ -56,19 +53,17 @@ section#file-selector {
 }
 
 .search_block {
-  padding: 12px 7px;
-  border-bottom: 1px solid #d8d8d8;
+  margin-bottom: 8px;
 }
 
 .search_block_input {
-  padding: 5px 9px;
+  padding: 11px 26px 17px 65px;
   font-size: 14px;
-  color: #333;
+  color: rgba(0, 0, 0, 0.38);
   background-color: #fff;
   border: 1px solid #ddd;
-  border-radius: 3px;
+  border-radius: 2px;
   outline: none;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -77,4 +72,49 @@ section#file-selector {
   border-color: rgba(221, 55, 53, 0.65);
   color: #555555;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(221, 55, 53, 0.65);
+}
+
+.file-selector-list .clickable {
+  padding:15px 17px 16px 24px;
+}
+
+.file__icon {
+  width:24px;
+  height:41px;
+  background-color: #c5c5c5;
+  display: inline-block;
+  vertical-align:top;
+  margin-top:5px;
+}
+
+.file__block_info {
+  display: inline-block;
+  vertical-align: top;
+  margin-left:17px;
+}
+
+.file__basename {
+  color:rgba(0, 0, 0, 0.87);
+  font-size: 16px;
+}
+.file__path {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 14px;
+}
+
+.file__all_timer {
+  width:40px;
+  height: 14px;
+  background-color: #c5c5c5;
+}
+
+.file__action {
+  width:24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: top;
+  background-color: #c5c5c5;
+  border-radius: 50px;
+  margin-top: 5px;
+  float: right;
 }

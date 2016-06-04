@@ -20345,16 +20345,25 @@
 	    { key: index, className: className, onClick: function onClick() {
 	        return onFileSelect(file);
 	      }, title: file.path },
+	    React.createElement('div', { className: 'file__icon' }),
 	    React.createElement(
-	      'span',
-	      { className: 'file__path' },
-	      path
+	      'div',
+	      { className: 'file__block_info' },
+	      React.createElement(
+	        'span',
+	        { className: 'file__basename' },
+	        basename
+	      ),
+	      React.createElement('br', null),
+	      React.createElement(
+	        'span',
+	        { className: 'file__path' },
+	        'asdasdasdasdas ad asd asd asd ad '
+	      ),
+	      React.createElement('br', null),
+	      React.createElement('div', { className: 'file__all_timer' })
 	    ),
-	    React.createElement(
-	      'span',
-	      { className: 'file__basename' },
-	      basename
-	    )
+	    React.createElement('div', { className: 'file__action' })
 	  );
 	};
 
@@ -20385,7 +20394,7 @@
 
 	HelpLink.propTypes = propTypes$4;
 
-	__$styleInject(".snapshots {\n  display: inline-block;\n  vertical-align: top;\n  flex-grow: 1;\n  margin-left: 20px;\n  border: 1px solid #d8d8d8;\n  border-radius: 3px;\n  border-bottom: 0;\n}\n\n.snapshots > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshots > li > .snapshot__heading::before {\n  content: '▶';\n  display: inline-block;\n  position: relative;\n  top: -3px;\n  margin-right: 6px;\n  font-size: 50%;\n  transition: transform 0.15s;\n}\n\n.snapshots > li:hover > .snapshot__heading::before {\n  color: #f8f8f8;\n}\n\n.snapshots > li.selected > .snapshot__heading::before {\n  transform: rotate(90deg);\n}\n\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n\n.snapshots > li.selected > h3 {\n  background-color: #dd3735;\n}\n\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n\n.snapshots > li > h3 {\n  font-size: 15px;\n  margin: 0;\n  display: block;\n  padding: 9px 10px 10px;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshots > li > h3 > .help-link {\n  margin-left:5px;\n}\n\n.snapshots > li > h3 > .snapshot__timing {\n  float: right;\n  color: #666;\n  padding: 2px 5px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #666;\n  background-color: #eee;\n  border-radius: 20px;\n}\n");
+	__$styleInject(".snapshots {\n  display: inline-block;\n  vertical-align: top;\n  flex-grow: 1;\n  margin-left: 26px;\n}\n\n.snapshots > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshots > .search_block_input {\n  width:40%;\n}\n\n.snapshots > li > .snapshot__heading::before {\n  content: '▶';\n  display: inline-block;\n  position: relative;\n  top: -3px;\n  margin-right: 6px;\n  font-size: 50%;\n  transition: transform 0.15s;\n}\n\n.snapshots > li:hover > .snapshot__heading::before {\n  color: #f8f8f8;\n}\n\n.snapshots > li.selected > .snapshot__heading::before {\n  transform: rotate(90deg);\n}\n\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n\n.snapshots > li.selected > h3 {\n  background-color: #dd3735;\n}\n\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n\n.snapshots > li > h3 {\n  font-size: 15px;\n  margin: 0;\n  display: block;\n  padding: 9px 10px 10px;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshots > li > h3 > .help-link {\n  margin-left:5px;\n}\n\n.snapshots > li > h3 > .snapshot__timing {\n  float: right;\n  color: #666;\n  padding: 2px 5px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #666;\n  background-color: #eee;\n  border-radius: 20px;\n}\n");
 
 	var Component$3 = React.Component;
 	var PropTypes$3 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20494,16 +20503,6 @@
 	        'ul',
 	        { className: 'snapshots' },
 	        React.createElement(
-	          'h3',
-	          null,
-	          'Your plugins ',
-	          React.createElement(
-	            'span',
-	            { className: 'counter' },
-	            snapshots.length
-	          )
-	        ),
-	        React.createElement(
 	          'div',
 	          { className: 'search_block' },
 	          React.createElement('input', {
@@ -20542,7 +20541,7 @@
 
 	SnapshotsContainer.propTypes = propTypes$2;
 
-	__$styleInject("section#file-selector {\n  padding: 10px;\n  height: 100%;\n}\n\n.file-selector-list > li, .file-selector > li {\n  position: relative;\n  display: block;\n  padding: 10px 64px 10px 10px;\n  font-size: 14px;\n  overflow-x: auto;\n}\n\n.file-selector-list > li .file__path, .file-selector > li .file__path {\n  color: #ccc;\n}\n\n.file-selector-list > li > a, .file-selector > li > a {\n  text-decoration: none;\n}\n\n.file-selector {\n  display: inline-block;\n  vertical-align: top;\n  border: 1px solid #d8d8d8;\n  border-radius: 3px;\n  height: 100%;\n  min-width: 300px;\n  overflow-x: hidden;\n}\n\n.file-selector-list {\n  height: 80%;\n  overflow-x: auto;\n}\n\n.counter {\n  display: inline-block;\n  padding: 2px 5px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #666;\n  background-color: #eee;\n  border-radius: 20px;\n}\n\n.file-selector > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.search_block {\n  padding: 12px 7px;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.search_block_input {\n  padding: 5px 9px;\n  font-size: 14px;\n  color: #333;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 3px;\n  outline: none;\n  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);\n  display: block;\n  width: 100%;\n  box-sizing: border-box;\n}\n.search_block_input:focus {\n  border-color: rgba(221, 55, 53, 0.65);\n  color: #555555;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(221, 55, 53, 0.65);\n}\n");
+	__$styleInject("section#file-selector {\n  padding: 10px;\n  height: 100%;\n}\n\n.file-selector-list > li, .file-selector > li {\n  position: relative;\n  display: block;\n  padding: 10px 64px 10px 10px;\n  font-size: 14px;\n  overflow-x: auto;\n}\n\n.file-selector-list > li .file__path, .file-selector > li .file__path {\n  color: #ccc;\n}\n\n.file-selector-list > li > a, .file-selector > li > a {\n  text-decoration: none;\n}\n\n.file-selector {\n  display: inline-block;\n  vertical-align: top;\n  height: 100%;\n  min-width: 350px;\n}\n\n.file-selector-list {\n  height: 80%;\n  overflow-x: auto;\n}\n\n.counter {\n  display: inline-block;\n  padding: 2px 5px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #666;\n  background-color: #eee;\n  border-radius: 20px;\n}\n\n.file-selector > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.search_block {\n  margin-bottom: 8px;\n}\n\n.search_block_input {\n  padding: 11px 26px 17px 65px;\n  font-size: 14px;\n  color: rgba(0, 0, 0, 0.38);\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 2px;\n  outline: none;\n  display: block;\n  width: 100%;\n  box-sizing: border-box;\n}\n.search_block_input:focus {\n  border-color: rgba(221, 55, 53, 0.65);\n  color: #555555;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(221, 55, 53, 0.65);\n}\n\n.file-selector-list .clickable {\n  padding:15px 17px 16px 24px;\n}\n\n.file__icon {\n  width:24px;\n  height:41px;\n  background-color: #c5c5c5;\n  display: inline-block;\n  vertical-align:top;\n  margin-top:5px;\n}\n\n.file__block_info {\n  display: inline-block;\n  vertical-align: top;\n  margin-left:17px;\n}\n\n.file__basename {\n  color:rgba(0, 0, 0, 0.87);\n  font-size: 16px;\n}\n.file__path {\n  color: rgba(0, 0, 0, 0.54);\n  font-size: 14px;\n}\n\n.file__all_timer {\n  width:40px;\n  height: 14px;\n  background-color: #c5c5c5;\n}\n\n.file__action {\n  width:24px;\n  height: 24px;\n  display: inline-block;\n  vertical-align: top;\n  background-color: #c5c5c5;\n  border-radius: 50px;\n  margin-top: 5px;\n  float: right;\n}\n");
 
 	var Component = React.Component;
 	var PropTypes = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20586,16 +20585,6 @@
 	        React.createElement(
 	          'div',
 	          { className: 'file-selector' },
-	          React.createElement(
-	            'h3',
-	            null,
-	            'Your files ',
-	            React.createElement(
-	              'span',
-	              { className: 'counter' },
-	              files.length
-	            )
-	          ),
 	          React.createElement(
 	            'div',
 	            { className: 'search_block' },
@@ -20690,7 +20679,7 @@
 
 	FileSelector.propTypes = propTypes;
 
-	__$styleInject("html {\n  height: 100%;\n}\n\nbody {\n  position: relative;\n  height: 100%;\n  background: #fff;\n  font-family: Roboto,sans-serif;\n  margin:0;\n  padding:0;\n}\n\nheader {\n  position: fixed;\n  top: 0;\n  width: 100%;\n  margin: 0 36px;\n  padding: 10px;\n  background-color: #fff;\n  z-index: 100;\n}\n\nheader > * {\n  margin: 0;\n  font-size: 36px;\n}\n\nheader h1 {\n  display: inline-block;\n  margin: 0 5px;\n  vertical-align: top;\n}\n\nheader img {\n  display: inline-block;\n  width: 42px;\n}\n\narticle {\n  width: 95%;\n  margin: 0 auto;\n  padding-top: 74px;\n  padding-bottom: 52px;\n  height: 100%;\n}\n\nfooter {\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  padding: 10px;\n  background-color: #fff;\n  text-align: center;\n}\n\nfooter, footer a, footer a:hover {\n  color: #dd3735;\n}\n\na {\n  text-decoration: none;\n}\n\na:hover {\n  text-decoration: underline;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\npre {\n  border: none;\n  border-radius: 0;\n}\n\n.clickable {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.clickable:hover {\n  background-color: #dd3735;\n  color: #fff;\n}\n\n.clickable:active {\n  background-color: #C5302E;\n}\n\n.selected {\n  background-color: #dd3735;\n  color: #f8f8f8;\n}\n\n.main_container {\n  display: flex;\n  height: 80%;\n  justify-content: center;\n}\n");
+	__$styleInject("html {\n  height: 100%;\n}\n\nbody {\n  position: relative;\n  background: #fff;\n  font-family: Roboto,sans-serif;\n  margin:0;\n  padding:0;\n}\n\nh1 {\n  font-size:24px;\n}\n\nheader {\n  position: fixed;\n  top: 0;\n  width: 100%;\n  padding:18px 26px 18px 82px;\n  background-color: #DD3735;\n  z-index: 100;\n  box-sizing: border-box;\n  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);\n}\n\nheader > h1 {\n  margin: 0;\n  color:#fff;\n}\n\nheader h1 {\n  display: inline-block;\n  margin: 0 5px;\n  vertical-align: top;\n}\n\narticle {\n  width: 95%;\n  margin: 0 auto;\n  padding-top: 99px;\n  padding-bottom: 52px;\n  height: 100%;\n}\n\n.link-github, .documentation-link {\n  float: right;\n  padding: 10px 14px 10px 13px;\n  box-sizing: border-box;\n  cursor: pointer;\n  margin: -10px 0px 0px 24px;\n  color:#fff;\n}\n\n.link-github:active, .documentation-link:active {\n  backgound-color: rgba(153, 153, 153, 0.20ы);\n}\n\na {\n  text-decoration: none;\n}\n\na:hover {\n  text-decoration: underline;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\npre {\n  border: none;\n  border-radius: 0;\n}\n\n.clickable {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.clickable:active {\n  background-color: #C5302E;\n}\n\n\n\n.main_container {\n  display: flex;\n  height: 80%;\n  justify-content: center;\n}\n");
 
 	var files = window.postcssDebug.files;
 

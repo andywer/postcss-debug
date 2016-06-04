@@ -2,10 +2,7 @@
   display: inline-block;
   vertical-align: top;
   flex-grow: 1;
-  margin-left: 20px;
-  border: 1px solid #d8d8d8;
-  border-radius: 3px;
-  border-bottom: 0;
+  margin-left: 26px;
 }
 
 .snapshots > h3 {
@@ -16,6 +13,10 @@
   line-height: 17px;
   background-color: #FBFBFB;
   border-bottom: 1px solid #d8d8d8;
+}
+
+.snapshots > .search_block_input {
+  width:40%;
 }
 
 .snapshots > li {
