@@ -83,7 +83,11 @@ pre {
   }
 }
 
-
+.search_icon {
+  position: absolute;
+  left: 19px;
+  top: 15px;
+}
 
 .main_container {
   display: flex;

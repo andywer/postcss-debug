@@ -31,6 +31,7 @@ export default class FileSelector extends Component {
     return (
       <div className="main_container">
         <div className="file-selector">
+          <img className="search_icon" src="./assets/logo_search.svg" />
           <div className="search_block">
             <input
               type="text" className="search_block_input" placeholder="Search your files"
