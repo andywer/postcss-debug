@@ -31,8 +31,8 @@ export default class FileSelector extends Component {
     return (
       <div className="main_container">
         <div className="file-selector">
-          <img className="search_icon" src="./assets/logo_search.svg" />
           <div className="search_block">
+            <img className="search_icon" src="./assets/logo_search.svg" />
             <input
               type="text" className="search_block_input" placeholder="Search your files"
               onChange={event => this._onSearchFieldChange(event.target.value)}

@@ -24,15 +24,16 @@ const Snapshot = ({ snapshot, index, isExpanded, onSnapshotToggle }) => {
 
   const pluginLabel = snapshot.prevPlugin ? `After ${snapshot.prevPlugin}` : 'Initially'
   const benchmark = index > 0
-    ? <span className="snapshot__timing">{snapshot.timeDiff}ms</span>
+    ? <span className="snapshot__timing">{snapshot.timeDiff} ms</span>
     : null
 
   return (
     <li className={cx('selectable ', isExpanded && 'selected')}>
       <h3 className="snapshot__heading clickable" onClick={() => onSnapshotToggle(index)}>
+        <img className="icon_heading" src="./assets/triangle_bot.svg" />
         <span className="snapshot__after-plugin">{pluginLabel}</span>
+        <br /><span className="file__path">www.npmjs.com/package/generator-brunch-symfony</span>
         {index > 0 ? benchmark : null}
-        {snapshot.prevPlugin && <HelpLink plugin={snapshot.prevPlugin} />}
       </h3>
       {renderSnapshotContent(snapshot)}
     </li>

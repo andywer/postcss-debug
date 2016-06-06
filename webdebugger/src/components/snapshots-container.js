@@ -34,6 +34,7 @@ export default class SnapshotsContainer extends Component {
     return (
       <ul className="snapshots">
         <div className="search_block">
+          <img className="search_icon" src="./assets/logo_search.svg" />
           <input
             type="text" className="search_block_input" placeholder="Search your plugins"
             onChange={event => this._onSearchFieldChange(event.target.value)}
