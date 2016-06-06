@@ -35,6 +35,21 @@ header {
   }
 }
 
+.footer__block {
+  position: fixed;
+  bottom: 4px;
+  left: 42px;
+  text-align: center;
+  font-size: 12px;
+
+  div {
+    display: inline-block;
+    padding:2px 5px;
+    background-color: #c5c5c5;
+  }
+}
+
+
 .dark__theme {
   background-color: #303030;
 
@@ -44,6 +59,10 @@ header {
 
   .file__size {
     color:#c5c5c5;
+  }
+
+  .footer__block {
+    color:#fff;
   }
 
   .snapshot__heading {
