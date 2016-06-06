@@ -23,13 +23,13 @@
   width:40%;
 }
 .snapshot__heading .file__path{
-  margin-left: 16px;
+  margin-left: 26px;
 }
 .snapshots .icon_heading {
   display: inline-block;
   position: relative;
-  top: -3px;
-  margin-right: 6px;
+  top: 6px;
+  margin-right: 16px;
   transition: transform 0.15s;
 }
 .selected .icon_heading {

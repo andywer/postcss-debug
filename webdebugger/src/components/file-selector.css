@@ -111,6 +111,7 @@ section#file-selector {
   height: 14px;
   background-color: #e0e0e0;
   border-radius: 7px;
+  margin-top: 5px;
 }
 
 .icon_timer {
