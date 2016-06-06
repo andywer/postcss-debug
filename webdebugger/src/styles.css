@@ -4,55 +4,119 @@ html {
 
 body {
   position: relative;
-  height: 100%;
-  background: #fff;
+  background: #EEEEEE;
   font-family: Roboto,sans-serif;
   margin:0;
   padding:0;
+}
+
+h1 {
+  font-size:24px;
 }
 
 header {
   position: fixed;
   top: 0;
   width: 100%;
-  margin: 0 36px;
-  padding: 10px;
-  background-color: #fff;
+  padding:18px 26px 18px 42px;
+  background-color: #DD3735;
   z-index: 100;
+  box-sizing: border-box;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);
 
-  > * {
+  > h1 {
     margin: 0;
-    font-size: 36px;
+    color:#fff;
   }
   h1 {
     display: inline-block;
     margin: 0 5px;
     vertical-align: top;
   }
-  img {
+}
+
+.footer__block {
+  position: fixed;
+  bottom: 4px;
+  left: 42px;
+  text-align: center;
+  font-size: 12px;
+
+  div {
     display: inline-block;
-    width: 42px;
+    padding:2px 5px;
+    background-color: #c5c5c5;
+  }
+}
+
+
+.dark__theme {
+  background-color: #303030;
+
+  .file__basename {
+    color:#fff;
+  }
+
+  .file__size {
+    color:#c5c5c5;
+  }
+
+  .footer__block {
+    color:#fff;
+  }
+
+  .snapshot__heading {
+    background-color: #424242;
+    color:#fff;
+  }
+
+  .file__path {
+    color:#c5c5c5;
+  }
+
+  .file__all_timer {
+    color: #c5c5c5;
+    background-color: #616161;
+  }
+
+  .search_block_input {
+    background-color:#EEEEEE;
+  }
+
+  .file-selector-list .clickable {
+    background-color: #424242;
+  }
+
+  .clickable:active {
+    background-color: #3c3c3c;
+  }
+
+  > header {
+      background-color: #212121;
+  }
+
+  > h1 {
+    color:#fff;
   }
 }
 
 article {
   width: 95%;
   margin: 0 auto;
-  padding-top: 74px;
+  padding-top: 99px;
   padding-bottom: 52px;
   height: 100%;
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  padding: 10px;
-  background-color: #fff;
-  text-align: center;
-
-  &, a, a:hover {
-    color: #dd3735;
+.link-github, .documentation-link {
+  float: right;
+  padding: 10px 14px 10px 13px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: -7px 0px 0px 24px;
+  color:#fff;
+  &:active {
+    backgound-color: rgba(153, 153, 153, 0.20ы);
   }
 }
 
@@ -79,22 +143,26 @@ pre {
   padding: 10px;
   cursor: pointer;
 
-  &:hover {
-    background-color: #dd3735;
-    color: #fff;
-  }
   &:active {
-    background-color: #C5302E;
+    background-color: #f5f5f5;
   }
 }
 
-.selected {
-  background-color: #dd3735;
-  color: #f8f8f8;
+.search_icon {
+  position: absolute;
+  left: 19px;
+  top: 15px;
 }
 
 .main_container {
   display: flex;
   height: 80%;
   justify-content: center;
+}
+
+.logo_main {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: -13px;
+  margin-right: 10px;
 }

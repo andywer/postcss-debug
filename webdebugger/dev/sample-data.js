@@ -46,6 +46,94 @@ var sampleFile = {
       `
     },
     {
+      timestamp: 1462203864676,
+      prevPlugin: 'postcss-calc',
+      nextPlugin: 'postcss-nested',
+      content: `
+      .test {
+          color: black;
+          &:hover {
+              margin-top: 30px
+          }
+      }`,
+      highlightedContentHTML: `
+      <pre class="midas"><code>
+      <span class="midas__selector"><span class="midas__class">.test</span></span> <span class="midas__brace">{</span>
+          <span class="midas__property">color</span><span class="midas__colon">: </span><span class="midas__value"><span class="midas__word">black</span></span><span class="midas__semicolon">;</span>
+          <span class="midas__selector">&<span class="midas__pseudo">:hover</span></span> <span class="midas__brace">{</span>
+              <span class="midas__property">margin-top</span><span class="midas__colon">: </span><span class="midas__value"><span class="midas__number">30px</span></span>
+          <span class="midas__brace">}</span>
+      <span class="midas__brace">}</span>
+      </code></pre>
+      `
+    },
+    {
+      timestamp: 1462203864676,
+      prevPlugin: 'postcss-calc',
+      nextPlugin: 'postcss-nested',
+      content: `
+      .test {
+          color: black;
+          &:hover {
+              margin-top: 30px
+          }
+      }`,
+      highlightedContentHTML: `
+      <pre class="midas"><code>
+      <span class="midas__selector"><span class="midas__class">.test</span></span> <span class="midas__brace">{</span>
+          <span class="midas__property">color</span><span class="midas__colon">: </span><span class="midas__value"><span class="midas__word">black</span></span><span class="midas__semicolon">;</span>
+          <span class="midas__selector">&<span class="midas__pseudo">:hover</span></span> <span class="midas__brace">{</span>
+              <span class="midas__property">margin-top</span><span class="midas__colon">: </span><span class="midas__value"><span class="midas__number">30px</span></span>
+          <span class="midas__brace">}</span>
+      <span class="midas__brace">}</span>
+      </code></pre>
+      `
+    },
+    {
+      timestamp: 1462203864676,
+      prevPlugin: 'postcss-calc',
+      nextPlugin: 'postcss-nested',
+      content: `
+      .test {
+          color: black;
+          &:hover {
+              margin-top: 30px
+          }
+      }`,
+      highlightedContentHTML: `
+      <pre class="midas"><code>
+      <span class="midas__selector"><span class="midas__class">.test</span></span> <span class="midas__brace">{</span>
+          <span class="midas__property">color</span><span class="midas__colon">: </span><span class="midas__value"><span class="midas__word">black</span></span><span class="midas__semicolon">;</span>
+          <span class="midas__selector">&<span class="midas__pseudo">:hover</span></span> <span class="midas__brace">{</span>
+              <span class="midas__property">margin-top</span><span class="midas__colon">: </span><span class="midas__value"><span class="midas__number">30px</span></span>
+          <span class="midas__brace">}</span>
+      <span class="midas__brace">}</span>
+      </code></pre>
+      `
+    },
+    {
+      timestamp: 1462203864676,
+      prevPlugin: 'postcss-calc',
+      nextPlugin: 'postcss-nested',
+      content: `
+      .test {
+          color: black;
+          &:hover {
+              margin-top: 30px
+          }
+      }`,
+      highlightedContentHTML: `
+      <pre class="midas"><code>
+      <span class="midas__selector"><span class="midas__class">.test</span></span> <span class="midas__brace">{</span>
+          <span class="midas__property">color</span><span class="midas__colon">: </span><span class="midas__value"><span class="midas__word">black</span></span><span class="midas__semicolon">;</span>
+          <span class="midas__selector">&<span class="midas__pseudo">:hover</span></span> <span class="midas__brace">{</span>
+              <span class="midas__property">margin-top</span><span class="midas__colon">: </span><span class="midas__value"><span class="midas__number">30px</span></span>
+          <span class="midas__brace">}</span>
+      <span class="midas__brace">}</span>
+      </code></pre>
+      `
+    },
+    {
       timestamp: 1462203864677,
       prevPlugin: 'postcss-nested',
       nextPlugin: null,
