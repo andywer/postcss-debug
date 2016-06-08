@@ -1,0 +1,49 @@
+.dark__theme {
+  background-color: #303030;
+
+  .file__basename {
+    color:#fff;
+  }
+
+  .file__size {
+    color:#c5c5c5;
+  }
+
+  .footer__block {
+    color:#fff;
+  }
+
+  .snapshot__heading {
+    background-color: #424242;
+    color:#fff;
+  }
+
+  .file__path {
+    color:#c5c5c5;
+  }
+
+  .file__all_timer {
+    color: #c5c5c5;
+    background-color: #616161;
+  }
+
+  .search_block_input {
+    background-color:#EEEEEE;
+  }
+
+  .file-selector-list .clickable {
+    background-color: #424242;
+  }
+
+  .clickable:active {
+    background-color: #3c3c3c;
+  }
+
+  > header {
+      background-color: #212121;
+  }
+
+  > h1 {
+    color:#fff;
+  }
+}

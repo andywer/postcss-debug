@@ -34,32 +34,5 @@
     }
   </script>
   <script src="./app.js"></script>
-  <script type="text/javascript">
-    var flag = true;
-    function addClass(o, c){
-      var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g")
-      if (re.test(o.className)) return
-      o.className = (o.className + " " + c).replace(/\s+/g, " ").replace(/(^ | $)/g, "")
-    }
-    function removeClass(o, c){
-        var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g")
-        o.className = o.className.replace(re, "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "")
-    }
-    document.onkeydown = function(e) {
-      e = e || window.event;
-      if (e.shiftKey && e.keyCode == 68) {
-        if (flag == true) {
-          flag = false;
-          addClass(document.querySelector('.main__block'),'dark__theme')
-        }
-        else {
-          flag = true;
-          removeClass(document.querySelector('.main__block'),'dark__theme')
-        }
-      }
-      return true;
-    }
-  </script>
-
 </body>
 </html>
