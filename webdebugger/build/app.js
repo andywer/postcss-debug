@@ -20703,17 +20703,24 @@
 	var THEME_RED = '';
 	var THEME_DARK = 'dark__theme';
 
+	var LS_THEME_KEY = 'theme';
+
 	var activeTheme = THEME_RED;
 
 	function setTheme(theme) {
 	  var prevTheme = activeTheme;
 	  activeTheme = theme;
 
+	  applyThemeToDOM(prevTheme, activeTheme);
+	  window.localStorage.setItem(LS_THEME_KEY, activeTheme);
+	}
+
+	function applyThemeToDOM(prevTheme, nextTheme) {
 	  if (prevTheme) {
 	    document.body.classList.remove(prevTheme);
 	  }
-	  if (activeTheme) {
-	    document.body.classList.add(activeTheme);
+	  if (nextTheme) {
+	    document.body.classList.add(nextTheme);
 	  }
 	}
 
@@ -20733,11 +20740,20 @@
 	  });
 	}
 
+	function init() {
+	  setupKeyListener();
+
+	  var theme = window.localStorage.getItem(LS_THEME_KEY);
+	  if (theme) {
+	    setTheme(theme);
+	  }
+	}
+
 	__$styleInject("html {\n  height: 100%;\n}\n\nbody {\n  position: relative;\n  background: #EEEEEE;\n  font-family: Roboto,sans-serif;\n  margin:0;\n  padding:0;\n}\n\nh1 {\n  font-size:24px;\n}\n\nheader {\n  position: fixed;\n  top: 0;\n  width: 100%;\n  padding:18px 26px 18px 42px;\n  background-color: #DD3735;\n  z-index: 100;\n  box-sizing: border-box;\n  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);\n}\n\nheader > h1 {\n  margin: 0;\n  color:#fff;\n}\n\nheader h1 {\n  display: inline-block;\n  margin: 0 5px;\n  vertical-align: top;\n}\n\n.footer__block {\n  position: fixed;\n  bottom: 4px;\n  left: 42px;\n  text-align: center;\n  font-size: 12px;\n}\n\n.footer__block div {\n  display: inline-block;\n  padding:2px 5px;\n  background-color: #c5c5c5;\n}\n\narticle {\n  width: 95%;\n  margin: 0 auto;\n  padding-top: 99px;\n  padding-bottom: 52px;\n  height: 100%;\n}\n\n.link-github, .documentation-link {\n  float: right;\n  padding: 10px 14px 10px 13px;\n  box-sizing: border-box;\n  cursor: pointer;\n  margin: -7px 0px 0px 24px;\n  color:#fff;\n}\n\n.link-github:active, .documentation-link:active {\n  backgound-color: rgba(153, 153, 153, 0.20ы);\n}\n\na {\n  text-decoration: none;\n}\n\na:hover {\n  text-decoration: underline;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\npre {\n  border: none;\n  border-radius: 0;\n}\n\n.clickable {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.clickable:active {\n  background-color: #f5f5f5;\n}\n\n.search_icon {\n  position: absolute;\n  left: 19px;\n  top: 15px;\n}\n\n.main_container {\n  display: flex;\n  height: 80%;\n  justify-content: center;\n}\n\n.logo_main {\n  display: inline-block;\n  vertical-align: top;\n  margin-top: -13px;\n  margin-right: 10px;\n}\n");
 
 	__$styleInject(".dark__theme {\n  background-color: #303030;\n}\n.dark__theme .file__basename {\n  color:#fff;\n}\n.dark__theme .file__size {\n  color:#c5c5c5;\n}\n.dark__theme .footer__block {\n  color:#fff;\n}\n.dark__theme .snapshot__heading {\n  background-color: #424242;\n  color:#fff;\n}\n.dark__theme .file__path {\n  color:#c5c5c5;\n}\n.dark__theme .file__all_timer {\n  color: #c5c5c5;\n  background-color: #616161;\n}\n.dark__theme .search_block_input {\n  background-color:#EEEEEE;\n}\n.dark__theme .file-selector-list .clickable {\n  background-color: #424242;\n}\n.dark__theme .clickable:active {\n  background-color: #3c3c3c;\n}\n.dark__theme > header {\n  background-color: #212121;\n}\n.dark__theme > h1 {\n  color:#fff;\n}\n");
 
-	setupKeyListener();
+	init();
 
 	var files = window.postcssDebug.files;
 

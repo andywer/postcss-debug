@@ -4,17 +4,24 @@
 const THEME_RED = ''
 const THEME_DARK = 'dark__theme'
 
+const LS_THEME_KEY = 'theme'
+
 let activeTheme = THEME_RED
 
 function setTheme (theme) {
   const prevTheme = activeTheme
   activeTheme = theme
 
+  applyThemeToDOM(prevTheme, activeTheme)
+  window.localStorage.setItem(LS_THEME_KEY, activeTheme)
+}
+
+function applyThemeToDOM (prevTheme, nextTheme) {
   if (prevTheme) {
     document.body.classList.remove(prevTheme)
   }
-  if (activeTheme) {
-    document.body.classList.add(activeTheme)
+  if (nextTheme) {
+    document.body.classList.add(nextTheme)
   }
 }
 
@@ -26,10 +33,19 @@ function toggleTheme () {
   }
 }
 
-export function setupKeyListener () {
+function setupKeyListener () {
   document.addEventListener('keydown', (event) => {
     if (event.shiftKey && event.keyCode == 68) {
       toggleTheme()
     }
   })
+}
+
+export function init () {
+  setupKeyListener()
+
+  const theme = window.localStorage.getItem(LS_THEME_KEY)
+  if (theme) {
+    setTheme(theme)
+  }
 }
