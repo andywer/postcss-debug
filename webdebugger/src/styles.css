@@ -163,6 +163,7 @@ pre {
 .logo_main {
   display: inline-block;
   vertical-align: top;
-  margin-top: -13px;
+  margin-top: -10px;
   margin-right: 10px;
+  width: 45px;
 }
