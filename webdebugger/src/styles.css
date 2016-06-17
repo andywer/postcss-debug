@@ -32,6 +32,7 @@ header {
     display: inline-block;
     margin: 0 5px;
     vertical-align: top;
+    font-weight: 400;
   }
 }
 
