@@ -77,28 +77,29 @@ section#file-selector {
 }
 
 .file-selector-list .clickable {
-  padding:15px 17px 16px 9px;
-  background-color:#fff;
+  padding: 15px 17px 16px 9px;
+  background-color: #fff;
   margin-bottom: 8px;
 }
 
 .file__icon {
-  width:50px;
-  height:41px;
+  width: 50px;
+  height: 41px;
   display: inline-block;
-  vertical-align:top;
-  margin-top:5px;
+  vertical-align: top;
+  margin-top: 5px;
   text-align: center;
 }
 
 .file__block_info {
   display: inline-block;
   vertical-align: top;
-  margin-left:9px;
+  margin-left: 9px;
+  margin-right: 9px;
 }
 
 .file__basename {
-  color:rgba(0, 0, 0, 0.87);
+  color: rgba(0, 0, 0, 0.87);
   font-size: 16px;
 }
 .file__path {
@@ -107,7 +108,7 @@ section#file-selector {
 }
 
 .file__all_timer {
-  width:53px;
+  width: 53px;
   height: 14px;
   background-color: #e0e0e0;
   border-radius: 7px;
@@ -122,7 +123,7 @@ section#file-selector {
   vertical-align: top;
 }
 .time_text {
-  margin-left:3px;
+  margin-left: 3px;
   display: inline-block;
   vertical-align: top;
   font-size: 10px;
@@ -138,7 +139,7 @@ section#file-selector {
 }
 
 .file__action {
-  width:24px;
+  width: 24px;
   height: 24px;
   display: inline-block;
   vertical-align: top;
@@ -153,6 +154,6 @@ section#file-selector {
 }
 
 .file__size {
-  font-size:12px;
-  color:rgba(0, 0, 0, 0.38);
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.38);
 }

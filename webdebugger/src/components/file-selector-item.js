@@ -24,6 +24,10 @@ const FileSelectorItem = ({ file, index, commonPath, isSelected, onFileSelect })
   const label = trimLabel(pathToFile, FILE_LABEL_MAX_LENGTH)
   const { basename, path } = splitFilePath(label)
 
+  const firstSnapshot = file.snapshots[ 0 ]
+  const lastSnapshot = file.snapshots[ file.snapshots.length -1 ]
+  const processingTime = lastSnapshot.timestamp - firstSnapshot.timestamp
+
   return (
     <li key={index} className={className} onClick={() => onFileSelect(file)} title={file.path}>
       <div className="file__icon">
@@ -32,9 +36,12 @@ const FileSelectorItem = ({ file, index, commonPath, isSelected, onFileSelect })
       </div>
       <div className="file__block_info">
         <span className="file__basename">{basename}</span><br />
-        <span className="file__path">asdasdasdasdas ad asd asd asd ad </span><br />
+        <span className="file__path">{file.path}</span><br />
         <div className="file__all_timer">
-        <div className="file__icon_timer"><img className="icon_timer" src="./assets/time_icon.svg" /><span className="time_text">4 ms</span></div>
+          <div className="file__icon_timer">
+            <img className="icon_timer" src="./assets/time_icon.svg" />
+            <span className="time_text">{processingTime} ms</span>
+          </div>
         </div>
       </div>
       <div className="file__action">

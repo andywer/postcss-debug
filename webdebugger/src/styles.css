@@ -32,6 +32,7 @@ header {
     display: inline-block;
     margin: 0 5px;
     vertical-align: top;
+    font-weight: 400;
   }
 }
 
@@ -112,6 +113,51 @@ pre {
 .logo_main {
   display: inline-block;
   vertical-align: top;
-  margin-top: -13px;
+  margin-top: -10px;
   margin-right: 10px;
+  width: 45px;
+}
+
+
+
+@media screen and (max-width:968px) {
+  .main_container {
+    display: block;
+  }
+  .snapshots {
+    display: block;
+    margin-left: 0px;
+  }
+  .file-selector {
+    display: block;
+  }
+
+  .file-selector li {
+    width: 150px;
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  .file__block_info {
+    margin-top: 5px;
+  }
+
+}
+
+@media screen and (max-width:650px) {
+  .link-github, .documentation-link {
+    display: inline-block;
+    width: 40%;
+  }
+}
+
+@media screen and (max-width:410px) {
+  .file-selector li {
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .snapshot__heading .file__path {
+    width: 100px;
+    display: block;
+  }
 }
