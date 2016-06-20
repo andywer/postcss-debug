@@ -103,8 +103,12 @@ section#file-selector {
   font-size: 16px;
 }
 .file__path {
-  color: rgba(0, 0, 0, 0.54);
   font-size: 14px;
+
+  &, a {
+    color: rgba(0, 0, 0, 0.54);
+    text-decoration: none;
+  }
 }
 
 .file__all_timer {

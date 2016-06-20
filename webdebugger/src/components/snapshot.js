@@ -32,7 +32,10 @@ const Snapshot = ({ snapshot, index, isExpanded, onSnapshotToggle }) => {
       <h3 className="snapshot__heading clickable" onClick={() => onSnapshotToggle(index)}>
         <img className="icon_heading" src="./assets/triangle_bot.svg" />
         <span className="snapshot__after-plugin">{pluginLabel}</span>
-        <br /><span className="file__path">www.npmjs.com/package/generator-brunch-symfony</span>
+        <br />
+        <span className="file__path">
+          {snapshot.prevPlugin && <HelpLink plugin={`https://www.npmjs.com/package/${snapshot.prevPlugin}`} />}
+        </span>
         {index > 0 ? benchmark : null}
       </h3>
       {renderSnapshotContent(snapshot)}

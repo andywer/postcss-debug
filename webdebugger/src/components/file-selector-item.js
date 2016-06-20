@@ -27,12 +27,13 @@ const FileSelectorItem = ({ file, index, commonPath, isSelected, onFileSelect })
   const firstSnapshot = file.snapshots[ 0 ]
   const lastSnapshot = file.snapshots[ file.snapshots.length -1 ]
   const processingTime = lastSnapshot.timestamp - firstSnapshot.timestamp
+  const initialContentSize = firstSnapshot.content.length
 
   return (
     <li key={index} className={className} onClick={() => onFileSelect(file)} title={file.path}>
       <div className="file__icon">
         <img src="./assets/file_icon.svg" /> <br />
-        <span className="file__size">3.5 kB</span>
+        <span className="file__size">{Math.round(initialContentSize / 100) / 10} kB</span>
       </div>
       <div className="file__block_info">
         <span className="file__basename">{basename}</span><br />

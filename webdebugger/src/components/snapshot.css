@@ -22,14 +22,11 @@
 .snapshots > .search_block_input {
   width: 40%;
 }
-.snapshot__heading .file__path{
-  margin-left: 26px;
-}
+
 .snapshots .icon_heading {
-  display: inline-block;
-  position: relative;
-  top: 6px;
-  margin-right: 16px;
+  position: absolute;
+  top: 50%;
+  left: 10px;
   transition: transform 0.15s;
 }
 .selected .icon_heading {
@@ -59,6 +56,7 @@
     margin: 0;
     display: block;
     padding: 9px 10px 10px;
+    padding-left: 40px;
     line-height: 17px;
     background-color: #fff;
     position: relative;

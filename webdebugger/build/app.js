@@ -20343,6 +20343,7 @@
 	  var firstSnapshot = file.snapshots[0];
 	  var lastSnapshot = file.snapshots[file.snapshots.length - 1];
 	  var processingTime = lastSnapshot.timestamp - firstSnapshot.timestamp;
+	  var initialContentSize = firstSnapshot.content.length;
 
 	  return React.createElement(
 	    'li',
@@ -20358,7 +20359,8 @@
 	      React.createElement(
 	        'span',
 	        { className: 'file__size' },
-	        '3.5 kB'
+	        Math.round(initialContentSize / 100) / 10,
+	        ' kB'
 	      )
 	    ),
 	    React.createElement(
@@ -20409,7 +20411,21 @@
 	  plugin: PropTypes$4.string.isRequired
 	};
 
-	__$styleInject(".snapshots {\n  display: inline-block;\n  vertical-align: top;\n  flex-grow: 1;\n  margin-left: 26px;\n}\n\n.snapshots > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshots .selectable {\n  margin-bottom: 8px;\n}\n\n.snapshots > .search_block_input {\n  width: 40%;\n}\n.snapshot__heading .file__path{\n  margin-left: 26px;\n}\n.snapshots .icon_heading {\n  display: inline-block;\n  position: relative;\n  top: 6px;\n  margin-right: 16px;\n  transition: transform 0.15s;\n}\n.selected .icon_heading {\n  transform: rotate(180deg);\n}\n.snapshots > li.selected {\n  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);\n}\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n.snapshots > li > h3 {\n  font-size: 15px;\n  margin: 0;\n  display: block;\n  padding: 9px 10px 10px;\n  line-height: 17px;\n  background-color: #fff;\n  position: relative;\n}\n.snapshots > li > h3 > .help-link {\n  margin-left:5px;\n}\n.snapshots > li > h3 > .snapshot__timing {\n  position: absolute;\n  right: 24px;\n  top: 15px;\n  padding: 5px 8px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #fff;\n  background-color: #8BC34A;\n  border-radius: 10px;\n}\n");
+	var HelpLink = function HelpLink(_ref) {
+	  var plugin = _ref.plugin;
+
+	  var url = "https://www.npmjs.com/package/" + plugin;
+
+	  return React.createElement(
+	    "a",
+	    { className: "help-link", href: url, target: "_blank" },
+	    url
+	  );
+	};
+
+	HelpLink.propTypes = propTypes$4;
+
+	__$styleInject(".snapshots {\n  display: inline-block;\n  vertical-align: top;\n  flex-grow: 1;\n  margin-left: 26px;\n}\n\n.snapshots > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshots .selectable {\n  margin-bottom: 8px;\n}\n\n.snapshots > .search_block_input {\n  width: 40%;\n}\n\n.snapshots .icon_heading {\n  position: absolute;\n  top: 50%;\n  left: 10px;\n  transition: transform 0.15s;\n}\n.selected .icon_heading {\n  transform: rotate(180deg);\n}\n.snapshots > li.selected {\n  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);\n}\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n.snapshots > li > h3 {\n  font-size: 15px;\n  margin: 0;\n  display: block;\n  padding: 9px 10px 10px;\n  padding-left: 40px;\n  line-height: 17px;\n  background-color: #fff;\n  position: relative;\n}\n.snapshots > li > h3 > .help-link {\n  margin-left:5px;\n}\n.snapshots > li > h3 > .snapshot__timing {\n  position: absolute;\n  right: 24px;\n  top: 15px;\n  padding: 5px 8px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #fff;\n  background-color: #8BC34A;\n  border-radius: 10px;\n}\n");
 
 	var Component$3 = React.Component;
 	var PropTypes$3 = React.PropTypes; // rollup doesn't resolve that correctly when importing like this
@@ -20466,7 +20482,7 @@
 	      React.createElement(
 	        'span',
 	        { className: 'file__path' },
-	        'www.npmjs.com/package/generator-brunch-symfony'
+	        snapshot.prevPlugin && React.createElement(HelpLink, { plugin: 'https://www.npmjs.com/package/' + snapshot.prevPlugin })
 	      ),
 	      index > 0 ? benchmark : null
 	    ),
@@ -20563,7 +20579,7 @@
 
 	SnapshotsContainer.propTypes = propTypes$2;
 
-	__$styleInject("section#file-selector {\n  padding: 10px;\n  height: 100%;\n}\n\n.file-selector-list > li, .file-selector > li {\n  position: relative;\n  display: block;\n  padding: 10px 64px 10px 10px;\n  font-size: 14px;\n  overflow-x: auto;\n}\n\n.file-selector-list > li .file__path, .file-selector > li .file__path {\n  color: #ccc;\n}\n\n.file-selector-list > li > a, .file-selector > li > a {\n  text-decoration: none;\n}\n\n.file-selector {\n  display: inline-block;\n  vertical-align: top;\n  height: 100%;\n  min-width: 350px;\n  position: relative;\n}\n\n.file-selector-list {\n  height: 80%;\n  overflow-x: auto;\n}\n\n.counter {\n  display: inline-block;\n  padding: 2px 5px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #666;\n  background-color: #eee;\n  border-radius: 20px;\n}\n\n.file-selector > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.search_block {\n  margin-bottom: 8px;\n  position: relative;\n}\n\n.search_block_input {\n  padding: 13px 26px 15px 65px;\n  font-size: 15px;\n  color: rgba(0, 0, 0, 0.38);\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 2px;\n  outline: none;\n  display: block;\n  width: 100%;\n  box-sizing: border-box;\n}\n.search_block_input:focus {\n  border-color: rgba(221, 55, 53, 0.65);\n  color: #555555;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(221, 55, 53, 0.65);\n}\n\n.file-selector-list .clickable {\n  padding: 15px 17px 16px 9px;\n  background-color: #fff;\n  margin-bottom: 8px;\n}\n\n.file__icon {\n  width: 50px;\n  height: 41px;\n  display: inline-block;\n  vertical-align: top;\n  margin-top: 5px;\n  text-align: center;\n}\n\n.file__block_info {\n  display: inline-block;\n  vertical-align: top;\n  margin-left: 9px;\n  margin-right: 9px;\n}\n\n.file__basename {\n  color: rgba(0, 0, 0, 0.87);\n  font-size: 16px;\n}\n.file__path {\n  color: rgba(0, 0, 0, 0.54);\n  font-size: 14px;\n}\n\n.file__all_timer {\n  width: 53px;\n  height: 14px;\n  background-color: #e0e0e0;\n  border-radius: 7px;\n  margin-top: 5px;\n}\n\n.icon_timer {\n  padding: 2px;\n  border-radius: 7px;\n  background-color: #8BC34A; /*#dd3735 - red color*/\n  display: inline-block;\n  vertical-align: top;\n}\n.time_text {\n  margin-left: 3px;\n  display: inline-block;\n  vertical-align: top;\n  font-size: 10px;\n  line-height: 14px;\n}\n\n.file-selector-list .selected {\n  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);\n}\n\n.selected .file__action {\n  background-color: #DD3735;\n}\n\n.file__action {\n  width: 24px;\n  height: 24px;\n  display: inline-block;\n  vertical-align: top;\n  background-color: #c5c5c5;\n  border-radius: 50px;\n  margin-top: 5px;\n  float: right;\n}\n.file__action_triangle_right {\n  width: 10px;\n  margin: 4px 0px 0px 8px;\n}\n\n.file__size {\n  font-size: 12px;\n  color: rgba(0, 0, 0, 0.38);\n}\n");
+	__$styleInject("section#file-selector {\n  padding: 10px;\n  height: 100%;\n}\n\n.file-selector-list > li, .file-selector > li {\n  position: relative;\n  display: block;\n  padding: 10px 64px 10px 10px;\n  font-size: 14px;\n  overflow-x: auto;\n}\n\n.file-selector-list > li .file__path, .file-selector > li .file__path {\n  color: #ccc;\n}\n\n.file-selector-list > li > a, .file-selector > li > a {\n  text-decoration: none;\n}\n\n.file-selector {\n  display: inline-block;\n  vertical-align: top;\n  height: 100%;\n  min-width: 350px;\n  position: relative;\n}\n\n.file-selector-list {\n  height: 80%;\n  overflow-x: auto;\n}\n\n.counter {\n  display: inline-block;\n  padding: 2px 5px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #666;\n  background-color: #eee;\n  border-radius: 20px;\n}\n\n.file-selector > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.search_block {\n  margin-bottom: 8px;\n  position: relative;\n}\n\n.search_block_input {\n  padding: 13px 26px 15px 65px;\n  font-size: 15px;\n  color: rgba(0, 0, 0, 0.38);\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 2px;\n  outline: none;\n  display: block;\n  width: 100%;\n  box-sizing: border-box;\n}\n.search_block_input:focus {\n  border-color: rgba(221, 55, 53, 0.65);\n  color: #555555;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(221, 55, 53, 0.65);\n}\n\n.file-selector-list .clickable {\n  padding: 15px 17px 16px 9px;\n  background-color: #fff;\n  margin-bottom: 8px;\n}\n\n.file__icon {\n  width: 50px;\n  height: 41px;\n  display: inline-block;\n  vertical-align: top;\n  margin-top: 5px;\n  text-align: center;\n}\n\n.file__block_info {\n  display: inline-block;\n  vertical-align: top;\n  margin-left: 9px;\n  margin-right: 9px;\n}\n\n.file__basename {\n  color: rgba(0, 0, 0, 0.87);\n  font-size: 16px;\n}\n.file__path {\n  font-size: 14px;\n}\n.file__path, .file__path a {\n  color: rgba(0, 0, 0, 0.54);\n  text-decoration: none;\n}\n\n.file__all_timer {\n  width: 53px;\n  height: 14px;\n  background-color: #e0e0e0;\n  border-radius: 7px;\n  margin-top: 5px;\n}\n\n.icon_timer {\n  padding: 2px;\n  border-radius: 7px;\n  background-color: #8BC34A; /*#dd3735 - red color*/\n  display: inline-block;\n  vertical-align: top;\n}\n.time_text {\n  margin-left: 3px;\n  display: inline-block;\n  vertical-align: top;\n  font-size: 10px;\n  line-height: 14px;\n}\n\n.file-selector-list .selected {\n  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);\n}\n\n.selected .file__action {\n  background-color: #DD3735;\n}\n\n.file__action {\n  width: 24px;\n  height: 24px;\n  display: inline-block;\n  vertical-align: top;\n  background-color: #c5c5c5;\n  border-radius: 50px;\n  margin-top: 5px;\n  float: right;\n}\n.file__action_triangle_right {\n  width: 10px;\n  margin: 4px 0px 0px 8px;\n}\n\n.file__size {\n  font-size: 12px;\n  color: rgba(0, 0, 0, 0.38);\n}\n");
 
 	var Component = React.Component;
 	var PropTypes = React.PropTypes; // rollup doesn't resolve that correctly when importing like this

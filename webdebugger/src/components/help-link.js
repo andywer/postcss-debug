@@ -10,9 +10,7 @@ const HelpLink = ({ plugin }) => {
   const url = `https://www.npmjs.com/package/${plugin}`
 
   return (
-    <a className="help-link" href={url} target="_blank">
-      <span className="counter">?</span>
-    </a>
+    <a className="help-link" href={url} target="_blank">{url}</a>
   )
 }
 
