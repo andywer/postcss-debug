@@ -12,7 +12,7 @@ const propTypes = {
   onSnapshotToggle: PropTypes.func.isRequired
 }
 
-const Snapshot = ({ snapshot, index, isExpanded, onSnapshotToggle }) => {
+function Snapshot ({ snapshot, index, isExpanded, onSnapshotToggle }) {
   function renderSnapshotContent (snapshot) {
     if (snapshot.highlightedContentHTML) {
       const innerHTML = { __html: snapshot.highlightedContentHTML }
@@ -32,9 +32,8 @@ const Snapshot = ({ snapshot, index, isExpanded, onSnapshotToggle }) => {
       <h3 className="snapshot__heading clickable" onClick={() => onSnapshotToggle(index)}>
         <img className="icon_heading" src="./assets/triangle_bot.svg" />
         <span className="snapshot__after-plugin">{pluginLabel}</span>
-        <br />
         <span className="file__path">
-          {snapshot.prevPlugin && <HelpLink plugin={`https://www.npmjs.com/package/${snapshot.prevPlugin}`} />}
+          <HelpLink plugin={snapshot.prevPlugin} />
         </span>
         {index > 0 ? benchmark : null}
       </h3>

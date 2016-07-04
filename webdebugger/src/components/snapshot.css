@@ -29,9 +29,11 @@
   left: 10px;
   transition: transform 0.15s;
 }
+
 .selected .icon_heading {
   transform: rotate(180deg);
 }
+
 .snapshots > li {
   &.selected {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);

@@ -88,10 +88,14 @@ section#file-selector {
 }
 
 .file__basename {
+  display: block;
   color: rgba(0, 0, 0, 0.87);
   font-size: 16px;
 }
+
 .file__path {
+  display: block;
+  height: 17px;
   font-size: 14px;
 
   &, a {

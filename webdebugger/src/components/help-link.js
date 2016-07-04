@@ -6,7 +6,11 @@ const propTypes = {
   plugin: PropTypes.string.isRequired
 }
 
-const HelpLink = ({ plugin }) => {
+function HelpLink ({ plugin }) {
+  if (!plugin) {
+    return <a className="help-link"></a>
+  }
+
   const url = `https://www.npmjs.com/package/${plugin}`
 
   return (

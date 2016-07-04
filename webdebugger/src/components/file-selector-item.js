@@ -18,7 +18,7 @@ const propTypes = {
   onFileSelect: PropTypes.func.isRequired
 }
 
-const FileSelectorItem = ({ file, index, commonPath, isSelected, onFileSelect }) => {
+function FileSelectorItem ({ file, index, commonPath, isSelected, onFileSelect }) {
   const className = cx('clickable', 'selectable', isSelected && 'selected')
   const pathToFile = file.path.replace(commonPath, '')
   const label = trimLabel(pathToFile, FILE_LABEL_MAX_LENGTH)
@@ -36,8 +36,8 @@ const FileSelectorItem = ({ file, index, commonPath, isSelected, onFileSelect })
         <span className="file__size">{Math.round(initialContentSize / 100) / 10} kB</span>
       </div>
       <div className="file__block_info">
-        <span className="file__basename">{basename}</span><br />
-        <span className="file__path">{file.path}</span><br />
+        <span className="file__basename">{basename}</span>
+        <span className="file__path">{file.path}</span>
         <div className="file__all_timer">
           <div className="file__icon_timer">
             <img className="icon_timer" src="./assets/time_icon.svg" />
