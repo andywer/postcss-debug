@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "node dev/prepare-index-html.js && cp -r src/assets build/ && rollup -c --sourcemap",
+    "build": "node dev/prepare-index-html.js && cp -r src/assets build/ && rollup -c --sourcemap && echo 'Build done.'",
     "serve": "http-server build/ -o -c-1",
     "start": "run-p watch serve",
     "watch": "watch 'npm run build' src/"

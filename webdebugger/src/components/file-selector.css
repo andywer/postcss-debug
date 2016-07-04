@@ -32,17 +32,6 @@ section#file-selector {
   overflow-x: auto;
 }
 
-.counter {
-  display: inline-block;
-  padding: 2px 5px;
-  font-size: 11px;
-  font-weight: bold;
-  line-height: 1;
-  color: #666;
-  background-color: #eee;
-  border-radius: 20px;
-}
-
 .file-selector > h3 {
   display: block;
   padding: 9px 10px 10px;
