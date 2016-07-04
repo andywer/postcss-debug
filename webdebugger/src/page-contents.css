@@ -43,7 +43,7 @@ article {
   margin: -7px 0px 0px 24px;
   color:#fff;
   &:active {
-    backgound-color: rgba(153, 153, 153, 0.20ы);
+    backgound-color: rgba(153, 153, 153, 0.20);
   }
 }
 
