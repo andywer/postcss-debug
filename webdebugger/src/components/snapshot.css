@@ -15,6 +15,21 @@
   border-bottom: 1px solid #d8d8d8;
 }
 
+.snapshot__helper_block {
+  float:right;
+}
+
+.snapshot__timing, .snapshot__helper {
+  padding: 5px 8px;
+  margin-left: 10px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  background-color: #8BC34A;
+  border-radius: 10px;
+}
+
 .snapshots .selectable {
   margin-bottom: 8px;
 }
@@ -65,19 +80,6 @@
 
     > .help-link {
       margin-left:5px;
-    }
-
-    > .snapshot__timing {
-      position: absolute;
-      right: 24px;
-      top: 15px;
-      padding: 5px 8px;
-      font-size: 11px;
-      font-weight: bold;
-      line-height: 1;
-      color: #fff;
-      background-color: #8BC34A;
-      border-radius: 10px;
     }
   }
 }

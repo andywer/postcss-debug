@@ -23,8 +23,10 @@ function Snapshot ({ snapshot, index, isExpanded, onSnapshotToggle }) {
   }
 
   const pluginLabel = snapshot.prevPlugin ? `After ${snapshot.prevPlugin}` : 'Initially'
+  const url_link = `https://www.npmjs.com/package/${snapshot.prevPlugin}`
+  const url = (!snapshot.prevPlugin) ? '' : <a className="snapshot__helper" target="_blank" href={url_link} >?</a>
   const benchmark = index > 0
-    ? <span className="snapshot__timing">{snapshot.timeDiff} ms</span>
+    ? <div className="snapshot__helper_block">{url}<span className="snapshot__timing">{snapshot.timeDiff} ms</span></div>
     : null
 
   return (
@@ -32,9 +34,6 @@ function Snapshot ({ snapshot, index, isExpanded, onSnapshotToggle }) {
       <h3 className="snapshot__heading clickable" onClick={() => onSnapshotToggle(index)}>
         <img className="icon_heading" src="./assets/triangle_bot.svg" />
         <span className="snapshot__after-plugin">{pluginLabel}</span>
-        <span className="file__path">
-          <HelpLink plugin={snapshot.prevPlugin} />
-        </span>
         {index > 0 ? benchmark : null}
       </h3>
       {renderSnapshotContent(snapshot)}
