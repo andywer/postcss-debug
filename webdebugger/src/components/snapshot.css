@@ -29,6 +29,9 @@
   background-color: #8BC34A;
   border-radius: 10px;
 }
+.snapshot__helper {
+  background-color: #c5c5c5;
+}
 
 .snapshots .selectable {
   margin-bottom: 8px;
@@ -41,6 +44,7 @@
 .snapshots .icon_heading {
   position: absolute;
   top: 50%;
+  margin-top: -6px;
   left: 10px;
   transition: transform 0.15s;
 }
