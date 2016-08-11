@@ -19,7 +19,7 @@ const propTypes = {
 }
 
 function FileSelectorItem ({ file, index, commonPath, isSelected, onFileSelect }) {
-  const className = cx('clickable', 'selectable', isSelected && 'selected')
+  const className = cx('clickable', 'selectable', isSelected && 'selected', 'file__item')
   const pathToFile = file.path.replace(commonPath, '')
   const label = trimLabel(pathToFile, FILE_LABEL_MAX_LENGTH)
   const { basename, path } = splitFilePath(label)

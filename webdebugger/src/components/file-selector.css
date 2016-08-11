@@ -3,7 +3,7 @@ section#file-selector {
   height: 100%;
 }
 
-.file-selector-list > li, .file-selector > li {
+.file__item {
   position: relative;
   display: block;
   padding: 10px 64px 10px 10px;
@@ -19,7 +19,7 @@ section#file-selector {
   }
 }
 
-.file-selector {
+.file__view {
   display: inline-block;
   vertical-align: top;
   height: 100%;
@@ -27,12 +27,12 @@ section#file-selector {
   position: relative;
 }
 
-.file-selector-list {
+.file__list {
   height: 80%;
   overflow-x: auto;
 }
 
-.file-selector > h3 {
+.file__view > h3 {
   display: block;
   padding: 9px 10px 10px;
   margin: 0;
@@ -42,12 +42,12 @@ section#file-selector {
   border-bottom: 1px solid #d8d8d8;
 }
 
-.search_block {
+.search__block {
   margin-bottom: 8px;
   position: relative;
 }
 
-.search_block_input {
+.search__block_input {
   padding: 13px 26px 15px 65px;
   font-size: 15px;
   color: rgba(0, 0, 0, 0.38);
@@ -59,13 +59,13 @@ section#file-selector {
   width: 100%;
   box-sizing: border-box;
 }
-.search_block_input:focus {
+.search__block_input:focus {
   border-color: rgba(221, 55, 53, 0.65);
   color: #555555;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(221, 55, 53, 0.65);
 }
 
-.file-selector-list .clickable {
+.file__list .clickable {
   padding: 15px 17px 16px 9px;
   background-color: #fff;
   margin-bottom: 8px;
@@ -127,7 +127,7 @@ section#file-selector {
   line-height: 14px;
 }
 
-.file-selector-list .selected {
+.file__list .selected {
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);
 }
 

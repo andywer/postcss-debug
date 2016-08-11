@@ -13,7 +13,7 @@
     color:#fff;
   }
 
-  .snapshot__heading {
+  .snapshot__basename {
     background-color: #424242;
     color:#fff;
   }
@@ -27,11 +27,11 @@
     background-color: #616161;
   }
 
-  .search_block_input {
+  .search__block_input {
     background-color:#EEEEEE;
   }
 
-  .file-selector-list .clickable {
+  .file__list .clickable {
     background-color: #424242;
   }
 

@@ -21298,7 +21298,7 @@
 	};
 
 	function FileSelectorItem({ file, index, commonPath, isSelected, onFileSelect }) {
-	  const className = cx('clickable', 'selectable', isSelected && 'selected');
+	  const className = cx('clickable', 'selectable', isSelected && 'selected', 'file__item');
 	  const pathToFile = file.path.replace(commonPath, '');
 	  const label = trimLabel(pathToFile, FILE_LABEL_MAX_LENGTH);
 	  const { basename, path } = splitFilePath(label);
@@ -21369,7 +21369,7 @@
 	  plugin: PropTypes$4.string.isRequired
 	};
 
-	__$styleInject(".snapshots {\n  display: inline-block;\n  vertical-align: top;\n  flex-grow: 1;\n  margin-left: 26px;\n}\n\n.snapshots > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.snapshot__helper_block {\n  float:right;\n}\n\n.snapshot__timing, .snapshot__helper {\n  padding: 5px 8px;\n  margin-left: 10px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #fff;\n  background-color: #8BC34A;\n  border-radius: 10px;\n}\n.snapshot__helper {\n  background-color: #c5c5c5;\n}\n\n.snapshots .selectable {\n  margin-bottom: 8px;\n}\n\n.snapshots > .search_block_input {\n  width: 40%;\n}\n\n.snapshots .icon_heading {\n  position: absolute;\n  top: 50%;\n  margin-top: -6px;\n  left: 10px;\n  transition: transform 0.15s;\n}\n\n.selected .icon_heading {\n  transform: rotate(180deg);\n}\n\n.snapshots > li.selected {\n  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);\n}\n\n.snapshots > li.selected > .snapshot__content {\n  display: block;\n}\n\n.snapshots > li.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n\n.snapshots > li > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n\n.snapshots > li > h3 {\n  font-size: 15px;\n  margin: 0;\n  display: block;\n  padding: 9px 10px 10px;\n  padding-left: 40px;\n  line-height: 17px;\n  background-color: #fff;\n  position: relative;\n}\n\n.snapshots > li > h3 > .help-link {\n  margin-left:5px;\n}\n");
+	__$styleInject(".snapshots__view {\n  display: inline-block;\n  vertical-align: top;\n  flex-grow: 1;\n  margin-left: 26px;\n}\n\n.snapshot__basename {\n  padding: 9px 10px 10px;\n  margin: 0;\n  line-height: 17px;\n  border-bottom: 1px solid #d8d8d8;\n  font-size: 15px;\n  display: block;\n  padding-left: 40px;\n  background-color: #fff;\n  position: relative;\n}\n\n.snapshot__helper_block {\n  float:right;\n}\n\n.snapshot__timing, .snapshot__helper {\n  padding: 5px 8px;\n  margin-left: 10px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #fff;\n  background-color: #8BC34A;\n  border-radius: 10px;\n}\n.snapshot__helper {\n  background-color: #c5c5c5;\n}\n\n.snapshots__view .selectable {\n  margin-bottom: 8px;\n}\n\n.snapshots__view .search_block_input {\n  width: 40%;\n}\n\n.snapshots__view .icon_heading {\n  position: absolute;\n  top: 50%;\n  margin-top: -6px;\n  left: 10px;\n  transition: transform 0.15s;\n}\n\n.selected .icon_heading {\n  transform: rotate(180deg);\n}\n\n.snapshots__view .snapshot__item.selected {\n  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);\n}\n\n.snapshots__view .snapshot__item.selected > .snapshot__content {\n  display: block;\n}\n\n.snapshots__view .snapshot__item.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n\n.snapshots__view .snapshot__item > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n\n.snapshots__view .snapshot__item > .help-link {\n  margin-left:5px;\n}\n");
 
 	const { Component: Component$3, PropTypes: PropTypes$3 } = React; // rollup doesn't resolve that correctly when importing like this
 
@@ -21415,10 +21415,10 @@
 
 	  return React.createElement(
 	    'li',
-	    { className: cx('selectable ', isExpanded && 'selected') },
+	    { className: cx('selectable ', isExpanded && 'selected', 'snapshot__item') },
 	    React.createElement(
 	      'h3',
-	      { className: 'snapshot__heading clickable', onClick: () => onSnapshotToggle(index) },
+	      { className: 'snapshot__basename clickable', onClick: () => onSnapshotToggle(index) },
 	      React.createElement('img', { className: 'icon_heading', src: './assets/triangle_bot.svg' }),
 	      React.createElement(
 	        'span',
@@ -21464,13 +21464,13 @@
 
 	    return React.createElement(
 	      'ul',
-	      { className: 'snapshots' },
+	      { className: 'snapshots__view' },
 	      React.createElement(
 	        'div',
-	        { className: 'search_block' },
+	        { className: 'search__block' },
 	        React.createElement('img', { className: 'search_icon', src: './assets/logo_search.svg' }),
 	        React.createElement('input', {
-	          type: 'text', className: 'search_block_input', placeholder: 'Search your plugins',
+	          type: 'text', className: 'search__block_input', placeholder: 'Search your plugins',
 	          onChange: event => this._onSearchFieldChange(event.target.value)
 	        })
 	      ),
@@ -21497,7 +21497,7 @@
 
 	SnapshotsContainer.propTypes = propTypes$2;
 
-	__$styleInject("section#file-selector {\n  padding: 10px;\n  height: 100%;\n}\n\n.file-selector-list > li, .file-selector > li {\n  position: relative;\n  display: block;\n  padding: 10px 64px 10px 10px;\n  font-size: 14px;\n  overflow-x: auto;\n}\n\n.file-selector-list > li .file__path, .file-selector > li .file__path {\n  color: #ccc;\n}\n\n.file-selector-list > li > a, .file-selector > li > a {\n  text-decoration: none;\n}\n\n.file-selector {\n  display: inline-block;\n  vertical-align: top;\n  height: 100%;\n  min-width: 350px;\n  position: relative;\n}\n\n.file-selector-list {\n  height: 80%;\n  overflow-x: auto;\n}\n\n.file-selector > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.search_block {\n  margin-bottom: 8px;\n  position: relative;\n}\n\n.search_block_input {\n  padding: 13px 26px 15px 65px;\n  font-size: 15px;\n  color: rgba(0, 0, 0, 0.38);\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 2px;\n  outline: none;\n  display: block;\n  width: 100%;\n  box-sizing: border-box;\n}\n.search_block_input:focus {\n  border-color: rgba(221, 55, 53, 0.65);\n  color: #555555;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(221, 55, 53, 0.65);\n}\n\n.file-selector-list .clickable {\n  padding: 15px 17px 16px 9px;\n  background-color: #fff;\n  margin-bottom: 8px;\n}\n\n.file__icon {\n  width: 50px;\n  height: 41px;\n  display: inline-block;\n  vertical-align: top;\n  margin-top: 5px;\n  text-align: center;\n}\n\n.file__block_info {\n  display: inline-block;\n  vertical-align: top;\n  margin-left: 9px;\n  margin-right: 9px;\n}\n\n.file__basename {\n  display: block;\n  color: rgba(0, 0, 0, 0.87);\n  font-size: 16px;\n}\n\n.file__path {\n  display: block;\n  height: 17px;\n  font-size: 14px;\n}\n\n.file__path, .file__path a {\n  color: rgba(0, 0, 0, 0.54);\n  text-decoration: none;\n}\n\n.file__all_timer {\n  width: 53px;\n  height: 14px;\n  background-color: #e0e0e0;\n  border-radius: 7px;\n  margin-top: 5px;\n}\n\n.icon_timer {\n  padding: 2px;\n  border-radius: 7px;\n  background-color: #8BC34A; /*#dd3735 - red color*/\n  display: inline-block;\n  vertical-align: top;\n}\n.time_text {\n  margin-left: 3px;\n  display: inline-block;\n  vertical-align: top;\n  font-size: 10px;\n  line-height: 14px;\n}\n\n.file-selector-list .selected {\n  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);\n}\n\n.selected .file__action {\n  background-color: #DD3735;\n}\n\n.file__action {\n  width: 24px;\n  height: 24px;\n  display: inline-block;\n  vertical-align: top;\n  background-color: #c5c5c5;\n  border-radius: 50px;\n  margin-top: 5px;\n  float: right;\n}\n.file__action_triangle_right {\n  width: 10px;\n  margin: 4px 0px 0px 8px;\n}\n\n.file__size {\n  font-size: 12px;\n  color: rgba(0, 0, 0, 0.38);\n}\n");
+	__$styleInject("section#file-selector {\n  padding: 10px;\n  height: 100%;\n}\n\n.file__item {\n  position: relative;\n  display: block;\n  padding: 10px 64px 10px 10px;\n  font-size: 14px;\n  overflow-x: auto;\n}\n\n.file__item .file__path {\n  color: #ccc;\n}\n\n.file__item > a {\n  text-decoration: none;\n}\n\n.file__view {\n  display: inline-block;\n  vertical-align: top;\n  height: 100%;\n  min-width: 350px;\n  position: relative;\n}\n\n.file__list {\n  height: 80%;\n  overflow-x: auto;\n}\n\n.file__view > h3 {\n  display: block;\n  padding: 9px 10px 10px;\n  margin: 0;\n  font-size: 14px;\n  line-height: 17px;\n  background-color: #FBFBFB;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n.search__block {\n  margin-bottom: 8px;\n  position: relative;\n}\n\n.search__block_input {\n  padding: 13px 26px 15px 65px;\n  font-size: 15px;\n  color: rgba(0, 0, 0, 0.38);\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: 2px;\n  outline: none;\n  display: block;\n  width: 100%;\n  box-sizing: border-box;\n}\n.search__block_input:focus {\n  border-color: rgba(221, 55, 53, 0.65);\n  color: #555555;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(221, 55, 53, 0.65);\n}\n\n.file__list .clickable {\n  padding: 15px 17px 16px 9px;\n  background-color: #fff;\n  margin-bottom: 8px;\n}\n\n.file__icon {\n  width: 50px;\n  height: 41px;\n  display: inline-block;\n  vertical-align: top;\n  margin-top: 5px;\n  text-align: center;\n}\n\n.file__block_info {\n  display: inline-block;\n  vertical-align: top;\n  margin-left: 9px;\n  margin-right: 9px;\n}\n\n.file__basename {\n  display: block;\n  color: rgba(0, 0, 0, 0.87);\n  font-size: 16px;\n}\n\n.file__path {\n  display: block;\n  height: 17px;\n  font-size: 14px;\n}\n\n.file__path, .file__path a {\n  color: rgba(0, 0, 0, 0.54);\n  text-decoration: none;\n}\n\n.file__all_timer {\n  width: 53px;\n  height: 14px;\n  background-color: #e0e0e0;\n  border-radius: 7px;\n  margin-top: 5px;\n}\n\n.icon_timer {\n  padding: 2px;\n  border-radius: 7px;\n  background-color: #8BC34A; /*#dd3735 - red color*/\n  display: inline-block;\n  vertical-align: top;\n}\n.time_text {\n  margin-left: 3px;\n  display: inline-block;\n  vertical-align: top;\n  font-size: 10px;\n  line-height: 14px;\n}\n\n.file__list .selected {\n  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);\n}\n\n.selected .file__action {\n  background-color: #DD3735;\n}\n\n.file__action {\n  width: 24px;\n  height: 24px;\n  display: inline-block;\n  vertical-align: top;\n  background-color: #c5c5c5;\n  border-radius: 50px;\n  margin-top: 5px;\n  float: right;\n}\n.file__action_triangle_right {\n  width: 10px;\n  margin: 4px 0px 0px 8px;\n}\n\n.file__size {\n  font-size: 12px;\n  color: rgba(0, 0, 0, 0.38);\n}\n");
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -21527,22 +21527,22 @@
 
 	    return React.createElement(
 	      'div',
-	      { className: 'main_container' },
+	      { className: 'main__block' },
 	      React.createElement(
 	        'div',
-	        { className: 'file-selector' },
+	        { className: 'file__view' },
 	        React.createElement(
 	          'div',
-	          { className: 'search_block' },
+	          { className: 'search__block' },
 	          React.createElement('img', { className: 'search_icon', src: './assets/logo_search.svg' }),
 	          React.createElement('input', {
-	            type: 'text', className: 'search_block_input', placeholder: 'Search your files',
+	            type: 'text', className: 'search__block_input', placeholder: 'Search your files',
 	            onChange: event => this._onSearchFieldChange(event.target.value)
 	          })
 	        ),
 	        React.createElement(
 	          'ul',
-	          { className: 'file-selector-list' },
+	          { className: 'file__list' },
 	          this._renderFiles()
 	        )
 	      ),
@@ -21653,11 +21653,11 @@
 	  }
 	}
 
-	__$styleInject("html {\n  height: 100%;\n}\n\nbody {\n  position: relative;\n  background: #EEEEEE;\n  font-family: Roboto,sans-serif;\n  margin:0;\n  padding:0;\n}\n\nh1 {\n  font-size:24px;\n}\n\n\n\na {\n  text-decoration: none;\n}\n\n\n\na:hover {\n  text-decoration: underline;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\npre {\n  border: none;\n  border-radius: 0;\n}\n\narticle {\n  width: 95%;\n  margin: 0 auto;\n  padding-top: 99px;\n  padding-bottom: 52px;\n  height: 100%;\n}\n\n/*******HEADER****************************/\n.header {\n  position: fixed;\n  top: 0;\n  width: 100%;\n  padding:18px 26px 18px 42px;\n  background-color: #DD3735;\n  z-index: 100;\n  box-sizing: border-box;\n  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);\n}\n.header > h1 {\n  margin: 0;\n  color:#fff;\n}\n.header h1 {\n  display: inline-block;\n  margin: 0 5px;\n  vertical-align: top;\n  font-weight: 400;\n}\n\n.header__link-github, .header__documentation-link {\n  float: right;\n  padding: 10px 14px 10px 13px;\n  box-sizing: border-box;\n  cursor: pointer;\n  margin: -7px 0px 0px 24px;\n  color:#fff;\n}\n\n.header__link-github:active, .header__documentation-link:active {\n  backgound-color: rgba(153, 153, 153, 0.20);\n}\n\n.header__logo {\n  display: inline-block;\n  vertical-align: top;\n  margin-top: -10px;\n  margin-right: 10px;\n  width: 45px;\n}\n/*******HEADER****************************/\n\n.clickable {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.clickable:active {\n  background-color: #f5f5f5;\n}\n");
+	__$styleInject("html {\n  height: 100%;\n}\n\nbody {\n  position: relative;\n  background: #EEEEEE;\n  font-family: Roboto,sans-serif;\n  margin:0;\n  padding:0;\n}\n\nh1 {\n  font-size:24px;\n}\n\n\n\na {\n  text-decoration: none;\n}\n\n\n\na:hover {\n  text-decoration: underline;\n}\n\nul {\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n}\n\npre {\n  border: none;\n  border-radius: 0;\n}\n\narticle {\n  width: 95%;\n  margin: 0 auto;\n  padding-top: 99px;\n  padding-bottom: 52px;\n  height: 100%;\n}\n\n/*******HEADER****************************/\n.header {\n  position: fixed;\n  top: 0;\n  width: 100%;\n  padding:18px 26px 18px 42px;\n  background-color: #DD3735;\n  z-index: 100;\n  box-sizing: border-box;\n  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);\n}\n\n.header__label {\n  display: inline-block;\n  margin: 0 5px;\n  vertical-align: top;\n  font-weight: 400;\n  margin:0;\n  color:#fff;\n}\n\n.header__link-github, .header__documentation-link {\n  float: right;\n  padding: 10px 14px 10px 13px;\n  box-sizing: border-box;\n  cursor: pointer;\n  margin: -7px 0px 0px 24px;\n  color:#fff;\n}\n\n.header__link-github:active, .header__documentation-link:active {\n  backgound-color: rgba(153, 153, 153, 0.20);\n}\n\n.header__logo {\n  display: inline-block;\n  vertical-align: top;\n  margin-top: -10px;\n  margin-right: 10px;\n  width: 45px;\n}\n/*******HEADER****************************/\n\n.clickable {\n  cursor: pointer;\n}\n\n.clickable:active {\n  background-color: #f5f5f5;\n}\n");
 
-	__$styleInject("\n.main_container {\n  display: flex;\n  height: 80%;\n  justify-content: center;\n}\n\n\n\n.search_icon {\n  position: absolute;\n  left: 19px;\n  top: 15px;\n}\n\n.logo_main {\n  display: inline-block;\n  vertical-align: top;\n  margin-top: -10px;\n  margin-right: 10px;\n  width: 45px;\n}\n\n.footer__block {\n  position: fixed;\n  bottom: 4px;\n  left: 42px;\n  text-align: center;\n  font-size: 12px;\n}\n\n.footer__block div {\n  display: inline-block;\n  padding:2px 5px;\n  background-color: #c5c5c5;\n}\n\n\n@media screen and (max-width:968px) {\n  .main_container {\n    display: block;\n  }\n  .snapshots {\n    display: block;\n    margin-left: 0px;\n  }\n  .file-selector {\n    display: block;\n  }\n\n  .file-selector li {\n    width: 150px;\n    display: inline-block;\n    margin-right: 5px;\n  }\n\n  .file__block_info {\n    margin-top: 5px;\n  }\n\n}\n\n@media screen and (max-width:650px) {\n  .link-github, .documentation-link {\n    display: inline-block;\n    width: 40%;\n  }\n}\n\n@media screen and (max-width:410px) {\n  .file-selector li {\n    box-sizing: border-box;\n    width: 100%;\n  }\n  .snapshot__heading .file__path {\n    width: 100px;\n    display: block;\n  }\n}\n");
+	__$styleInject("\n.main__block {\n  display: flex;\n  height: 80%;\n  justify-content: center;\n}\n\n\n\n.search_icon {\n  position: absolute;\n  left: 19px;\n  top: 15px;\n}\n\n.footer__block {\n  position: fixed;\n  bottom: 4px;\n  left: 42px;\n  text-align: center;\n  font-size: 12px;\n}\n\n.footer__block div {\n  display: inline-block;\n  padding:2px 5px;\n  background-color: #c5c5c5;\n}\n\n\n@media screen and (max-width:968px) {\n  .main__block {\n    display: block;\n  }\n  .snapshots__view {\n    display: block;\n    margin-left: 0px;\n  }\n  .file__view {\n    display: block;\n  }\n\n  .file__item {\n    width: 210px;\n    display: inline-block;\n    margin-right: 5px;\n  }\n\n  .file__block_info {\n    margin-top: 5px;\n  }\n\n  .file__path {\n    height: initial;\n  }\n}\n\n@media screen and (max-width:650px) {\n  .link-github, .documentation-link {\n    display: inline-block;\n    width: 40%;\n  }\n}\n\n@media screen and (max-width:410px) {\n  .file__item {\n    box-sizing: border-box;\n    width: 100%;\n  }\n  .snapshot__basename .file__path {\n    width: 100px;\n    display: block;\n  }\n}\n");
 
-	__$styleInject(".dark__theme {\n  background-color: #303030;\n}\n.dark__theme .file__basename {\n  color:#fff;\n}\n.dark__theme .file__size {\n  color:#c5c5c5;\n}\n.dark__theme .footer__block {\n  color:#fff;\n}\n.dark__theme .snapshot__heading {\n  background-color: #424242;\n  color:#fff;\n}\n.dark__theme .file__path {\n  color:#c5c5c5;\n}\n.dark__theme .file__all_timer {\n  color: #c5c5c5;\n  background-color: #616161;\n}\n.dark__theme .search_block_input {\n  background-color:#EEEEEE;\n}\n.dark__theme .file-selector-list .clickable {\n  background-color: #424242;\n}\n.dark__theme .clickable:active {\n  background-color: #3c3c3c;\n}\n.dark__theme > header {\n  background-color: #212121;\n}\n.dark__theme > h1 {\n  color:#fff;\n}\n");
+	__$styleInject(".dark__theme {\n  background-color: #303030;\n}\n.dark__theme .file__basename {\n  color:#fff;\n}\n.dark__theme .file__size {\n  color:#c5c5c5;\n}\n.dark__theme .footer__block {\n  color:#fff;\n}\n.dark__theme .snapshot__basename {\n  background-color: #424242;\n  color:#fff;\n}\n.dark__theme .file__path {\n  color:#c5c5c5;\n}\n.dark__theme .file__all_timer {\n  color: #c5c5c5;\n  background-color: #616161;\n}\n.dark__theme .search__block_input {\n  background-color:#EEEEEE;\n}\n.dark__theme .file__list .clickable {\n  background-color: #424242;\n}\n.dark__theme .clickable:active {\n  background-color: #3c3c3c;\n}\n.dark__theme > header {\n  background-color: #212121;\n}\n.dark__theme > h1 {\n  color:#fff;\n}\n");
 
 	init();
 

@@ -1,5 +1,5 @@
 
-.main_container {
+.main__block {
   display: flex;
   height: 80%;
   justify-content: center;
@@ -11,14 +11,6 @@
   position: absolute;
   left: 19px;
   top: 15px;
-}
-
-.logo_main {
-  display: inline-block;
-  vertical-align: top;
-  margin-top: -10px;
-  margin-right: 10px;
-  width: 45px;
 }
 
 .footer__block {
@@ -37,19 +29,19 @@
 
 
 @media screen and (max-width:968px) {
-  .main_container {
+  .main__block {
     display: block;
   }
-  .snapshots {
+  .snapshots__view {
     display: block;
     margin-left: 0px;
   }
-  .file-selector {
+  .file__view {
     display: block;
   }
 
-  .file-selector li {
-    width: 150px;
+  .file__item {
+    width: 210px;
     display: inline-block;
     margin-right: 5px;
   }
@@ -58,6 +50,9 @@
     margin-top: 5px;
   }
 
+  .file__path {
+    height: initial;
+  }
 }
 
 @media screen and (max-width:650px) {
@@ -68,11 +63,11 @@
 }
 
 @media screen and (max-width:410px) {
-  .file-selector li {
+  .file__item {
     box-sizing: border-box;
     width: 100%;
   }
-  .snapshot__heading .file__path {
+  .snapshot__basename .file__path {
     width: 100px;
     display: block;
   }

@@ -30,8 +30,8 @@ function Snapshot ({ snapshot, index, isExpanded, onSnapshotToggle }) {
     : null
 
   return (
-    <li className={cx('selectable ', isExpanded && 'selected')}>
-      <h3 className="snapshot__heading clickable" onClick={() => onSnapshotToggle(index)}>
+    <li className={cx('selectable ', isExpanded && 'selected','snapshot__item')}>
+      <h3 className="snapshot__basename clickable" onClick={() => onSnapshotToggle(index)}>
         <img className="icon_heading" src="./assets/triangle_bot.svg" />
         <span className="snapshot__after-plugin">{pluginLabel}</span>
         {index > 0 ? benchmark : null}

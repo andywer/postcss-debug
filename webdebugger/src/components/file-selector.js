@@ -29,16 +29,16 @@ export default class FileSelector extends Component {
     const { selectedFile } = this.state
 
     return (
-      <div className="main_container">
-        <div className="file-selector">
-          <div className="search_block">
+      <div className="main__block">
+        <div className="file__view">
+          <div className="search__block">
             <img className="search_icon" src="./assets/logo_search.svg" />
             <input
-              type="text" className="search_block_input" placeholder="Search your files"
+              type="text" className="search__block_input" placeholder="Search your files"
               onChange={event => this._onSearchFieldChange(event.target.value)}
               />
           </div>
-          <ul className="file-selector-list">
+          <ul className="file__list">
             {this._renderFiles()}
           </ul>
         </div>
