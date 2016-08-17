@@ -13,6 +13,14 @@ const propTypes = {
 }
 
 function Snapshot ({ snapshot, index, isExpanded, onSnapshotToggle }) {
+  function renderSnapshotMeta (snapshot) {
+    return (
+      <div className="snapshot__helper_block">
+        <HelpLink plugin={snapshot.prevPlugin} />
+        <span className="snapshot__timing">{snapshot.timeDiff} ms</span>
+      </div>
+    )
+  }
   function renderSnapshotContent (snapshot) {
     if (snapshot.highlightedContentHTML) {
       const innerHTML = { __html: snapshot.highlightedContentHTML }
@@ -23,10 +31,8 @@ function Snapshot ({ snapshot, index, isExpanded, onSnapshotToggle }) {
   }
 
   const pluginLabel = snapshot.prevPlugin ? `After ${snapshot.prevPlugin}` : 'Initially'
-  const url_link = `https://www.npmjs.com/package/${snapshot.prevPlugin}`
-  const url = (!snapshot.prevPlugin) ? '' : <a className="snapshot__helper" target="_blank" href={url_link} >?</a>
   const benchmark = index > 0
-    ? <div className="snapshot__helper_block">{url}<span className="snapshot__timing">{snapshot.timeDiff} ms</span></div>
+    ? renderSnapshotMeta(snapshot)
     : null
 
   return (

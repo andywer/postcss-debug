@@ -21369,6 +21369,21 @@
 	  plugin: PropTypes$4.string.isRequired
 	};
 
+	function HelpLink({ plugin }) {
+	  if (!plugin) {
+	    return null;
+	  }
+
+	  const href = `https://www.npmjs.com/package/${ plugin }`;
+	  return React.createElement(
+	    "a",
+	    { className: "snapshot__helper", target: "_blank", href: href },
+	    "?"
+	  );
+	}
+
+	HelpLink.propTypes = propTypes$4;
+
 	__$styleInject(".snapshots__view {\n  display: inline-block;\n  vertical-align: top;\n  flex-grow: 1;\n  margin-left: 26px;\n}\n\n.snapshot__basename {\n  padding: 9px 10px 10px;\n  margin: 0;\n  line-height: 17px;\n  border-bottom: 1px solid #d8d8d8;\n  font-size: 15px;\n  display: block;\n  padding-left: 40px;\n  background-color: #fff;\n  position: relative;\n}\n\n.snapshot__helper_block {\n  float:right;\n}\n\n.snapshot__timing, .snapshot__helper {\n  padding: 5px 8px;\n  margin-left: 10px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #fff;\n  background-color: #8BC34A;\n  border-radius: 10px;\n}\n.snapshot__helper {\n  background-color: #c5c5c5;\n}\n\n.snapshots__view .selectable {\n  margin-bottom: 8px;\n}\n\n.snapshots__view .search_block_input {\n  width: 40%;\n}\n\n.snapshots__view .icon_heading {\n  position: absolute;\n  top: 50%;\n  margin-top: -6px;\n  left: 10px;\n  transition: transform 0.15s;\n}\n\n.selected .icon_heading {\n  transform: rotate(180deg);\n}\n\n.snapshots__view .snapshot__item.selected {\n  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);\n}\n\n.snapshots__view .snapshot__item.selected > .snapshot__content {\n  display: block;\n}\n\n.snapshots__view .snapshot__item.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n\n.snapshots__view .snapshot__item > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n\n.snapshots__view .snapshot__item > .help-link {\n  margin-left:5px;\n}\n");
 
 	const { Component: Component$3, PropTypes: PropTypes$3 } = React; // rollup doesn't resolve that correctly when importing like this
@@ -21381,6 +21396,19 @@
 	};
 
 	function Snapshot({ snapshot, index, isExpanded, onSnapshotToggle }) {
+	  function renderSnapshotMeta(snapshot) {
+	    return React.createElement(
+	      'div',
+	      { className: 'snapshot__helper_block' },
+	      React.createElement(HelpLink, { plugin: snapshot.prevPlugin }),
+	      React.createElement(
+	        'span',
+	        { className: 'snapshot__timing' },
+	        snapshot.timeDiff,
+	        ' ms'
+	      )
+	    );
+	  }
 	  function renderSnapshotContent(snapshot) {
 	    if (snapshot.highlightedContentHTML) {
 	      const innerHTML = { __html: snapshot.highlightedContentHTML };
@@ -21395,23 +21423,7 @@
 	  }
 
 	  const pluginLabel = snapshot.prevPlugin ? `After ${ snapshot.prevPlugin }` : 'Initially';
-	  const url_link = `https://www.npmjs.com/package/${ snapshot.prevPlugin }`;
-	  const url = !snapshot.prevPlugin ? '' : React.createElement(
-	    'a',
-	    { className: 'snapshot__helper', target: '_blank', href: url_link },
-	    '?'
-	  );
-	  const benchmark = index > 0 ? React.createElement(
-	    'div',
-	    { className: 'snapshot__helper_block' },
-	    url,
-	    React.createElement(
-	      'span',
-	      { className: 'snapshot__timing' },
-	      snapshot.timeDiff,
-	      ' ms'
-	    )
-	  ) : null;
+	  const benchmark = index > 0 ? renderSnapshotMeta(snapshot) : null;
 
 	  return React.createElement(
 	    'li',

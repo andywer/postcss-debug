@@ -6,16 +6,16 @@ const propTypes = {
   plugin: PropTypes.string.isRequired
 }
 
+/**
+ * Plugin help component. Creates a link to a PostCSS plugin's documentation.
+ */
 function HelpLink ({ plugin }) {
   if (!plugin) {
-    return <a className="help-link"></a>
+    return null
   }
 
-  const url = `https://www.npmjs.com/package/${plugin}`
-
-  return (
-    <a className="help-link" href={url} target="_blank">{url}</a>
-  )
+  const href = `https://www.npmjs.com/package/${plugin}`
+  return <a className="snapshot__helper" target="_blank" href={href}>?</a>
 }
 
 HelpLink.propTypes = propTypes
