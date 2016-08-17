@@ -13,41 +13,39 @@ const propTypes = {
 }
 
 function Snapshot ({ snapshot, index, isExpanded, onSnapshotToggle }) {
-  function renderSnapshotMeta (snapshot) {
-    const onClick = (event) => event.stopPropagation()    // So clicking the PluginDocLink won't open the snapshot content
-    return (
-      <div className="snapshot__helper_block">
-        <PluginDocLink plugin={snapshot.prevPlugin} onClick={onClick} />
-        <span className="snapshot__timing">{snapshot.timeDiff} ms</span>
-      </div>
-    )
-  }
-  function renderSnapshotContent (snapshot) {
-    if (snapshot.highlightedContentHTML) {
-      const innerHTML = { __html: snapshot.highlightedContentHTML }
-      return <div className="snapshot__content" dangerouslySetInnerHTML={innerHTML}></div>
-    } else {
-      return <pre className="snapshot__content">{snapshot.content}</pre>
-    }
-  }
-
   const pluginLabel = snapshot.prevPlugin ? `After ${snapshot.prevPlugin}` : 'Initially'
-  const benchmark = index > 0
-    ? renderSnapshotMeta(snapshot)
-    : null
 
   return (
     <li className={cx('selectable ', isExpanded && 'selected','snapshot__item')}>
       <h3 className="snapshot__basename clickable" onClick={() => onSnapshotToggle(index)}>
         <img className="icon_heading" src="./assets/triangle_bot.svg" />
         <span className="snapshot__after-plugin">{pluginLabel}</span>
-        {index > 0 ? benchmark : null}
+        {index > 0 ? <SnapshotMeta snapshot={snapshot} /> : null}
       </h3>
-      {renderSnapshotContent(snapshot)}
+      <SnapshotContent snapshot={snapshot} />
     </li>
   )
 }
 
 Snapshot.propTypes = propTypes
+
+function SnapshotMeta ({ snapshot }) {
+  const onClick = (event) => event.stopPropagation()    // So clicking the PluginDocLink won't open the snapshot content
+  return (
+    <div className="snapshot__helper_block">
+      <PluginDocLink plugin={snapshot.prevPlugin} onClick={onClick} />
+      <span className="snapshot__timing">{snapshot.timeDiff} ms</span>
+    </div>
+  )
+}
+
+function SnapshotContent ({ snapshot }) {
+  if (snapshot.highlightedContentHTML) {
+    const innerHTML = { __html: snapshot.highlightedContentHTML }
+    return <div className="snapshot__content" dangerouslySetInnerHTML={innerHTML}></div>
+  } else {
+    return <pre className="snapshot__content">{snapshot.content}</pre>
+  }
+}
 
 export default Snapshot

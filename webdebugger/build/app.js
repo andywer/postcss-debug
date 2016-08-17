@@ -21404,35 +21404,7 @@
 	};
 
 	function Snapshot({ snapshot, index, isExpanded, onSnapshotToggle }) {
-	  function renderSnapshotMeta(snapshot) {
-	    const onClick = event => event.stopPropagation(); // So clicking the PluginDocLink won't open the snapshot content
-	    return React.createElement(
-	      'div',
-	      { className: 'snapshot__helper_block' },
-	      React.createElement(PluginDocLink, { plugin: snapshot.prevPlugin, onClick: onClick }),
-	      React.createElement(
-	        'span',
-	        { className: 'snapshot__timing' },
-	        snapshot.timeDiff,
-	        ' ms'
-	      )
-	    );
-	  }
-	  function renderSnapshotContent(snapshot) {
-	    if (snapshot.highlightedContentHTML) {
-	      const innerHTML = { __html: snapshot.highlightedContentHTML };
-	      return React.createElement('div', { className: 'snapshot__content', dangerouslySetInnerHTML: innerHTML });
-	    } else {
-	      return React.createElement(
-	        'pre',
-	        { className: 'snapshot__content' },
-	        snapshot.content
-	      );
-	    }
-	  }
-
 	  const pluginLabel = snapshot.prevPlugin ? `After ${ snapshot.prevPlugin }` : 'Initially';
-	  const benchmark = index > 0 ? renderSnapshotMeta(snapshot) : null;
 
 	  return React.createElement(
 	    'li',
@@ -21446,13 +21418,41 @@
 	        { className: 'snapshot__after-plugin' },
 	        pluginLabel
 	      ),
-	      index > 0 ? benchmark : null
+	      index > 0 ? React.createElement(SnapshotMeta, { snapshot: snapshot }) : null
 	    ),
-	    renderSnapshotContent(snapshot)
+	    React.createElement(SnapshotContent, { snapshot: snapshot })
 	  );
 	}
 
 	Snapshot.propTypes = propTypes$3;
+
+	function SnapshotMeta({ snapshot }) {
+	  const onClick = event => event.stopPropagation(); // So clicking the PluginDocLink won't open the snapshot content
+	  return React.createElement(
+	    'div',
+	    { className: 'snapshot__helper_block' },
+	    React.createElement(PluginDocLink, { plugin: snapshot.prevPlugin, onClick: onClick }),
+	    React.createElement(
+	      'span',
+	      { className: 'snapshot__timing' },
+	      snapshot.timeDiff,
+	      ' ms'
+	    )
+	  );
+	}
+
+	function SnapshotContent({ snapshot }) {
+	  if (snapshot.highlightedContentHTML) {
+	    const innerHTML = { __html: snapshot.highlightedContentHTML };
+	    return React.createElement('div', { className: 'snapshot__content', dangerouslySetInnerHTML: innerHTML });
+	  } else {
+	    return React.createElement(
+	      'pre',
+	      { className: 'snapshot__content' },
+	      snapshot.content
+	    );
+	  }
+	}
 
 	var _extends$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
