@@ -21369,7 +21369,14 @@
 	  plugin: PropTypes$4.string.isRequired
 	};
 
-	function HelpLink({ plugin }) {
+	const defaultProps = {
+	  onClick: () => {}
+	};
+
+	/**
+	 * Plugin help component. Creates a link to a PostCSS plugin's documentation.
+	 */
+	function HelpLink({ plugin, onClick }) {
 	  if (!plugin) {
 	    return null;
 	  }
@@ -21377,12 +21384,13 @@
 	  const href = `https://www.npmjs.com/package/${ plugin }`;
 	  return React.createElement(
 	    "a",
-	    { className: "snapshot__helper", target: "_blank", href: href },
+	    { className: "snapshot__helper", target: "_blank", href: href, onClick: onClick },
 	    "?"
 	  );
 	}
 
 	HelpLink.propTypes = propTypes$4;
+	HelpLink.defaultProps = defaultProps;
 
 	__$styleInject(".snapshots__view {\n  display: inline-block;\n  vertical-align: top;\n  flex-grow: 1;\n  margin-left: 26px;\n}\n\n.snapshot__basename {\n  padding: 9px 10px 10px;\n  margin: 0;\n  line-height: 17px;\n  border-bottom: 1px solid #d8d8d8;\n  font-size: 15px;\n  display: block;\n  padding-left: 40px;\n  background-color: #fff;\n  position: relative;\n}\n\n.snapshot__helper_block {\n  float:right;\n}\n\n.snapshot__timing, .snapshot__helper {\n  padding: 5px 8px;\n  margin-left: 10px;\n  font-size: 11px;\n  font-weight: bold;\n  line-height: 1;\n  color: #fff;\n  background-color: #8BC34A;\n  border-radius: 10px;\n}\n.snapshot__helper {\n  background-color: #c5c5c5;\n}\n\n.snapshots__view .selectable {\n  margin-bottom: 8px;\n}\n\n.snapshots__view .search_block_input {\n  width: 40%;\n}\n\n.snapshots__view .icon_heading {\n  position: absolute;\n  top: 50%;\n  margin-top: -6px;\n  left: 10px;\n  transition: transform 0.15s;\n}\n\n.selected .icon_heading {\n  transform: rotate(180deg);\n}\n\n.snapshots__view .snapshot__item.selected {\n  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.24);\n}\n\n.snapshots__view .snapshot__item.selected > .snapshot__content {\n  display: block;\n}\n\n.snapshots__view .snapshot__item.selected > .snapshot__content pre.midas {\n  padding: 8px 16px;\n  margin: 0;\n}\n\n.snapshots__view .snapshot__item > .snapshot__content {\n  display: none;\n  max-height: 1000px;\n  overflow: auto;\n}\n\n.snapshots__view .snapshot__item > .help-link {\n  margin-left:5px;\n}\n");
 
@@ -21397,10 +21405,11 @@
 
 	function Snapshot({ snapshot, index, isExpanded, onSnapshotToggle }) {
 	  function renderSnapshotMeta(snapshot) {
+	    const onClick = event => event.stopPropagation(); // So clicking the HelpLink won't open the snapshot content
 	    return React.createElement(
 	      'div',
 	      { className: 'snapshot__helper_block' },
-	      React.createElement(HelpLink, { plugin: snapshot.prevPlugin }),
+	      React.createElement(HelpLink, { plugin: snapshot.prevPlugin, onClick: onClick }),
 	      React.createElement(
 	        'span',
 	        { className: 'snapshot__timing' },

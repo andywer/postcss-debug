@@ -14,9 +14,10 @@ const propTypes = {
 
 function Snapshot ({ snapshot, index, isExpanded, onSnapshotToggle }) {
   function renderSnapshotMeta (snapshot) {
+    const onClick = (event) => event.stopPropagation()    // So clicking the HelpLink won't open the snapshot content
     return (
       <div className="snapshot__helper_block">
-        <HelpLink plugin={snapshot.prevPlugin} />
+        <HelpLink plugin={snapshot.prevPlugin} onClick={onClick} />
         <span className="snapshot__timing">{snapshot.timeDiff} ms</span>
       </div>
     )
