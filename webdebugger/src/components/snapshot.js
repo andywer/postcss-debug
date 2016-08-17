@@ -1,6 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
-import HelpLink from './help-link'
+import PluginDocLink from './plugin-doc-link'
 import './snapshot.css'
 
 const { Component, PropTypes } = React    // rollup doesn't resolve that correctly when importing like this
@@ -14,10 +14,10 @@ const propTypes = {
 
 function Snapshot ({ snapshot, index, isExpanded, onSnapshotToggle }) {
   function renderSnapshotMeta (snapshot) {
-    const onClick = (event) => event.stopPropagation()    // So clicking the HelpLink won't open the snapshot content
+    const onClick = (event) => event.stopPropagation()    // So clicking the PluginDocLink won't open the snapshot content
     return (
       <div className="snapshot__helper_block">
-        <HelpLink plugin={snapshot.prevPlugin} onClick={onClick} />
+        <PluginDocLink plugin={snapshot.prevPlugin} onClick={onClick} />
         <span className="snapshot__timing">{snapshot.timeDiff} ms</span>
       </div>
     )

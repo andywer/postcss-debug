@@ -13,7 +13,7 @@ const defaultProps = {
 /**
  * Plugin help component. Creates a link to a PostCSS plugin's documentation.
  */
-function HelpLink ({ plugin, onClick }) {
+function PluginDocLink ({ plugin, onClick }) {
   if (!plugin) {
     return null
   }
@@ -22,7 +22,7 @@ function HelpLink ({ plugin, onClick }) {
   return <a className="snapshot__helper" target="_blank" href={href} onClick={onClick}>?</a>
 }
 
-HelpLink.propTypes = propTypes
-HelpLink.defaultProps = defaultProps
+PluginDocLink.propTypes = propTypes
+PluginDocLink.defaultProps = defaultProps
 
-export default HelpLink
+export default PluginDocLink
