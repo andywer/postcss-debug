@@ -20,6 +20,9 @@
 .snapshot__helper_block {
   float:right;
 }
+.snapshot__helper:hover {
+  background-color: #6f6f6f;
+}
 
 .snapshot__timing, .snapshot__helper {
   padding: 5px 8px;
