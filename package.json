@@ -13,6 +13,9 @@
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
   "author": "Andy Wermke <andy@dev.next-step-software.com>",
+  "contributors": [
+    "Sergey (https://github.com/Gaserd)"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/andywer/postcss-debug",
   "bugs": {

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+- Redesigned UI some more (Credits go to https://github.com/Gaserd)
+
 ## 0.3.0
 
 - Redesigned UI (Big thanks to https://github.com/Gaserd & https://github.com/ai)
