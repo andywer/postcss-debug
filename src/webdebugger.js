@@ -16,7 +16,7 @@ function serializeFileSnapshots (fileSnapshots) {
 }
 
 function serializeSnapshot (snapshot) {
-  const content = snapshot.css.toString()
+  const content = snapshot.css
 
   return {
     timestamp: snapshot.timestamp,

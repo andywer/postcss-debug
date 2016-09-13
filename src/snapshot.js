@@ -8,7 +8,7 @@ function getPluginName (plugin) {
 
 export default class Snapshot {
   constructor (css, { prevPlugin, nextPlugin }) {
-    this.css = css.clone()
+    this.css = css.toString()
     this.timestamp = Date.now()
     this.prevPlugin = prevPlugin && getPluginName(prevPlugin)
     this.nextPlugin = nextPlugin && getPluginName(nextPlugin)
