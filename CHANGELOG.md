@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fix resizing of the snapshot view (Credits go to https://github.com/alienlebarge)
+
 ## 0.4.0
 
 - Redesigned UI some more (Credits go to https://github.com/Gaserd)
