@@ -3,6 +3,7 @@
   vertical-align: top;
   flex-grow: 1;
   margin-left: 26px;
+  overflow: scroll;
 }
 
 .snapshot__basename {
