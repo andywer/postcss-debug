@@ -3,7 +3,7 @@
   vertical-align: top;
   flex-grow: 1;
   margin-left: 26px;
-  overflow: scroll;
+  max-width: calc(100% - 26px)
 }
 
 .snapshot__basename {
