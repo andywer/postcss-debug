@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.4.1
 
 - Fix resizing of the snapshot view (Credits go to https://github.com/alienlebarge)
 
