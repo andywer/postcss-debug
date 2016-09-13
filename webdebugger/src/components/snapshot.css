@@ -3,7 +3,7 @@
   vertical-align: top;
   flex-grow: 1;
   margin-left: 26px;
-  max-width: calc(100% - 26px)
+  max-width: calc(95% - 350px - 26px - 20px); /* article width - article padding - right col width - right col margin */
 }
 
 .snapshot__basename {
