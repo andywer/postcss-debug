@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.2
+
+- Fix disappearing blank lines (work-around for postcss issue)
+- Fix the 0.4.1 fix (was not applied, because built files had not been committed)
+
 ## 0.4.1
 
 - Fix resizing of the snapshot view (Credits go to https://github.com/alienlebarge)
