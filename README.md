@@ -21,8 +21,8 @@ of your choice and let the debugger analyze it. It will automatically open the
 PostCSS debugger's web inspector, so you can browse through the debugging data.
 
 ```sh
-npm install -g postcss-debug          # Install
-postcss-debug path/to/styles/*.css    # Run
+npm install --save-dev postcss-debug
+npx postcss-debug path/to/styles/*.css    # Use npx to run locally installed postcss-debug
 ```
 
 You need a configuration file for postcss plugin setup. The name of this file
@@ -41,7 +41,7 @@ module.exports = function (postcss) {
 If you need further information how to use the `postcss-debug` CLI:
 
 ```sh
-postcss-debug --help
+npx postcss-debug --help
 ```
 
 ### gulp-postcss
